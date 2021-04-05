@@ -1,0 +1,54 @@
+.login-container {
+    display: flex;
+    height: 100vh;
+
+    .right-section {
+        @include md() {
+            width: 60vw;
+            background: url('../assets/login-bg.jpeg');
+            background-repeat: no-repeat;
+            background-origin: content-box;
+            background-position: center center;
+        }
+    }
+
+    .left-section {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+
+        @include md() {
+            width: 40vw;
+        }
+    }
+
+    .login-form-container {
+
+        .app-title {
+            font-size: 2.5rem;
+            color: $primary;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .app-subtitle {
+            color: $medium_grey;
+            text-align: center;
+        }
+
+        .form-field-label {
+            color: $dark_grey;
+        }
+
+        .btn {
+            width: 100%;
+            margin-top: .5rem;
+        }
+
+        .sign-up-info {
+            margin: 3rem 0rem 1rem 0rem;
+            text-align: center;
+        }
+    }
+}
