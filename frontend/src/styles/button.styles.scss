@@ -1,0 +1,48 @@
+@import 'variables.scss';
+
+button {
+    width: 12rem;
+    height: 3rem;
+    border-radius: $border_radius;
+    border: none;
+    outline: none;
+    box-shadow: $shadow;
+    font-size: 1.1rem;
+    cursor: pointer;
+    
+    &:active {
+        transform: scale(0.98);
+        box-shadow: 3px 2px 22px 1px $light_grey;
+    }
+}
+
+.btn-primary {
+    background-color: $primary;
+    color: $light_text;
+
+    &:hover {
+        background-color: $dark_primary
+    }
+}
+
+.btn-secondary {
+    background-color: $light_text;
+    color: $primary;
+
+    &:hover {
+        background-color: $primary;
+        color: $light_text;
+    }
+}
+
+.btn-primary-small {
+    background-color: $primary;
+    color: $light_text;
+    width: 3rem;
+    height: 3rem;
+    font-size: 1.3rem;
+
+    &:hover {
+        background-color: $dark_primary
+    }
+}
