@@ -32,7 +32,9 @@
           />
         </div>
         <div class="input-container">
-          <label for="password-confirmation" class="form-field-label">Retype password</label>
+          <label for="password-confirmation" class="form-field-label"
+            >Retype password</label
+          >
           <input
             id="password-confirmation"
             type="password"
@@ -42,7 +44,9 @@
         </div>
         <button class="btn btn-primary">Sign up</button>
         <div class="sign-up-info">Already have an account ?</div>
-        <button class="btn btn-secondary">Go to login</button>
+        <router-link to="/login"
+          ><button class="btn btn-secondary">Go to login</button></router-link
+        >
       </div>
     </div>
     <div class="right-section"></div>

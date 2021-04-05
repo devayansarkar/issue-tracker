@@ -26,7 +26,7 @@
         <div class='sign-up-info'>
           Do not have an account yet ?
         </div>
-        <button class='btn btn-secondary'>Sign up</button>
+        <router-link to='/signup'><button class='btn btn-secondary'>Sign up</button></router-link>
       </div>
     </div>
     <div class='right-section'></div>
