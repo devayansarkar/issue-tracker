@@ -1,5 +1,5 @@
 <template>
-  <div class="login-container">
+  <div class="auth-form-container">
     <div class="left-section">
       <div class="login-form-container">
         <div class="app-title">Issue Tracker</div>
