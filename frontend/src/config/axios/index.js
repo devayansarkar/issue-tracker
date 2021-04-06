@@ -47,3 +47,5 @@ securedConnection.interceptors.response.use(null, error => {
         return Promise.reject(error)
     }
 })
+
+export { securedConnection, openConnection }
