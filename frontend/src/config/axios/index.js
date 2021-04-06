@@ -24,7 +24,12 @@ securedConnection.interceptors.request.use((config) => {
 
 securedConnection.interceptors.response.use(null, (error) => {
   if (error.respons && error.response.config && error.response.status === 401) {
-    return openConnection.post('/refresh', {}, { headers: { Authorization: `Bearer ${localStorage.token.refresh}` } })
+    return openConnection.post('/refresh', {}, {
+      headers: {
+        Authorization: `Bearer ${localStorage.token.access}`,
+        x_refresh_token: `Bearer ${localStorage.token.refresh}`,
+      },
+    })
       .then((response) => {
         localStorage.tokens = response.data;
         localStorage.signedIn = true;
