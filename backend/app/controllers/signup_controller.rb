@@ -10,7 +10,7 @@ class SignupController < ApplicationController
 
       response.set_cookie(JWTSessions.access_cookie, value: tokens[:access], httponly: true, secure: Rails.env.production?)
       
-      render json: {csrf: tokens[:csrf]}
+      render json: tokens
     else
       render json: {error: user.erorrs.full_messages.join(' ')}, status: :bad_request
     end
