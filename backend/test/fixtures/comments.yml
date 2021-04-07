@@ -3,7 +3,11 @@
 one:
   title: MyString
   description: MyString
+  issue: one
+  user: one
 
 two:
   title: MyString
   description: MyString
+  issue: two
+  user: two

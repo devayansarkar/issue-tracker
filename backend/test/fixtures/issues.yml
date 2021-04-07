@@ -6,6 +6,7 @@ one:
   end_date: 2021-04-07
   category: MyString
   status: MyString
+  user: one
 
 two:
   title: MyString
@@ -13,3 +14,4 @@ two:
   end_date: 2021-04-07
   category: MyString
   status: MyString
+  user: two
