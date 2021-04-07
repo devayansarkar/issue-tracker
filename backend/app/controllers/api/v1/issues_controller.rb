@@ -11,10 +11,22 @@ module Api
                 render json: {'issues': current_user.issues.all}
             end
 
-             # GET /issues/1
+            # GET /issues/1
             # Get specific issue
+            # Issue also loads associated comments
             def show
-                render json: @issue
+                render json: {
+                    "id": @issue[:id],
+                    "title": @issue[:title],
+                    "description": @issue[:description],
+                    "end_date":  @issue[:end_date],
+                    "category": @issue[:category],
+                    "status":  @issue[:status],
+                    "user_id":  @issue[:user_id],
+                    "created_at":  @issue[:created_at],
+                    "updated_at":  @issue[:updated_at],
+                    "comments": @issue.comments.all
+                }
             end
 
             # POST /issues 
