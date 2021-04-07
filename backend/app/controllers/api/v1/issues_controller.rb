@@ -51,6 +51,7 @@ module Api
             def issue_params
                 params.require(:issue).permit(:title, :description, :end_date, :category, :status)
             end
+            
             # Send 404 if the item is not found
             def item_not_found
                 render json:{error: 'Requested issue is not found!'}, status: :not_found
