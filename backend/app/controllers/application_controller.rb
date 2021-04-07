@@ -5,10 +5,11 @@ class ApplicationController < ActionController::API
     def action_not_found
         render json:{error: 'The resource you are requesting is not available.'}, status: :not_found
     end
+    
     private 
 
     def current_user
-        @current_user ||= User.find(paylod['user_id'])
+        @current_user ||= User.find_by_email(payload['user_id'])
     end
 
     def not_authorized
