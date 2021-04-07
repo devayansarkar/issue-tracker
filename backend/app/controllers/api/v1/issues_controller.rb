@@ -11,6 +11,12 @@ module Api
                 render json: {'issues': current_user.issues.all}
             end
 
+             # GET /issues/1
+            # Get specific issue
+            def show
+                render json: @issue
+            end
+
             # POST /issues 
             # Add issue for a user
             def create
