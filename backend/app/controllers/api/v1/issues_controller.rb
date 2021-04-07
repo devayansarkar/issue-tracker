@@ -5,7 +5,7 @@ module Api
             before_action :set_issue, only: [:show, :update, :destroy]
             rescue_from ActiveRecord::RecordNotFound, with: :item_not_found
 
-            # GET /isssues
+            # GET /issues
             # Get all issues for a user
             def index
                 render json: {'issues': current_user.issues.all}
