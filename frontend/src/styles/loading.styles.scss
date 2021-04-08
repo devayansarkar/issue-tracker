@@ -1,0 +1,48 @@
+@import 'variables.scss';
+
+.loading {
+    text-align: center;
+    margin: 1rem;
+    color: $dark_grey;
+}
+
+.water {
+    width: 200px;
+    height: 200px;
+    background-color: $primary;
+    border-radius: 50%;
+    position: relative;
+    overflow: hidden;
+}
+
+.water:before,
+.water:after {
+    content: '';
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    top: -80px;
+    background-color: #fff;
+}
+
+.water:before {
+    border-radius: 45%;
+    background: rgba(255, 255, 255, 0.7);
+    animation: wave 5s linear infinite;
+}
+
+.water:after {
+    border-radius: 35%;
+    background: rgba(255, 255, 255, 0.3);
+    animation: wave 5s linear infinite;
+}
+
+@keyframes wave {
+    0% {
+        transform: rotate(0);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
