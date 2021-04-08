@@ -1,24 +1,20 @@
-# README
+# Issue tracker backend
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Built using Ruby on Rails
 
-Things you may want to cover:
+- Language - Ruby
+- Framework - Rails
+- Databse - PostgreSQL
+- Deployed on Heroku
+- Login sessions management using JWTSessions
+- Sessions persisted on Redis
+- Hosting the frontend component
 
-* Ruby version
+## Running the project
 
-* System dependencies
+- Install dependencies with `bundle install`
+- Incase database is not created run `rails db:create`
+- Incase database needs migration run `rails db:migrate`
+- Run `rails s`
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+> App connects to local instance of PostgreSQL on local machine.
