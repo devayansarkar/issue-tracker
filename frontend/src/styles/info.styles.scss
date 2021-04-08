@@ -1,0 +1,26 @@
+@import 'variables.scss';
+
+
+@mixin message_styles($background_color, $border_color) {
+    background-color: $background_color;
+    border: 1.6px solid $border_color
+}
+
+.info-message {
+    text-align: center;
+    margin: 1rem;
+    padding: 1rem .5rem;
+    border-radius: 5px;
+}
+
+.warning {
+    @include message_styles($warning_bg, $warning)
+}
+
+.error {
+    @include message_styles($danger_bg, $danger)
+}
+
+.success {
+    @include message_styles($success_bg, $success)
+}
