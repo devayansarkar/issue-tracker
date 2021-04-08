@@ -1,0 +1,39 @@
+@import 'variables.scss';
+
+.navbar {
+    height: 100vh;
+    width: 5rem;
+    background-color: $primary;
+    position: fixed;
+    left: 0;
+    top: 0;
+
+    .item {
+        height: 6rem;
+        width: 100%;
+        color: $light_text;
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        margin-bottom: 2rem;
+
+        .icon .material-icons {
+            font-size: 2rem;
+        }
+    }
+
+    .logo {
+        color: $dark_primary
+    }
+
+    .active {
+        background-color: $secondary;
+        font-weight: bold;
+    }
+
+    .spacer {
+        height: 40%;
+    }
+}
