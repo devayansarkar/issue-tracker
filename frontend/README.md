@@ -1,24 +1,15 @@
-# issue-tracker-frontend
+# Issue tracker frontend
 
-## Project setup
-```
-yarn install
-```
+## Built using Vue
 
-### Compiles and hot-reloads for development
-```
-yarn serve
-```
+- Language - Javascript
+- Styles - scss
 
-### Compiles and minifies for production
-```
-yarn build
-```
+## Running the project
 
-### Lints and fixes files
-```
-yarn lint
-```
+- Install dependencies with `yarn install`
+- Serve app with `yarn serve`
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+> On local machine the application boots up with `devProxy`.
+> This proxy forwards the requests to `http://localhost:3000/`.
+> Ensure that the backend app is up and running
