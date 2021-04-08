@@ -6,12 +6,14 @@
       </div>
     </div>
     <div class="item">
-      <div>
-        <div class="icon">
-          <span class="material-icons"> home </span>
+      <router-link to="/home">
+        <div>
+          <div class="icon">
+            <span class="material-icons"> home </span>
+          </div>
+          <div class="text">Home</div>
         </div>
-        <div class="text">Home</div>
-      </div>
+      </router-link>
     </div>
     <div class="item">
       <div>
@@ -31,9 +33,11 @@
     </div>
     <div class="spacer"></div>
     <div class="item">
-      <div class="icon">
-        <span class="material-icons"> info </span>
-      </div>
+      <router-link to="/about">
+        <div class="icon">
+          <span class="material-icons"> info </span>
+        </div>
+      </router-link>
     </div>
   </div>
 </template>
