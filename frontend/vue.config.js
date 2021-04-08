@@ -1,3 +1,6 @@
 module.exports = {
-    outputDir : '../backend/public'
-  }
+  outputDir: '../backend/public',
+  devServer: {
+    proxy: 'http://localhost:3000',
+  },
+};
