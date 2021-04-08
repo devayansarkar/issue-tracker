@@ -94,7 +94,7 @@ export default {
       if (this.password !== this.password_confirmation) {
         this.message = {
           type: 'error',
-          text: 'Password confirmation do not match!',
+          text: 'Passwords do not match!',
         };
       }
     },
