@@ -18,32 +18,38 @@ const openConnection = axios.create({
 
 securedConnection.interceptors.request.use((config) => {
   // eslint-disable-next-line no-param-reassign
-  config.headers.Authorization = `Bearer ${localStorage.tokens.access}`;
+  config.headers.Authorization = `Bearer ${localStorage.access_token}`;
   return config;
 });
 
 securedConnection.interceptors.response.use(null, (error) => {
-  if (error.respons && error.response.config && error.response.status === 401) {
+  if (error.response && error.response.config && error.response.status === 401) {
     return openConnection.post('/refresh', {}, {
       headers: {
-        Authorization: `Bearer ${localStorage.token.access}`,
-        x_refresh_token: `Bearer ${localStorage.token.refresh}`,
+        Authorization: `Bearer ${localStorage.access_token}`,
+        x_refresh_token: `Bearer ${localStorage.refresh_token}`,
       },
     })
       .then((response) => {
-        localStorage.tokens = response.data;
-        localStorage.signedIn = true;
+        const token = response.data;
+        localStorage.access_token = token.access_token;
+        localStorage.refresh_token = token.refresh;
+        localStorage.access_expires_at = token.access_expires_at;
+        localStorage.refresh_token_expires_at = token.refresh_expires_at;
 
         const retryConfig = error.response.config;
-        retryConfig.headers.Authorization = `Bearer ${localStorage.tokens.access}`;
+        retryConfig.headers.Authorization = `Bearer ${localStorage.access_token}`;
         return openConnection.request(retryConfig);
       })
       .catch((exception) => {
-        delete localStorage.tokens;
-        delete localStorage.signedIn;
+        delete localStorage.access_token;
+        delete localStorage.refresh_token;
 
         // eslint-disable-next-line no-restricted-globals
-        location.replace('/');
+        if (location.pathname !== '/') {
+          // eslint-disable-next-line no-restricted-globals
+          location.replace('/');
+        }
         return Promise.reject(exception);
       });
   }
