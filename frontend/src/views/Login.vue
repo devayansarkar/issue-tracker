@@ -4,7 +4,7 @@
       <div class="left-section">
         <div class="login-form-container">
           <div v-if="message.text" class="info-message" :class="message.type">
-            {{message.text}}
+            {{ message.text }}
           </div>
           <div class="app-title">Issue Tracker</div>
           <div class="app-subtitle">Login in your portal</div>
@@ -74,9 +74,7 @@ export default {
     },
     signinSuccessful(response) {
       this.isLoading = false;
-      localStorage.tokens = response.data;
-      localStorage.signedIn = true;
-      this.error = '';
+      this.addTokensToLocalStorage(response.data);
       this.$router.replace('/home');
     },
     signinFailed(exception) {
@@ -89,9 +87,20 @@ export default {
         type: 'error',
         text: errorMessage,
       };
-      delete localStorage.tokens;
-      delete localStorage.signedIn;
+      this.removeTokensFromLocalStorage();
       this.isLoading = false;
+    },
+    addTokensToLocalStorage(token) {
+      localStorage.access_token = token.access;
+      localStorage.refresh_token = token.refresh;
+      localStorage.access_expires_at = token.access_expires_at;
+      localStorage.refresh_token_expires_at = token.refresh_expires_at;
+    },
+    removeTokensFromLocalStorage() {
+      delete localStorage.access_token;
+      delete localStorage.refresh_token;
+      delete localStorage.access_expires_at;
+      delete localStorage.refresh_token_expires_at;
     },
   },
   created() {
@@ -99,8 +108,7 @@ export default {
       .post('/refresh', {})
       .then((r) => this.signinSuccessful(r))
       .catch(() => {
-        delete localStorage.tokens;
-        delete localStorage.signedIn;
+        this.removeTokensFromLocalStorage();
         this.isLoading = false;
       });
   },
