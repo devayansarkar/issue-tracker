@@ -1,0 +1,60 @@
+@import 'variables.scss';
+
+.menu-page {
+    z-index: 1;
+    position: fixed;
+    background-color: $primary;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .item {
+        color: $light_text;
+        font-size: 4rem;
+        cursor: pointer;
+    }
+}
+
+.close-btn>.material-icons {
+    z-index: 2;
+    position: fixed;
+    top: 0;
+    right: 0;
+    margin: 2rem;
+    color: $dark_primary;
+    font-size: 3rem;
+}
+
+.menu-open {
+    display: initial;
+
+    @include md(){
+        display: none;
+    }
+}
+
+.menu-close {
+    display: none;
+}
+
+.menu-btn {
+    display: initial;
+    position: fixed;
+    margin: 1.5rem 2rem;
+    z-index: 1;
+    top: 0;
+    right: 0;
+    color: $light_text;
+
+    &>.material-icons {
+        font-size: 2rem;
+    }
+
+    @include md() {
+        display: none;
+    }
+}
