@@ -22,6 +22,16 @@
         text-align: left;
         padding: 0rem 2rem;
         font-size: 1.5rem;
+
+        &>.material-icons {
+            color: $dark_primary;
+            font-size: 1.5rem;
+        }
+
+        &>span {
+            display: inline-block;
+            vertical-align: middle;
+        }
     }
 
     .profile-container {
