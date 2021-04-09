@@ -33,11 +33,9 @@ export default {
   methods: {
     closeMenu() {
       this.isOpen = false;
-      console.log('Closing menu');
     },
     openMenu() {
       this.isOpen = true;
-      console.log('Opening menu');
     },
   },
 };
