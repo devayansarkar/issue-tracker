@@ -24,8 +24,13 @@
         font-size: 1.5rem;
 
         &>.material-icons {
+            display: initial;
             color: $dark_primary;
             font-size: 1.5rem;
+
+            @include md(){
+                display: none;
+            }
         }
 
         &>span {
