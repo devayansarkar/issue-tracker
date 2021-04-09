@@ -49,5 +49,6 @@ export default {
 </script>
 
 <style lang="scss">
+@import '../styles/media.queries.scss';
 @import '../styles/navbar.styles.scss';
 </style>
