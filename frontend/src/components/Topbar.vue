@@ -1,7 +1,10 @@
 <template>
   <Menu />
   <div class="topbar">
-    <div class="app-name">Issue tracker</div>
+    <div class="app-name">
+      <span class="material-icons"> group_work </span>
+      Issue tracker
+    </div>
     <div class="profile-container">
       <div class="profile">
         <div class="name">Devayan Kumar Sarkar</div>
