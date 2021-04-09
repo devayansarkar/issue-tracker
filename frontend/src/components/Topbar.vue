@@ -1,4 +1,5 @@
 <template>
+  <Menu />
   <div class="topbar">
     <div class="app-name">Issue tracker</div>
     <div class="profile-container">
@@ -10,15 +11,17 @@
         <span class="material-icons"> account_circle </span>
       </div>
     </div>
-    <div class="icon menu">
-      <span class="material-icons"> menu </span>
-    </div>
   </div>
 </template>
 
 <script>
+import Menu from './Menu.vue';
+
 export default {
   name: 'Topbar',
+  components: {
+    Menu,
+  },
 };
 </script>
 
