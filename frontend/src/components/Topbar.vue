@@ -10,6 +10,9 @@
         <span class="material-icons"> account_circle </span>
       </div>
     </div>
+    <div class="icon menu">
+      <span class="material-icons"> menu </span>
+    </div>
   </div>
 </template>
 
@@ -20,5 +23,6 @@ export default {
 </script>
 
 <style lang="scss">
+@import '../styles/media.queries.scss';
 @import '../styles/topbar.styles.scss';
 </style>
