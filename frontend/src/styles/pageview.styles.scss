@@ -1,3 +1,7 @@
+@import 'media.queries.scss';
+
 .page-container {
-    margin-left: 5rem;
+    @include md() {
+        margin-left: 5rem;
+    }
 }

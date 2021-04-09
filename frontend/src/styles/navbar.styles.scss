@@ -1,12 +1,17 @@
 @import 'variables.scss';
 
 .navbar {
-    height: 100vh;
-    width: 5rem;
-    background-color: $primary;
-    position: fixed;
-    left: 0;
-    top: 0;
+    display: none;
+
+    @include md() {
+        display: initial;
+        height: 100vh;
+        width: 5rem;
+        background-color: $primary;
+        position: fixed;
+        left: 0;
+        top: 0;
+    }
 
     .item {
         height: 4rem;
