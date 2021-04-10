@@ -41,7 +41,7 @@
             </div>
           </div>
         </div>
-        <div class="next-tasks">
+        <div v-if="$store.getters.hasDeadlineIssues" class="next-tasks">
           <div class="section-title">Approaching deadline</div>
           <div class="section-items">
             <TaskCard
@@ -71,7 +71,7 @@
           </div>
         </div>
 
-        <div class="next-tasks">
+        <div v-if="$store.getters.hasRecentIssues" class="next-tasks">
           <div class="section-title">Recent tasks</div>
           <div class="section-items">
             <TaskCard
@@ -96,6 +96,22 @@
               title="loarIncididunt qui do proident eu sunt.loarIncididunt qui do proident eu sunt."
               deadline="23/05/2021"
               startDate="2021-04-09T21:15:02.214Z"
+            />
+          </div>
+        </div>
+        <div v-if="$store.getters.hasEmptyActionItems" class="next-tasks">
+          <div class="section-title">Task status</div>
+          <div class="section-items">
+            <TaskCard
+              taskNumber="11"
+              title="loarIncididunt qui do proident eu sunt.loarIncididunt qui do proident eu sunt."
+              deadline="23/15/2021"
+            />
+            <TaskCard
+              taskNumber="11"
+              title="loarIncididunt qui do proident eu sunt.loarIncididunt qui do proident eu sunt."
+              deadline="23/05/2021"
+              startDate="2021-02-09T21:15:02.214Z"
             />
           </div>
         </div>
