@@ -5,9 +5,13 @@
     padding: 1rem;
 
     .home-header {
+        @include md() {
+            display: flex;
+        }
+
         .left {
             padding: .5rem;
-
+            width: 100%;
             .title {
                 font-size: 1.3rem;
             }
@@ -31,7 +35,8 @@
     .next-tasks {
         padding: .5rem;
         margin-top: 3rem;
-        .section-title{
+
+        .section-title {
             font-size: 1.5rem;
             font-weight: bolder;
             padding: .2rem;
@@ -46,7 +51,14 @@
     grid-template-rows: 1fr 1fr;
     gap: 10px 10px;
     grid-template-areas:
-      ". ."
-      ". .";
+        ". ."
+        ". .";
+
+    @include md() {
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        grid-template-rows: 1fr;
+        gap: 10px;
+        grid-template-areas:
+            ". . . ."
+    }
 }
-  
