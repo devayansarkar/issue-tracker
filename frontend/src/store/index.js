@@ -9,7 +9,7 @@ export default createStore({
       email: '',
     },
     deadlineItems: [],
-    recentItem: [],
+    recentItems: [],
     taskCount: {
       inprogress: 0,
       done: 0,
@@ -44,7 +44,6 @@ export default createStore({
         .get('/api/v1/user')
         .then((r) => commit('loadUserInfoSuccess', r.data))
         .catch((e) => commit('loadUserInfoFailure', e));
-      console.log('Loading user info (action)');
     },
   },
   modules: {
@@ -52,6 +51,15 @@ export default createStore({
   getters: {
     getUser(state) {
       return { ...state.user };
+    },
+    hasDeadlineItems(state) {
+      return state.deadlineItems.length > 0;
+    },
+    hasRecentItems(state) {
+      return state.recentItems.length > 0;
+    },
+    hasEmptyActionItems(state) {
+      return state.recentItems.length === 0 || state.deadlineItems.length === 0;
     },
     // getRecentItems(state) { },
     // getDeadlineItems(state) { },
