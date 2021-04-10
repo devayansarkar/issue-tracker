@@ -31,11 +31,11 @@
         <div class="text">New task</div>
       </div>
     </div>
-    <div class="spacer"></div>
     <div class="item">
       <router-link to="/about">
         <div class="icon">
           <span class="material-icons"> info </span>
+           <div class="text">About</div>
         </div>
       </router-link>
     </div>
