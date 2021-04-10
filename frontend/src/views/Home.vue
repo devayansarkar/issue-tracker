@@ -18,10 +18,10 @@
           </div>
           <div class="right">
             <div class="task-count-grid-container">
-              <TaskCount cardType="total-card" count="24" type="Total" />
-              <TaskCount cardType="count-card" count="12" type="Done" />
-              <TaskCount cardType="count-card" count="12" type="Doing" />
-              <TaskCount cardType="count-card" count="12" type="Doing" />
+              <TaskCount cardType="total-card" :count="$store.getters.getTaskCount.total" type="Total" />
+              <TaskCount cardType="count-card" :count="$store.getters.getTaskCount.done" type="Done" />
+              <TaskCount cardType="count-card" :count="$store.getters.getTaskCount.doing" type="Doing" />
+              <TaskCount cardType="count-card" :count="$store.getters.getTaskCount.inprogress" type="Inprog" />
             </div>
           </div>
         </div>
