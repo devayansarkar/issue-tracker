@@ -4,7 +4,7 @@
     <Navbar :page="'home'" />
     <div class="page-container">
       <Topbar />
-      <div class="home">
+      <div v-if="!$store.state.isLoading" class="home">
         <div class="home-header">
           <div class="left">
             <div class="title">Welcome to your personal task tracker</div>
@@ -18,10 +18,26 @@
           </div>
           <div class="right">
             <div class="task-count-grid-container">
-              <TaskCount cardType="total-card" :count="$store.getters.getTaskCount.total" type="Total" />
-              <TaskCount cardType="count-card" :count="$store.getters.getTaskCount.done" type="Done" />
-              <TaskCount cardType="count-card" :count="$store.getters.getTaskCount.doing" type="Doing" />
-              <TaskCount cardType="count-card" :count="$store.getters.getTaskCount.inprogress" type="Inprog" />
+              <TaskCount
+                cardType="total-card"
+                :count="$store.getters.getTaskCount.total"
+                type="Total"
+              />
+              <TaskCount
+                cardType="count-card"
+                :count="$store.getters.getTaskCount.done"
+                type="Done"
+              />
+              <TaskCount
+                cardType="count-card"
+                :count="$store.getters.getTaskCount.todo"
+                type="Todo"
+              />
+              <TaskCount
+                cardType="count-card"
+                :count="$store.getters.getTaskCount.inprogress"
+                type="Doing"
+              />
             </div>
           </div>
         </div>
@@ -84,6 +100,9 @@
           </div>
         </div>
       </div>
+      <div v-if="$store.state.isLoading" class="loading-container">
+        <Loading />
+      </div>
     </div>
   </div>
 </template>
@@ -93,6 +112,7 @@ import Navbar from '@/components/Navbar.vue';
 import Topbar from '@/components/Topbar.vue';
 import TaskCount from '@/components/TaskCount.vue';
 import TaskCard from '@/components/TaskCard.vue';
+import Loading from '@/components/Loading.vue';
 
 export default {
   name: 'Home',
@@ -101,6 +121,10 @@ export default {
     Topbar,
     TaskCount,
     TaskCard,
+    Loading,
+  },
+  mounted() {
+    this.$store.dispatch('loadUserInfo');
   },
 };
 </script>
