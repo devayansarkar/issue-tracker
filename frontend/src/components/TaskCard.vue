@@ -11,9 +11,6 @@
       <div class="title">
         {{ title }}
       </div>
-      <div class="content">
-        {{ description }}
-      </div>
       <div class="footer">
         <div class="deadline">
           <div class="text">Deadline</div>
@@ -122,5 +119,6 @@ export default {
 </script>
 
 <style lang="scss">
+@import '../styles/media.queries.scss';
 @import '../styles/task.card.styles.scss';
 </style>
