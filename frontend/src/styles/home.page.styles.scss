@@ -5,7 +5,7 @@
     padding: 1rem;
 
     .home-header {
-        @include md() {
+        @include lg() {
             display: flex;
         }
 
