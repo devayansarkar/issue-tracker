@@ -1,0 +1,32 @@
+@import 'variables.scss';
+
+.task-count {
+    height: 8rem;
+    min-width: 8rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: $light_text;
+    border-radius: $border_radius;
+
+    .count {
+        font-size: 3rem;
+        font-weight: bold;
+        text-align: center;
+    }
+
+    .type {
+        font-size: 1rem;
+        text-align: center;
+        font-weight: bolder;
+
+    }
+}
+
+.active {
+    background-color: $primary;
+}
+
+.total {
+    background-color: $secondary;
+}
