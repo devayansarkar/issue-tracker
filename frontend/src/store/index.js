@@ -8,8 +8,8 @@ export default createStore({
       name: '',
       email: '',
     },
-    deadlineItems: [],
-    recentItems: [],
+    deadlineIssues: [],
+    recentIssues: [],
     taskCount: {
       inprogress: 0,
       done: 0,
@@ -31,6 +31,8 @@ export default createStore({
         inprogress: responseBody.inProgress,
         todo: responseBody.todo,
       };
+      state.deadlineIssues = responseBody.deadlineIssues;
+      state.recentIssues = responseBody.recentlyUpdatedIssues;
       state.isLoading = false;
     },
     loadUserInfoFailure(state) {
@@ -52,14 +54,14 @@ export default createStore({
     getUser(state) {
       return { ...state.user };
     },
-    hasDeadlineItems(state) {
-      return state.deadlineItems.length > 0;
+    hasDeadlineIssues(state) {
+      return state.deadlineIssues.length > 0;
     },
-    hasRecentItems(state) {
-      return state.recentItems.length > 0;
+    hasRecentIssues(state) {
+      return state.recentIssues.length > 0;
     },
     hasEmptyActionItems(state) {
-      return state.recentItems.length === 0 || state.deadlineItems.length === 0;
+      return state.recentIssues.length === 0 || state.deadlineIssues.length === 0;
     },
     // getRecentItems(state) { },
     // getDeadlineItems(state) { },
