@@ -5,6 +5,7 @@
     padding: 1rem;
 
     .home-header {
+        
         @include lg() {
             display: flex;
         }
@@ -12,6 +13,7 @@
         .left {
             padding: .5rem;
             width: 100%;
+
             .title {
                 font-size: 1.3rem;
             }
