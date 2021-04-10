@@ -26,7 +26,7 @@
           </div>
         </div>
         <div class="next-tasks">
-          <div class="title">Approaching deadline</div>
+          <div class="section-title">Approaching deadline</div>
           <TaskCard
             taskNumber="11"
             title="loarIncididunt qui do proident eu sunt.loarIncididunt qui do proident eu sunt."
@@ -58,7 +58,7 @@
         </div>
 
         <div class="next-tasks">
-          <div class="title">Recent tasks</div>
+          <div class="section-title">Recent tasks</div>
           <TaskCard
             taskNumber="11"
             title="loarIncididunt qui do proident eu sunt.loarIncididunt qui do proident eu sunt."
