@@ -5,8 +5,8 @@
     padding: 1rem;
 
     .home-header {
-        
-        @include lg() {
+
+        @include xl() {
             display: flex;
         }
 
@@ -43,6 +43,37 @@
             font-weight: bolder;
             padding: .2rem;
             margin-bottom: 1rem;
+        }
+
+        .section-items {
+
+            @include md() {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                grid-template-rows: 1fr 1fr;
+                gap: 10px 10px;
+                grid-template-areas:
+                    ". . "
+                    ". . "
+            }
+            @include lg() {
+                display: grid;
+                grid-template-columns: 1fr 1fr 1fr;
+                grid-template-rows: 1fr 1fr;
+                gap: 2px;
+                grid-template-areas:
+                    ". . ."
+                    "."
+            }
+
+            @include xl() {
+                display: grid;
+                grid-template-columns: 1fr 1fr 1fr 1fr;
+                grid-template-rows: 1fr;
+                gap: 10px;
+                grid-template-areas:
+                    ". . . ."
+            }
         }
     }
 }
