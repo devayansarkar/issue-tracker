@@ -17,43 +17,19 @@
           </div>
           <div class="right">
             <div class="task-count-grid-container">
-              <div class="task-count total">
-                <div>
-                  <div class="count">24</div>
-                  <div class="type">Tasks</div>
-                </div>
-              </div>
-              <div class="task-count active">
-                <div>
-                  <div class="count">12</div>
-                  <div class="type">Todo</div>
-                </div>
-              </div>
-               <div class="task-count active">
-                <div>
-                  <div class="count">6</div>
-                  <div class="type">Doing</div>
-                </div>
-              </div>
-              <div class="task-count active">
-                <div>
-                  <div class="count">6</div>
-                  <div class="type">Done</div>
-                </div>
-              </div>
+              <TaskCount cardType= "total-card" count="24" type="Total" />
+              <TaskCount cardType= "count-card" count="12" type="Done" />
+              <TaskCount cardType= "count-card" count="12" type="Doing" />
+              <TaskCount cardType= "count-card" count="12" type="Doing" />
             </div>
           </div>
         </div>
         <div class="next-tasks">
-          <div class="title">
-            Approaching deadline
-          </div>
+          <div class="title">Approaching deadline</div>
         </div>
 
         <div class="next-tasks">
-          <div class="title">
-            Recent tasks
-          </div>
+          <div class="title">Recent tasks</div>
         </div>
       </div>
     </div>
@@ -63,17 +39,20 @@
 <script>
 import Navbar from '@/components/Navbar.vue';
 import Topbar from '@/components/Topbar.vue';
+import TaskCount from '@/components/TaskCount.vue';
 
 export default {
   name: 'Home',
   components: {
     Navbar,
     Topbar,
+    TaskCount,
   },
 };
 </script>
 
 <style lang="scss">
 @import '../styles/home.page.styles.scss';
-@import '../styles/task.count.styles.scss';
+@import '../styles/task.card.styles.scss';
 </style>
+              <TaskCount cardType= "count-card" count="12" type="Todo" />
