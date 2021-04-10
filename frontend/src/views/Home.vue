@@ -27,65 +27,61 @@
         </div>
         <div class="next-tasks">
           <div class="section-title">Approaching deadline</div>
-          <TaskCard
-            taskNumber="11"
-            title="loarIncididunt qui do proident eu sunt.loarIncididunt qui do proident eu sunt."
-            description="loarIncididunt qui do proident eu sunt.loarIncididunt qui do proident eu sunt.loarIncididunt qui do proident eu sunt.loarIncididunt qui do proident eu sunt.loarIncididunt qui do proident eu sunt.loarIncididunt qui do proident eu sunt.loarIncididunt qui do proident eu sunt.loarIncididunt qui do proident eu sunt."
-            deadline="23/05/2021"
-            startDate="2020-04-09T21:15:02.214Z"
-          />
-          <TaskCard
-            taskNumber="11"
-            title="loarIncididunt qui do proident eu sunt.loarIncididunt qui do proident eu sunt."
-            description="loarIncididunt qui do proident eu sunt.loarIncididunt qui do proident eu sunt.loarIncididunt qui do proident eu sunt.loarIncididunt qui do proident eu sunt.loarIncididunt qui do proident eu sunt.loarIncididunt qui do proident eu sunt.loarIncididunt qui do proident eu sunt.loarIncididunt qui do proident eu sunt."
-            deadline="09/02/2021"
-            startDate="2020-01-09T21:15:02.214Z"
-          />
-          <TaskCard
-            taskNumber="11"
-            title="loarIncididunt qui do proident eu sunt.loarIncididunt qui do proident eu sunt."
-            description="loarIncididunt qui do proident eu sunt.loarIncididunt qui do proident eu sunt.loarIncididunt qui do proident eu sunt.loarIncididunt qui do proident eu sunt.loarIncididunt qui do proident eu sunt.loarIncididunt qui do proident eu sunt.loarIncididunt qui do proident eu sunt.loarIncididunt qui do proident eu sunt."
-            deadline="23/05/2021"
-            startDate="2021-04-09T21:15:02.214Z"
-          />
-          <TaskCard
-            taskNumber="11"
-            title="loarIncididunt qui do proident eu sunt.loarIncididunt qui do proident eu sunt."
-            description="loarIncididunt qui do proident eu sunt.loarIncididunt qui do proident eu sunt.loarIncididunt qui do proident eu sunt.loarIncididunt qui do proident eu sunt.loarIncididunt qui do proident eu sunt.loarIncididunt qui do proident eu sunt.loarIncididunt qui do proident eu sunt.loarIncididunt qui do proident eu sunt."
-            deadline="23/05/2021"
-            startDate="2021-01-09T21:15:02.214Z"
-          />
+          <div class="section-items">
+            <TaskCard
+              taskNumber="11"
+              title="loarIncididunt qui do proident eu sunt.loarIncididunt qui do proident eu sunt."
+              deadline="23/05/2021"
+              startDate="2020-04-09T21:15:02.214Z"
+            />
+            <TaskCard
+              taskNumber="11"
+              title="loarIncididunt qui do proident eu sunt.loarIncididunt qui do proident eu sunt."
+              deadline="09/02/2021"
+              startDate="2020-01-09T21:15:02.214Z"
+            />
+            <TaskCard
+              taskNumber="11"
+              title="loarIncididunt qui do proident eu sunt.loarIncididunt qui do proident eu sunt."
+              deadline="23/05/2021"
+              startDate="2021-04-09T21:15:02.214Z"
+            />
+            <TaskCard
+              taskNumber="11"
+              title="loarIncididunt qui do proident eu sunt.loarIncididunt qui do proident eu sunt."
+              deadline="23/05/2021"
+              startDate="2021-01-09T21:15:02.214Z"
+            />
+          </div>
         </div>
 
         <div class="next-tasks">
           <div class="section-title">Recent tasks</div>
-          <TaskCard
-            taskNumber="11"
-            title="loarIncididunt qui do proident eu sunt.loarIncididunt qui do proident eu sunt."
-            description="loarIncididunt qui do proident eu sunt.loarIncididunt qui do proident eu sunt.loarIncididunt qui do proident eu sunt.loarIncididunt qui do proident eu sunt.loarIncididunt qui do proident eu sunt.loarIncididunt qui do proident eu sunt.loarIncididunt qui do proident eu sunt.loarIncididunt qui do proident eu sunt."
-            deadline="23/15/2021"
-          />
-           <TaskCard
-            taskNumber="11"
-            title="loarIncididunt qui do proident eu sunt.loarIncididunt qui do proident eu sunt."
-            description="loarIncididunt qui do proident eu sunt.loarIncididunt qui do proident eu sunt.loarIncididunt qui do proident eu sunt.loarIncididunt qui do proident eu sunt.loarIncididunt qui do proident eu sunt.loarIncididunt qui do proident eu sunt.loarIncididunt qui do proident eu sunt.loarIncididunt qui do proident eu sunt."
-            deadline="23/05/2021"
-            startDate="2021-02-09T21:15:02.214Z"
-          />
-           <TaskCard
-            taskNumber="11"
-            title="loarIncididunt qui do proident eu sunt.loarIncididunt qui do proident eu sunt."
-            description="loarIncididunt qui do proident eu sunt.loarIncididunt qui do proident eu sunt.loarIncididunt qui do proident eu sunt.loarIncididunt qui do proident eu sunt.loarIncididunt qui do proident eu sunt.loarIncididunt qui do proident eu sunt.loarIncididunt qui do proident eu sunt.loarIncididunt qui do proident eu sunt."
-            deadline="09/02/2021"
-            startDate="2020-01-09T21:15:02.214Z"
-          />
-          <TaskCard
-            taskNumber="11"
-            title="loarIncididunt qui do proident eu sunt.loarIncididunt qui do proident eu sunt."
-            description="loarIncididunt qui do proident eu sunt.loarIncididunt qui do proident eu sunt.loarIncididunt qui do proident eu sunt.loarIncididunt qui do proident eu sunt.loarIncididunt qui do proident eu sunt.loarIncididunt qui do proident eu sunt.loarIncididunt qui do proident eu sunt.loarIncididunt qui do proident eu sunt."
-            deadline="23/05/2021"
-            startDate="2021-04-09T21:15:02.214Z"
-          />
+          <div class="section-items">
+            <TaskCard
+              taskNumber="11"
+              title="loarIncididunt qui do proident eu sunt.loarIncididunt qui do proident eu sunt."
+              deadline="23/15/2021"
+            />
+            <TaskCard
+              taskNumber="11"
+              title="loarIncididunt qui do proident eu sunt.loarIncididunt qui do proident eu sunt."
+              deadline="23/05/2021"
+              startDate="2021-02-09T21:15:02.214Z"
+            />
+            <TaskCard
+              taskNumber="11"
+              title="loarIncididunt qui do proident eu sunt.loarIncididunt qui do proident eu sunt."
+              deadline="09/02/2021"
+              startDate="2020-01-09T21:15:02.214Z"
+            />
+            <TaskCard
+              taskNumber="11"
+              title="loarIncididunt qui do proident eu sunt.loarIncididunt qui do proident eu sunt."
+              deadline="23/05/2021"
+              startDate="2021-04-09T21:15:02.214Z"
+            />
+          </div>
         </div>
       </div>
     </div>
