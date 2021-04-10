@@ -1,0 +1,121 @@
+@import 'variables.scss';
+
+.task {
+    background-color: $light_text;
+    border-radius: $border_radius;
+    box-shadow: $shadow;
+    display: flex;
+    margin-bottom: 1rem;
+    .main {
+        padding: 1rem;
+
+        .header {
+            display: flex;
+
+            .id {
+                width: 100%;
+                color: $medium_grey;
+                font-weight: bold;
+            }
+
+            .menu {
+                cursor: pointer;
+            }
+        }
+
+        .title {
+            font-size: 1.2rem;
+            width: 100%;
+            margin-top: .5rem;
+            margin-bottom: .5rem;
+        }
+
+        .content {
+            margin-top: .5rem;
+            margin-bottom: .5rem;
+            text-align: justify;
+            width: 100%;
+            display: none;
+        }
+
+        .footer {
+            display: flex;
+
+            .deadline {
+                width: 100%;
+
+                .text {
+                    color: $medium_grey;
+                    font-size: .8rem;
+                }
+
+                .danger {
+                    color: $primary;
+                    font-weight: bold;
+                }
+            }
+
+            .view {
+                display: flex;
+                align-items: center;
+                cursor: pointer;
+            }
+        }
+    }
+
+    .status {
+        width: 5rem;
+        background-color: $light_grey;
+        display: flex;
+        justify-content: flex-end;
+        flex-direction: column;
+
+        .status-container {
+            height: 100%;
+            width: 100%;
+        }
+
+        .progress {
+            border-bottom-right-radius: 10px;
+            width: 100%;
+            margin-top: -.1rem;
+        }
+
+        .danger {
+            background-color: $danger;
+        }
+
+        .warning {
+            background-color: $warning;
+        }
+
+        .success {
+            background-color: $success;
+        }
+
+        .hundred {
+            border-top-right-radius: 10px;
+            height: 100%;
+        }
+
+        .eighty {
+            height: 80%;
+        }
+
+        .sixty {
+            height: 60%;
+        }
+
+        .fifty {
+            height: 50%;
+        }
+
+        .twenty {
+            height: 20%;
+        }
+
+        .ten {
+            height: 10%;
+        }
+    }
+}
