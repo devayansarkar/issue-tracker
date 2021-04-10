@@ -10,7 +10,7 @@
 <script>
 export default {
   name: 'TaskCount',
-  props: { cardType: String, count: String, type: String },
+  props: { cardType: String, count: Number, type: String },
 };
 </script>
 
