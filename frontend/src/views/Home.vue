@@ -1,7 +1,7 @@
 <!-- eslint-disable max-len -->
 <template>
   <div>
-    <Navbar />
+    <Navbar :page="'home'" />
     <div class="page-container">
       <Topbar />
       <div class="home">
