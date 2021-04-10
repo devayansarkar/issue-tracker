@@ -1,3 +1,4 @@
+<!-- eslint-disable max-len -->
 <template>
   <div>
     <Navbar />
@@ -17,15 +18,39 @@
           </div>
           <div class="right">
             <div class="task-count-grid-container">
-              <TaskCount cardType= "total-card" count="24" type="Total" />
-              <TaskCount cardType= "count-card" count="12" type="Done" />
-              <TaskCount cardType= "count-card" count="12" type="Doing" />
-              <TaskCount cardType= "count-card" count="12" type="Doing" />
+              <TaskCount cardType="total-card" count="24" type="Total" />
+              <TaskCount cardType="count-card" count="12" type="Done" />
+              <TaskCount cardType="count-card" count="12" type="Doing" />
+              <TaskCount cardType="count-card" count="12" type="Doing" />
             </div>
           </div>
         </div>
         <div class="next-tasks">
           <div class="title">Approaching deadline</div>
+          <TaskCard
+            taskNumber=11
+            title="loarIncididunt qui do proident eu sunt.loarIncididunt qui do proident eu sunt."
+            description="loarIncididunt qui do proident eu sunt.loarIncididunt qui do proident eu sunt.loarIncididunt qui do proident eu sunt.loarIncididunt qui do proident eu sunt.loarIncididunt qui do proident eu sunt.loarIncididunt qui do proident eu sunt.loarIncididunt qui do proident eu sunt.loarIncididunt qui do proident eu sunt."
+            deadline="23rd March 2021"
+          />
+          <TaskCard
+            taskNumber=11
+            title="loarIncididunt qui do proident eu sunt.loarIncididunt qui do proident eu sunt."
+            description="loarIncididunt qui do proident eu sunt.loarIncididunt qui do proident eu sunt.loarIncididunt qui do proident eu sunt.loarIncididunt qui do proident eu sunt.loarIncididunt qui do proident eu sunt.loarIncididunt qui do proident eu sunt.loarIncididunt qui do proident eu sunt.loarIncididunt qui do proident eu sunt."
+            deadline="23rd March 2021"
+          />
+          <TaskCard
+            taskNumber=11
+            title="loarIncididunt qui do proident eu sunt.loarIncididunt qui do proident eu sunt."
+            description="loarIncididunt qui do proident eu sunt.loarIncididunt qui do proident eu sunt.loarIncididunt qui do proident eu sunt.loarIncididunt qui do proident eu sunt.loarIncididunt qui do proident eu sunt.loarIncididunt qui do proident eu sunt.loarIncididunt qui do proident eu sunt.loarIncididunt qui do proident eu sunt."
+            deadline="23rd March 2021"
+          />
+          <TaskCard
+            taskNumber=11
+            title="loarIncididunt qui do proident eu sunt.loarIncididunt qui do proident eu sunt."
+            description="loarIncididunt qui do proident eu sunt.loarIncididunt qui do proident eu sunt.loarIncididunt qui do proident eu sunt.loarIncididunt qui do proident eu sunt.loarIncididunt qui do proident eu sunt.loarIncididunt qui do proident eu sunt.loarIncididunt qui do proident eu sunt.loarIncididunt qui do proident eu sunt."
+            deadline="23rd March 2021"
+          />
         </div>
 
         <div class="next-tasks">
@@ -40,6 +65,7 @@
 import Navbar from '@/components/Navbar.vue';
 import Topbar from '@/components/Topbar.vue';
 import TaskCount from '@/components/TaskCount.vue';
+import TaskCard from '@/components/TaskCard.vue';
 
 export default {
   name: 'Home',
@@ -47,6 +73,7 @@ export default {
     Navbar,
     Topbar,
     TaskCount,
+    TaskCard,
   },
 };
 </script>
