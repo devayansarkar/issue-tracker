@@ -5,7 +5,7 @@
         <span class="material-icons"> group_work </span>
       </div>
     </div>
-    <div class="item">
+    <div class="item" :class="page === 'home' ? 'active' : ''">
       <router-link to="/home">
         <div>
           <div class="icon">
@@ -15,7 +15,7 @@
         </div>
       </router-link>
     </div>
-    <div class="item">
+    <div class="item" :class="page === 'allTasks' ? 'active' : ''">
       <div>
         <div class="icon">
           <span class="material-icons"> assignment </span>
@@ -23,7 +23,7 @@
         <div class="text">Tasks</div>
       </div>
     </div>
-    <div class="item active">
+    <div class="item" :class="page === 'addTask' ? 'active' : ''">
       <div>
         <div class="icon">
           <span class="material-icons"> add_circle </span>
@@ -31,11 +31,11 @@
         <div class="text">New task</div>
       </div>
     </div>
-    <div class="item">
+    <div class="item" :class="page === 'about' ? 'active' : ''">
       <router-link to="/about">
         <div class="icon">
           <span class="material-icons"> info </span>
-           <div class="text">About</div>
+          <div class="text">About</div>
         </div>
       </router-link>
     </div>
@@ -45,6 +45,7 @@
 <script>
 export default {
   name: 'Navbar',
+  props: ['page'],
 };
 </script>
 
