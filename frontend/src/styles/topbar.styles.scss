@@ -6,7 +6,7 @@
     color: $light_text;
 
     @include md() {
-        background-color: $background;
+        background-color: darken($color: $background, $amount: 3);
         color: $dark_text;
 
     }
@@ -28,7 +28,7 @@
             color: $dark_primary;
             font-size: 1.5rem;
 
-            @include md(){
+            @include md() {
                 display: none;
             }
         }
