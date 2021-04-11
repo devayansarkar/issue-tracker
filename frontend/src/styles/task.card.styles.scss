@@ -9,13 +9,14 @@
 }
 
 .task {
-
     @include task-card();
 
     margin-bottom: 1rem;
 
     .main {
         padding: 1rem;
+        width: 100%;
+        height: 100%;
 
         .header {
             display: flex;
@@ -33,9 +34,10 @@
 
         .title {
             font-size: 1.2rem;
-            width: 100%;
             margin-top: .5rem;
             margin-bottom: .5rem;
+            height: 5rem;
+            text-align: left;
 
             @include md() {
                 font-size: 1rem;
@@ -44,7 +46,7 @@
 
         .footer {
             display: flex;
-
+            
             .deadline {
                 width: 100%;
 
@@ -68,16 +70,11 @@
     }
 
     .status {
-        width: 8rem;
+        width: 4rem;
         background-color: $light_grey;
         display: flex;
         justify-content: flex-end;
         flex-direction: column;
-
-        .status-container {
-            height: 100%;
-            width: 100%;
-        }
 
         .progress {
             border-bottom-right-radius: 10px;
