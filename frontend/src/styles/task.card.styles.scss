@@ -86,6 +86,10 @@
                 display: flex;
                 align-items: center;
                 cursor: pointer;
+
+                &>.material-icons {
+                    color: $dark_grey
+                }
             }
         }
     }

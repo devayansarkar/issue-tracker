@@ -23,7 +23,7 @@
           </div>
         </div>
         <div class="view">
-          <span class="material-icons"> preview </span>
+          <span class="material-icons"> visibility </span>
         </div>
       </div>
     </div>
