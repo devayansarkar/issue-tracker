@@ -53,6 +53,7 @@
                 :title="issue.title"
                 :deadline="issue.end_date"
                 :startDate="issue.created_at"
+                :taskStatus="issue.status"
               />
             </div>
           </div>
@@ -67,6 +68,7 @@
                 :title="issue.title"
                 :deadline="issue.end_date"
                 :startDate="issue.created_at"
+                :taskStatus="issue.status"
               />
             </div>
           </div>
