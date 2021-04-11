@@ -9,7 +9,7 @@
         </div>
       </div>
       <div class="title">
-        {{ title }}
+        {{ getIssueTitle }}
       </div>
       <div class="footer">
         <div class="deadline">
@@ -27,7 +27,10 @@
       </div>
     </div>
     <div class="status">
-      <WavePath :fill="svgFillColor" :class="this.deadlineStatus ==='hundred' ? 'remove-svg' :''"/>
+      <WavePath
+        :fill="svgFillColor"
+        :class="this.deadlineStatus === 'hundred' ? 'remove-svg' : ''"
+      />
       <div
         class="progress"
         :class="`${this.deadlineStatus} ${this.deadlineType}`"
@@ -52,7 +55,7 @@ export default {
     WavePath,
   },
   props: {
-    taskNumber: String,
+    taskNumber: Number,
     title: String,
     description: String,
     deadline: String,
@@ -61,7 +64,7 @@ export default {
   computed: {
     parsedDate() {
       const value = this.deadline;
-      const formattedDate = moment(value, 'DD/MM/YYYY');
+      const formattedDate = moment(value, 'YYYY-MM-DD');
       if (formattedDate.isValid()) {
         return formattedDate.toLocaleString().substring(0, 16);
       }
@@ -80,6 +83,12 @@ export default {
           return success;
       }
     },
+    getIssueTitle() {
+      if (this.title.length > 80) {
+        return `${this.title.substring(0, 77)}...`;
+      }
+      return this.title;
+    },
   },
   created() {
     if (this.deadline === undefined || this.startDate === undefined) {
@@ -87,7 +96,7 @@ export default {
       return;
     }
     const postedDate = moment(this.startDate);
-    const formattedDeadline = moment(this.deadline, 'DD/MM/YYYY');
+    const formattedDeadline = moment(this.deadline, 'YYYY-MM-DD');
     const pendingTime = formattedDeadline.diff(moment(), 'days');
     const originalTimeAlloted = formattedDeadline.diff(postedDate, 'days');
     const daysPending = (pendingTime / originalTimeAlloted) * 100;
