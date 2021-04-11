@@ -102,17 +102,8 @@
         <div v-if="$store.getters.hasEmptyActionItems" class="next-tasks">
           <div class="section-title">Task status</div>
           <div class="section-items">
-            <TaskCard
-              taskNumber="11"
-              title="loarIncididunt qui do proident eu sunt.loarIncididunt qui do proident eu sunt."
-              deadline="23/15/2021"
-            />
-            <TaskCard
-              taskNumber="11"
-              title="loarIncididunt qui do proident eu sunt.loarIncididunt qui do proident eu sunt."
-              deadline="23/05/2021"
-              startDate="2021-02-09T21:15:02.214Z"
-            />
+            <TaskStatusInfoCard cardType="deadline" />
+            <TaskStatusInfoCard cardType="recent" />
           </div>
         </div>
       </div>
@@ -128,6 +119,7 @@ import Navbar from '@/components/Navbar.vue';
 import Topbar from '@/components/Topbar.vue';
 import TaskCount from '@/components/TaskCount.vue';
 import TaskCard from '@/components/TaskCard.vue';
+import TaskStatusInfoCard from '@/components/TaskStatusInfoCard.vue';
 import Loading from '@/components/Loading.vue';
 
 export default {
@@ -137,6 +129,7 @@ export default {
     Topbar,
     TaskCount,
     TaskCard,
+    TaskStatusInfoCard,
     Loading,
   },
   mounted() {
