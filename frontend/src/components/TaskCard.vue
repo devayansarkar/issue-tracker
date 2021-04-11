@@ -4,6 +4,7 @@
     <div class="main">
       <div class="header">
         <div class="id">Task no: {{ taskNumber }}</div>
+        <div :class="getTaskStatusClass">{{ getTaskStatus }}</div>
         <div class="menu">
           <span class="material-icons"> more_vert </span>
         </div>
@@ -60,6 +61,7 @@ export default {
     description: String,
     deadline: String,
     startDate: String,
+    taskStatus: String,
   },
   computed: {
     parsedDate() {
@@ -88,6 +90,12 @@ export default {
         return `${this.title.substring(0, 77)}...`;
       }
       return this.title;
+    },
+    getTaskStatus() {
+      return this.taskStatus[0].toUpperCase() + this.taskStatus.slice(1).toLowerCase();
+    },
+    getTaskStatusClass() {
+      return this.taskStatus.toLowerCase();
     },
   },
   created() {
