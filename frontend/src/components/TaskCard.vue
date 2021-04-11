@@ -119,6 +119,5 @@ export default {
 </script>
 
 <style lang="scss">
-@import '../styles/media.queries.scss';
 @import '../styles/task.card.styles.scss';
 </style>
