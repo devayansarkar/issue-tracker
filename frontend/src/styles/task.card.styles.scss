@@ -1,10 +1,17 @@
 @import 'variables.scss';
+@import '../styles/media.queries.scss';
 
-.task {
+@mixin task-card() {
     background-color: $light_text;
     border-radius: $border_radius;
     box-shadow: $shadow;
     display: flex;
+}
+
+.task {
+
+    @include task-card();
+
     margin-bottom: 1rem;
 
     .main {
@@ -118,4 +125,28 @@
 
 .remove-svg {
     display: none;
+}
+
+.task.update {
+
+    @include task-card();
+    align-items: center;
+    justify-content: center;
+    padding: 3rem .5rem;
+
+    .info {
+        .icon {
+            color: $secondary;
+            text-align: center;
+
+            &>.material-icons {
+                font-size: 4rem;
+            }
+        }
+
+        .message {
+            text-align: center;
+            margin: .1rem;
+        }
+    }
 }
