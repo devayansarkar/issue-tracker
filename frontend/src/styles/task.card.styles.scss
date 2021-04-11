@@ -8,6 +8,11 @@
     display: flex;
 }
 
+@mixin task-status {
+    padding: .2rem 1rem;
+    border-radius: 25px;
+}
+
 .task {
     @include task-card();
 
@@ -30,6 +35,22 @@
             .menu {
                 cursor: pointer;
             }
+
+            .done {
+                @include task-status();
+                border: 1px solid darken($success, 10);
+            }
+
+            .inprogress {
+                @include task-status();
+                border: 1px solid $dark_primary;
+            }
+
+            .todo {
+                @include task-status();
+                border: 1px solid $secondary;
+            }
+
         }
 
         .title {
@@ -46,7 +67,7 @@
 
         .footer {
             display: flex;
-            
+
             .deadline {
                 width: 100%;
 
