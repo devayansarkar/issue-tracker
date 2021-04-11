@@ -5,6 +5,7 @@
     <div class="page-container">
       <Topbar />
       <div v-if="!$store.state.isLoading" class="home">
+
         <div class="home-header">
           <div class="left">
             <div class="title">Welcome to your personal task tracker</div>
@@ -16,6 +17,7 @@
               <button class="btn-primary">View all tasks</button>
             </div>
           </div>
+
           <div class="right">
             <div class="task-count-grid-container">
               <TaskCount
@@ -41,64 +43,35 @@
             </div>
           </div>
         </div>
+
         <div v-if="$store.getters.hasDeadlineIssues" class="next-tasks">
           <div class="section-title">Approaching deadline</div>
           <div class="section-items">
-            <TaskCard
-              taskNumber="11"
-              title="loarIncididunt qui do proident eu sunt.loarIncididunt qui do proident eu sunt."
-              deadline="23/05/2021"
-              startDate="2020-04-09T21:15:02.214Z"
-            />
-            <TaskCard
-              taskNumber="11"
-              title="loarIncididunt qui do proident eu sunt.loarIncididunt qui do proident eu sunt."
-              deadline="09/02/2021"
-              startDate="2020-01-09T21:15:02.214Z"
-            />
-            <TaskCard
-              taskNumber="11"
-              title="loarIncididunt qui do proident eu sunt.loarIncididunt qui do proident eu sunt."
-              deadline="23/05/2021"
-              startDate="2021-04-09T21:15:02.214Z"
-            />
-            <TaskCard
-              taskNumber="11"
-              title="loarIncididunt qui do proident eu sunt.loarIncididunt qui do proident eu sunt."
-              deadline="23/05/2021"
-              startDate="2021-01-09T21:15:02.214Z"
-            />
+            <div v-for="issue in $store.state.deadlineIssues" :key="issue.id">
+              <TaskCard
+                :taskNumber="issue.id"
+                :title="issue.title"
+                :deadline="issue.end_date"
+                :startDate="issue.created_at"
+              />
+            </div>
           </div>
         </div>
 
         <div v-if="$store.getters.hasRecentIssues" class="next-tasks">
           <div class="section-title">Recent tasks</div>
           <div class="section-items">
-            <TaskCard
-              taskNumber="11"
-              title="loarIncididunt qui do proident eu sunt.loarIncididunt qui do proident eu sunt."
-              deadline="23/15/2021"
-            />
-            <TaskCard
-              taskNumber="11"
-              title="loarIncididunt qui do proident eu sunt.loarIncididunt qui do proident eu sunt."
-              deadline="23/05/2021"
-              startDate="2021-02-09T21:15:02.214Z"
-            />
-            <TaskCard
-              taskNumber="11"
-              title="loarIncididunt qui do proident eu sunt.loarIncididunt qui do proident eu sunt."
-              deadline="09/02/2021"
-              startDate="2020-01-09T21:15:02.214Z"
-            />
-            <TaskCard
-              taskNumber="11"
-              title="loarIncididunt qui do proident eu sunt.loarIncididunt qui do proident eu sunt."
-              deadline="23/05/2021"
-              startDate="2021-04-09T21:15:02.214Z"
-            />
+            <div v-for="issue in $store.state.recentIssues" :key="issue.id">
+              <TaskCard
+                :taskNumber="issue.id"
+                :title="issue.title"
+                :deadline="issue.end_date"
+                :startDate="issue.created_at"
+              />
+            </div>
           </div>
         </div>
+
         <div v-if="$store.getters.hasEmptyActionItems" class="next-tasks">
           <div class="section-title">Task status</div>
           <div class="section-items">
