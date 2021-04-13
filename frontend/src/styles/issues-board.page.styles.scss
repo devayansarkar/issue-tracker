@@ -1,14 +1,14 @@
 @import 'variables.scss';
 @import 'pageview.styles.scss';
 
-.mobile-container {
+.mobile {
     padding: 1rem;
     display: flex;
     justify-content: center;
     align-items: center;
 
-    :first-child {
-        max-width: 742px;
+    .mobile-container {
+        max-width: 542px;
         width: 100%;
     }
 }
@@ -41,5 +41,24 @@
         background-color: $primary;
         color: $light_text;
         font-weight: bold;
+    }
+}
+
+.lane {
+    height: 100vh;
+    background-color: $light_grey;
+    border-radius: $border_radius;
+
+    .lane-header {
+        display: flex;
+        padding: 1rem;
+
+        .lane-title {
+            font-weight: bold;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            font-size: 1.3rem;
+        }
     }
 }
