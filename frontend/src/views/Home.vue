@@ -117,4 +117,3 @@ export default {
 @import '../styles/home.page.styles.scss';
 @import '../styles/task.card.styles.scss';
 </style>
-              <TaskCount cardType= "count-card" count="12" type="Todo" />
