@@ -4,28 +4,30 @@
     <div class="page-container">
       <Topbar />
       <div class="mobile-container">
-        <div class="lane-selector">Now showing issues in :</div>
-        <div class="status-group">
-          <div
-            class="status"
-            :class="task === 'TODO' ? 'status-active' : ''"
-            @click="updateActiveIssueFilter('TODO')"
-          >
-            Todo
-          </div>
-          <div
-            class="status"
-            :class="task === 'DOING' ? 'status-active' : ''"
-            @click="updateActiveIssueFilter('DOING')"
-          >
-            Doing
-          </div>
-          <div
-            class="status"
-            :class="task === 'DONE' ? 'status-active' : ''"
-            @click="updateActiveIssueFilter('DONE')"
-          >
-            Done
+        <div>
+          <div class="lane-selector">Now showing issues in :</div>
+          <div class="status-group">
+            <div
+              class="status"
+              :class="task === 'TODO' ? 'status-active' : ''"
+              @click="updateActiveIssueFilter('TODO')"
+            >
+              Todo
+            </div>
+            <div
+              class="status"
+              :class="task === 'DOING' ? 'status-active' : ''"
+              @click="updateActiveIssueFilter('DOING')"
+            >
+              Doing
+            </div>
+            <div
+              class="status"
+              :class="task === 'DONE' ? 'status-active' : ''"
+              @click="updateActiveIssueFilter('DONE')"
+            >
+              Done
+            </div>
           </div>
         </div>
       </div>

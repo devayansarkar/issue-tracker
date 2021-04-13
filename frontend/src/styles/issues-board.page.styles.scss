@@ -3,6 +3,14 @@
 
 .mobile-container {
     padding: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    :first-child {
+        max-width: 742px;
+        width: 100%;
+    }
 }
 
 .status-group {
