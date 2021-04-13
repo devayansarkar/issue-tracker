@@ -15,13 +15,15 @@
         </div>
       </router-link>
     </div>
-    <div class="item" :class="page === 'allTasks' ? 'active' : ''">
-      <div>
-        <div class="icon">
-          <span class="material-icons"> assignment </span>
+    <div class="item" :class="page === 'board' ? 'active' : ''">
+      <router-link to="/board">
+        <div>
+          <div class="icon">
+            <span class="material-icons"> assignment </span>
+          </div>
+          <div class="text">Tasks</div>
         </div>
-        <div class="text">Tasks</div>
-      </div>
+      </router-link>
     </div>
     <div class="item" :class="page === 'addTask' ? 'active' : ''">
       <div>
