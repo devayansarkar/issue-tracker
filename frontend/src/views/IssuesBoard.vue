@@ -3,8 +3,8 @@
     <Navbar :page="'board'" />
     <div class="page-container">
       <Topbar />
-      <div class="mobile-container">
-        <div>
+      <div class="mobile">
+        <div class="mobile-container">
           <div class="lane-selector">Now showing issues in :</div>
           <div class="status-group">
             <div
@@ -27,6 +27,14 @@
               @click="updateActiveIssueFilter('DONE')"
             >
               Done
+            </div>
+          </div>
+          <div class="lane">
+            <div class="lane-header">
+              <div class="lane-title">
+                {{ task }}
+              </div>
+            <button v-if="task ==='TODO'" class="btn-primary-small">+</button>
             </div>
           </div>
         </div>
@@ -59,5 +67,6 @@ export default {
 </script>
 
 <style lang="scss">
+@import '../styles/button.styles.scss';
 @import '../styles/issues-board.page.styles.scss';
 </style>
