@@ -10,7 +10,7 @@
       <div class="menu-page">
         <div>
           <router-link to="/home"><div class="item">Home</div></router-link>
-          <router-link to="/home">
+          <router-link to="/board">
             <div class="item">All tasks</div>
           </router-link>
           <router-link to="/home"><div class="item">Add task</div></router-link>
