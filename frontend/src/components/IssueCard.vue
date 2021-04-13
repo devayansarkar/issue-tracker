@@ -3,8 +3,8 @@
   <div class="task">
     <div class="main">
       <div class="header">
-        <div class="id">Task no: {{ taskNumber }}</div>
-        <div :class="getTaskStatusClass">{{ getTaskStatus }}</div>
+        <div class="id">Issue no: {{ issueNumber }}</div>
+        <div :class="getIssueStatusClass">{{ getIssueStatus }}</div>
         <div class="menu">
           <span class="material-icons"> more_vert </span>
         </div>
@@ -45,7 +45,7 @@ import moment from 'moment';
 import WavePath from './WavePath.vue';
 
 export default {
-  name: 'TaskCard',
+  name: 'IssueCard',
   data() {
     return {
       deadlineStatus: '',
@@ -56,12 +56,12 @@ export default {
     WavePath,
   },
   props: {
-    taskNumber: Number,
+    issueNumber: Number,
     title: String,
     description: String,
     deadline: String,
     startDate: String,
-    taskStatus: String,
+    issueStatus: String,
   },
   computed: {
     parsedDate() {
@@ -91,11 +91,11 @@ export default {
       }
       return this.title;
     },
-    getTaskStatus() {
-      return this.taskStatus[0].toUpperCase() + this.taskStatus.slice(1).toLowerCase();
+    getIssueStatus() {
+      return this.issueStatus[0].toUpperCase() + this.issueStatus.slice(1).toLowerCase();
     },
-    getTaskStatusClass() {
-      return this.taskStatus.toLowerCase();
+    getIssueStatusClass() {
+      return this.issueStatus.toLowerCase();
     },
   },
   created() {

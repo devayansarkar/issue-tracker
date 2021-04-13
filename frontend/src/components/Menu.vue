@@ -11,9 +11,9 @@
         <div>
           <router-link to="/home"><div class="item">Home</div></router-link>
           <router-link to="/board">
-            <div class="item">All tasks</div>
+            <div class="item">All issues</div>
           </router-link>
-          <router-link to="/home"><div class="item">Add task</div></router-link>
+          <router-link to="/home"><div class="item">New issue</div></router-link>
           <router-link to="/home"><div class="item">Account</div></router-link>
           <router-link to="/about"><div class="item">About</div></router-link>
         </div>

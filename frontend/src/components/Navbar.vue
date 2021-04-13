@@ -21,16 +21,16 @@
           <div class="icon">
             <span class="material-icons"> assignment </span>
           </div>
-          <div class="text">Tasks</div>
+          <div class="text">All issues</div>
         </div>
       </router-link>
     </div>
-    <div class="item" :class="page === 'addTask' ? 'active' : ''">
+    <div class="item" :class="page === 'addIssue' ? 'active' : ''">
       <div>
         <div class="icon">
           <span class="material-icons"> add_circle </span>
         </div>
-        <div class="text">New task</div>
+        <div class="text">New issue</div>
       </div>
     </div>
     <div class="item" :class="page === 'about' ? 'active' : ''">

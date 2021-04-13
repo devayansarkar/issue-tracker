@@ -11,12 +11,12 @@
 
 <script>
 export default {
-  name: 'TaskStatusInfoCard',
+  name: 'IssueStatusInfoCard',
   props: ['cardType'],
   computed: {
     getMessage() {
       if (this.cardType === 'deadline') {
-        return 'No deadline tasks.';
+        return 'No deadline issues.';
       }
       return 'No issues recently updated.';
     },

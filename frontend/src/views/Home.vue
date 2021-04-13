@@ -8,34 +8,34 @@
 
         <div class="home-header">
           <div class="left">
-            <div class="title">Welcome to your personal task tracker</div>
+            <div class="title">Welcome to your personal issue tracker</div>
             <div class="subtitle">
               Organize your tasks and never miss a deadline.
             </div>
             <div class="cta">
-              <button class="btn-primary">Add new task</button>
-              <button class="btn-primary">View all tasks</button>
+              <button class="btn-primary">Add new issue</button>
+              <button class="btn-primary">View all issues</button>
             </div>
           </div>
 
           <div class="right">
             <div class="task-count-grid-container">
-              <TaskCount
+              <IssueCount
                 cardType="total-card"
                 :count="$store.getters.getTaskCount.total"
                 type="Total"
               />
-              <TaskCount
+              <IssueCount
                 cardType="count-card"
                 :count="$store.getters.getTaskCount.done"
                 type="Done"
               />
-              <TaskCount
+              <IssueCount
                 cardType="count-card"
                 :count="$store.getters.getTaskCount.todo"
                 type="Todo"
               />
-              <TaskCount
+              <IssueCount
                 cardType="count-card"
                 :count="$store.getters.getTaskCount.inprogress"
                 type="Doing"
@@ -48,37 +48,37 @@
           <div class="section-title">Approaching deadline</div>
           <div class="section-items">
             <div v-for="issue in $store.state.deadlineIssues" :key="issue.id">
-              <TaskCard
-                :taskNumber="issue.id"
+              <IssueCard
+                :issueNumber="issue.id"
                 :title="issue.title"
                 :deadline="issue.end_date"
                 :startDate="issue.created_at"
-                :taskStatus="issue.status"
+                :issueStatus="issue.status"
               />
             </div>
           </div>
         </div>
 
         <div v-if="$store.getters.hasRecentIssues" class="next-tasks">
-          <div class="section-title">Recent tasks</div>
+          <div class="section-title">Recent issue</div>
           <div class="section-items">
             <div v-for="issue in $store.state.recentIssues" :key="issue.id">
-              <TaskCard
-                :taskNumber="issue.id"
+              <IssueCard
+                :issueNumber="issue.id"
                 :title="issue.title"
                 :deadline="issue.end_date"
                 :startDate="issue.created_at"
-                :taskStatus="issue.status"
+                :issueStatus="issue.status"
               />
             </div>
           </div>
         </div>
 
         <div v-if="$store.getters.hasEmptyActionItems" class="next-tasks">
-          <div class="section-title">Task status</div>
+          <div class="section-title">Issye status</div>
           <div class="section-items">
-            <TaskStatusInfoCard cardType="deadline" />
-            <TaskStatusInfoCard cardType="recent" />
+            <IssueStatusInfoCard cardType="deadline" />
+            <IssueStatusInfoCard cardType="recent" />
           </div>
         </div>
       </div>
@@ -92,9 +92,9 @@
 <script>
 import Navbar from '@/components/Navbar.vue';
 import Topbar from '@/components/Topbar.vue';
-import TaskCount from '@/components/TaskCount.vue';
-import TaskCard from '@/components/TaskCard.vue';
-import TaskStatusInfoCard from '@/components/TaskStatusInfoCard.vue';
+import IssueCount from '@/components/IssueCount.vue';
+import IssueCard from '@/components/IssueCard.vue';
+import IssueStatusInfoCard from '@/components/IssueStatusInfoCard.vue';
 import Loading from '@/components/Loading.vue';
 
 export default {
@@ -102,9 +102,9 @@ export default {
   components: {
     Navbar,
     Topbar,
-    TaskCount,
-    TaskCard,
-    TaskStatusInfoCard,
+    IssueCount,
+    IssueCard,
+    IssueStatusInfoCard,
     Loading,
   },
   mounted() {

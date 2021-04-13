@@ -9,7 +9,7 @@
 
 <script>
 export default {
-  name: 'TaskCount',
+  name: 'IssueCount',
   props: { cardType: String, count: Number, type: String },
 };
 </script>
