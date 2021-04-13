@@ -1,0 +1,37 @@
+@import 'variables.scss';
+@import 'pageview.styles.scss';
+
+.mobile-container {
+    padding: 1rem;
+}
+
+.status-group {
+    display: flex;
+    width: 100%;
+    margin: .5rem 0rem;
+
+    :first-child {
+        border-top-left-radius: $border_radius;
+        border-bottom-left-radius: $border_radius;
+    }
+
+    :last-child {
+        border-top-right-radius: $border_radius;
+        border-bottom-right-radius: $border_radius;
+    }
+
+    .status {
+        border: 1px solid $background;
+        width: 100%;
+        padding: 1rem;
+        text-align: center;
+        background-color: $light_grey;
+        cursor: pointer;
+    }
+
+    .status-active {
+        background-color: $primary;
+        color: $light_text;
+        font-weight: bold;
+    }
+}
