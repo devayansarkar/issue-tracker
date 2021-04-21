@@ -35,6 +35,7 @@
         text-align: center;
         background-color: $light_grey;
         cursor: pointer;
+        outline: none;
     }
 
     .status-active {
@@ -45,9 +46,10 @@
 }
 
 .lane {
-    height: 100vh;
+    height: auto;
     background-color: $light_grey;
     border-radius: $border_radius;
+    padding-bottom: 2rem;
 
     .lane-header {
         display: flex;
@@ -60,5 +62,9 @@
             align-items: center;
             font-size: 1.3rem;
         }
+    }
+
+    .lane-no-item {
+        padding: 1rem;
     }
 }
