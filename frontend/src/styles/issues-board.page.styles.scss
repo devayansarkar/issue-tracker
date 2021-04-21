@@ -49,6 +49,8 @@
     height: auto;
     background-color: $light_grey;
     border-radius: $border_radius;
+    padding-right: .8rem;
+    padding-left: .8rem;
     padding-bottom: 2rem;
     width: 100%;
 
@@ -71,7 +73,7 @@
 
     @include lg(){
         width: 100%;
-        margin: 0rem 1rem;
+        margin: 0rem .6rem;
     }
 }
 
