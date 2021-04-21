@@ -3,41 +3,60 @@
     <Navbar :page="'board'" />
     <div class="page-container">
       <Topbar />
-      <div class="mobile">
-        <div class="mobile-container">
-          <div class="lane-selector">Now showing issues in :</div>
-          <div class="status-group">
-            <div
-              class="status"
-              :class="task === 'TODO' ? 'status-active' : ''"
-              @click="updateActiveIssueFilter('TODO')"
-            >
-              Todo
-            </div>
-            <div
-              class="status"
-              :class="task === 'DOING' ? 'status-active' : ''"
-              @click="updateActiveIssueFilter('DOING')"
-            >
-              Doing
-            </div>
-            <div
-              class="status"
-              :class="task === 'DONE' ? 'status-active' : ''"
-              @click="updateActiveIssueFilter('DONE')"
-            >
-              Done
-            </div>
-          </div>
-          <div class="lane">
-            <div class="lane-header">
-              <div class="lane-title">
-                {{ task }}
+      <div v-if="!$store.state.isLoading">
+        <div class="mobile">
+          <div class="mobile-container">
+            <div class="lane-selector">Now showing issues in :</div>
+            <div class="status-group">
+              <div
+                class="status"
+                :class="task === 'TODO' ? 'status-active' : ''"
+                @click="updateActiveIssueFilter('TODO')"
+              >
+                Todo
               </div>
-            <button v-if="task ==='TODO'" class="btn-primary-small">+</button>
+              <div
+                class="status"
+                :class="task === 'DOING' ? 'status-active' : ''"
+                @click="updateActiveIssueFilter('DOING')"
+              >
+                Doing
+              </div>
+              <div
+                class="status"
+                :class="task === 'DONE' ? 'status-active' : ''"
+                @click="updateActiveIssueFilter('DONE')"
+              >
+                Done
+              </div>
+            </div>
+            <div class="lane">
+              <div class="lane-header">
+                <div class="lane-title">
+                  {{ task }}
+                </div>
+                <button v-if="task === 'TODO'" class="btn-primary-small">
+                  +
+                </button>
+              </div>
+              <div class="lane-items">
+                <div v-for="issue in getLaneItems(task)" :key="issue.id">
+                  <IssueCard
+                    :issueNumber="issue.id"
+                    :title="issue.title"
+                    :deadline="issue.end_date"
+                    :startDate="issue.created_at"
+                    :issueStatus="issue.status"
+                  />
+                </div>
+                <div  class="lane-no-item" v-if="getLaneItems(task).length === 0">No tasks</div>
+              </div>
             </div>
           </div>
         </div>
+      </div>
+      <div v-if="$store.state.isLoading" class="loading-container">
+        <Loading />
       </div>
     </div>
   </div>
@@ -46,12 +65,16 @@
 <script>
 import Navbar from '@/components/Navbar.vue';
 import Topbar from '@/components/Topbar.vue';
+import Loading from '@/components/Loading.vue';
+import IssueCard from '@/components/IssueCard.vue';
 
 export default {
   name: 'IssuesBoard',
   components: {
     Navbar,
     Topbar,
+    Loading,
+    IssueCard,
   },
   data() {
     return {
@@ -62,6 +85,12 @@ export default {
     updateActiveIssueFilter(issue) {
       this.task = issue;
     },
+    getLaneItems(lane) {
+      return this.$store.getters.getIssues(lane);
+    },
+  },
+  created() {
+    this.$store.dispatch('loadAllTasks');
   },
 };
 </script>
