@@ -114,6 +114,10 @@ export default {
       this.deadlineStatus = 'hundred';
       return;
     }
+    if (this.issueStatus === 'DONE') {
+      this.deadlineStatus = 'hundred';
+      return;
+    }
     if (daysConsumed >= 100) {
       this.deadlineStatus = 'hundred';
       this.deadlineType = 'danger';
