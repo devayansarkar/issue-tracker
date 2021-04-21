@@ -48,3 +48,18 @@ $screen-xl-min: 1200px;
         @content;
     }
 }
+
+.mobile {
+
+    @include lg() {
+        display: none;
+    }
+}
+
+.desktop {
+    display: none;
+
+    @include lg() {
+        display: initial;
+    }
+}

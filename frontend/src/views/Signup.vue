@@ -127,7 +127,6 @@ export default {
       this.$router.replace('/home');
     },
     signinFailed(exception) {
-      console.log(exception);
       const errorMessage = (exception.response
       && exception.response.data
       && exception.response.data.error) || 'Unable to sign up user.';

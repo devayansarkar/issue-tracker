@@ -49,7 +49,91 @@
                     :issueStatus="issue.status"
                   />
                 </div>
-                <div  class="lane-no-item" v-if="getLaneItems(task).length === 0">No tasks</div>
+                <div
+                  class="lane-no-item"
+                  v-if="getLaneItems(task).length === 0"
+                >
+                  No tasks
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="desktop">
+          <div class="lane-container">
+            <div class="lane">
+              <div class="lane-header">
+                <div class="lane-title">
+                  TODO
+                </div>
+                <button class="btn-primary-small">
+                  +
+                </button>
+              </div>
+              <div class="lane-items">
+                <div v-for="issue in getLaneItems('TODO')" :key="issue.id">
+                  <IssueCard
+                    :issueNumber="issue.id"
+                    :title="issue.title"
+                    :deadline="issue.end_date"
+                    :startDate="issue.created_at"
+                    :issueStatus="issue.status"
+                  />
+                </div>
+                <div
+                  class="lane-no-item"
+                  v-if="getLaneItems(task).length === 0"
+                >
+                  No tasks
+                </div>
+              </div>
+            </div>
+            <div class="lane">
+              <div class="lane-header">
+                <div class="lane-title">
+                  DOING
+                </div>
+              </div>
+              <div class="lane-items">
+                <div v-for="issue in getLaneItems('DOING')" :key="issue.id">
+                  <IssueCard
+                    :issueNumber="issue.id"
+                    :title="issue.title"
+                    :deadline="issue.end_date"
+                    :startDate="issue.created_at"
+                    :issueStatus="issue.status"
+                  />
+                </div>
+                <div
+                  class="lane-no-item"
+                  v-if="getLaneItems(task).length === 0"
+                >
+                  No tasks
+                </div>
+              </div>
+            </div>
+            <div class="lane">
+              <div class="lane-header">
+                <div class="lane-title">
+                  DONE
+                </div>
+              </div>
+              <div class="lane-items">
+                <div v-for="issue in getLaneItems('DONE')" :key="issue.id">
+                  <IssueCard
+                    :issueNumber="issue.id"
+                    :title="issue.title"
+                    :deadline="issue.end_date"
+                    :startDate="issue.created_at"
+                    :issueStatus="issue.status"
+                  />
+                </div>
+                <div
+                  class="lane-no-item"
+                  v-if="getLaneItems(task).length === 0"
+                >
+                  No tasks
+                </div>
               </div>
             </div>
           </div>
@@ -98,4 +182,5 @@ export default {
 <style lang="scss">
 @import '../styles/button.styles.scss';
 @import '../styles/issues-board.page.styles.scss';
+@import '../styles/media.queries.scss';
 </style>

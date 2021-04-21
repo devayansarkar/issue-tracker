@@ -50,6 +50,7 @@
     background-color: $light_grey;
     border-radius: $border_radius;
     padding-bottom: 2rem;
+    width: 100%;
 
     .lane-header {
         display: flex;
@@ -67,4 +68,15 @@
     .lane-no-item {
         padding: 1rem;
     }
+
+    @include lg(){
+        width: 100%;
+        margin: 0rem 1rem;
+    }
+}
+
+.lane-container {
+    margin-top: 3rem;
+    display: flex !important;
+    flex-grow: 1;
 }
