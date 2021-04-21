@@ -8,6 +8,11 @@ export default createStore({
       name: '',
       email: '',
     },
+    tasks: {
+      todo: [],
+      doing: [],
+      done: [],
+    },
     deadlineIssues: [],
     recentIssues: [],
     taskCount: {
@@ -21,7 +26,7 @@ export default createStore({
     },
   },
   mutations: {
-    initiateLoadUserInfo(state) {
+    startLoader(state) {
       state.isLoading = true;
     },
     loadUserInfoSuccess(state, responseBody) {
@@ -38,14 +43,46 @@ export default createStore({
     loadUserInfoFailure(state) {
       state.isLoading = false;
     },
+    loadAllTasksSuccess(state, responseBody) {
+      const todo = [];
+      const doing = [];
+      const done = [];
+      if (responseBody !== undefined && responseBody.issues !== undefined) {
+        responseBody.issues.forEach((t) => {
+          if (t.status === 'TODO') {
+            todo.push(t);
+          } else if (t.status === 'INPROGRESS') {
+            doing.push(t);
+          } else {
+            done.push(t);
+          }
+        });
+      }
+      state.tasks = { todo, doing, done };
+      state.isLoading = false;
+    },
+    loadAllTasksFailure(state, responseBody) {
+      state.isLoading = false;
+      if (responseBody !== undefined && responseBody.tasks !== undefined) {
+        responseBody.tasks.forEach((t) => {
+          console.log(t);
+        });
+      }
+    },
   },
   actions: {
     loadUserInfo({ commit }) {
-      commit('initiateLoadUserInfo');
+      commit('startLoader');
       securedConnection
         .get('/api/v1/user')
         .then((r) => commit('loadUserInfoSuccess', r.data))
         .catch((e) => commit('loadUserInfoFailure', e));
+    },
+    loadAllTasks({ commit }) {
+      commit('startLoader');
+      securedConnection.get('/api/v1/issues')
+        .then((r) => commit('loadAllTasksSuccess', r.data))
+        .catch((e) => commit('loadAllTasksFailure', e));
     },
   },
   modules: {
@@ -63,13 +100,20 @@ export default createStore({
     hasEmptyActionItems(state) {
       return state.recentIssues.length === 0 || state.deadlineIssues.length === 0;
     },
-    // getRecentItems(state) { },
-    // getDeadlineItems(state) { },
     getTaskCount(state) {
       return {
         ...state.taskCount,
         total: state.taskCount.todo + state.taskCount.done + state.taskCount.inprogress,
       };
+    },
+    getIssues: (state) => (payload) => {
+      if (payload === 'TODO') {
+        return state.tasks.todo;
+      }
+      if (payload === 'DOING') {
+        return state.tasks.doing;
+      }
+      return state.tasks.done;
     },
   },
 });
