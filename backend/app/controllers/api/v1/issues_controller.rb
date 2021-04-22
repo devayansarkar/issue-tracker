@@ -8,7 +8,7 @@ module Api
             # GET /issues
             # Get all issues for a user
             def index
-                render json: {'issues': current_user.issues.all}
+                render json: {'issues': current_user.issues.order(end_date: :asc)}
             end
 
             # GET /issues/1
