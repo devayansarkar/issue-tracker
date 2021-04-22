@@ -6,7 +6,12 @@
         <div class="id">Issue no: {{ issueNumber }}</div>
         <div :class="getIssueStatusClass">{{ getIssueStatus }}</div>
         <div class="menu">
-          <span class="material-icons"> more_vert </span>
+          <a class="material-icons btn"> more_vert </a>
+          <div class="menu-options dropdown">
+            <a href="#">Open</a>
+            <a href="#">Close</a>
+            <a href="#">Do this</a>
+          </div>
         </div>
       </div>
       <div class="title">
@@ -92,7 +97,10 @@ export default {
       return this.title;
     },
     getIssueStatus() {
-      return this.issueStatus[0].toUpperCase() + this.issueStatus.slice(1).toLowerCase();
+      return (
+        this.issueStatus[0].toUpperCase()
+        + this.issueStatus.slice(1).toLowerCase()
+      );
     },
     getIssueStatusClass() {
       return this.issueStatus.toLowerCase();

@@ -34,6 +34,18 @@
 
             .menu {
                 cursor: pointer;
+                position: relative;
+                display: inline-block;
+                cursor: pointer;
+                -webkit-tap-highlight-color: transparent;
+
+                &:hover>.dropdown {
+                    display: block;
+                }
+
+                &:active>.dropdown {
+                    display: block;
+                }
             }
 
             .done {
@@ -172,5 +184,73 @@
             text-align: center;
             margin: .1rem;
         }
+    }
+}
+
+.menu-options {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    width: 7rem;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    border-radius: 5px;
+    border: 1px solid grey;
+    right: 0;
+
+    &>ul {
+        list-style-type: none;
+        margin-block-start: .5em;
+        margin-block-end: .8em;
+        margin-inline-start: 0px;
+        margin-inline-end: 0px;
+        padding-inline-start: 0rem;
+    }
+
+    &>ul>li {
+        padding: .8rem 0rem;
+        cursor: pointer;
+
+        &:hover {
+            background-color: gray
+        }
+    }
+
+    &>ul>li>span {
+        padding: 0rem 1rem;
+    }
+}
+
+
+.dropdown {
+    margin-top: .1rem;
+
+    &>a {
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+
+        &:hover {
+            background-color: $light_grey;
+        }
+
+        &:first-child {
+            border-top-left-radius: 5px;
+            border-top-right-radius: 5px;
+        }
+
+        &:last-child {
+            border-bottom-left-radius: 5px;
+            border-bottom-right-radius: 5px;
+        }
+    }
+
+    &:hover {
+        display: block;
+    }
+
+    &:focus-within {
+        display: none;
     }
 }
