@@ -64,6 +64,7 @@
             display: flex;
             align-items: center;
             font-size: 1.3rem;
+            color: $medium_grey;
         }
     }
 
@@ -78,7 +79,14 @@
 }
 
 .lane-container {
-    margin-top: 3rem;
+    margin-top: 1rem;
     display: flex !important;
     flex-grow: 1;
+}
+
+.board-title {
+    padding: 1rem 0rem 0rem 1rem;
+    font-size: 2rem;
+    font-weight: bold;
+    color: $dark_grey;
 }

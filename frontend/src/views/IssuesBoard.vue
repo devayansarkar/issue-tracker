@@ -3,6 +3,7 @@
     <Navbar :page="'board'" />
     <div class="page-container">
       <Topbar />
+      <div class="board-title">Board</div>
       <div v-if="!$store.state.isLoading">
         <div class="mobile">
           <div class="mobile-container">
