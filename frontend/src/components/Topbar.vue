@@ -10,9 +10,11 @@
         <div class="name">{{ $store.getters.getUser.name }}</div>
         <div class="email">{{ $store.getters.getUser.email }}</div>
       </div>
-      <div class="icon">
-        <span class="material-icons"> account_circle </span>
-      </div>
+      <router-link to="/profile">
+        <div class="icon">
+          <span class="material-icons"> account_circle </span>
+        </div>
+      </router-link>
     </div>
   </div>
 </template>
