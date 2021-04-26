@@ -13,8 +13,8 @@
           <router-link to="/board">
             <div class="item">All issues</div>
           </router-link>
-          <router-link to="/home"><div class="item">New issue</div></router-link>
-          <router-link to="/home"><div class="item">Account</div></router-link>
+          <router-link to="/add-issue"><div class="item">New issue</div></router-link>
+          <router-link to="/profile"><div class="item">Account</div></router-link>
           <router-link to="/about"><div class="item">About</div></router-link>
         </div>
       </div>
