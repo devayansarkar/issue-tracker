@@ -27,6 +27,7 @@
     margin: 2rem;
     color: $dark_primary;
     font-size: 3rem;
+    cursor: pointer;
 }
 
 .menu-open {
@@ -49,6 +50,7 @@
     top: 0;
     right: 0;
     color: $dark_text;
+    cursor: pointer;
 
     &>.material-icons {
         font-size: 2rem;
