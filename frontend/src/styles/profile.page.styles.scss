@@ -1,0 +1,75 @@
+@import 'variables.scss';
+
+.profile-page {
+    margin: 1rem;
+    display: grid;
+    place-items: center;
+}
+
+.profile-page-container {
+    border: 1px solid $light_grey;
+    padding: 2rem 0rem 2rem 4rem;
+    margin-top: 10%;
+    box-shadow: $shadow;
+
+    .profile-heading {
+        color: $medium_grey;
+        font-size: 2rem;
+    }
+
+    .profile {
+        margin-top: 5%;
+
+        .user-name {
+            font-size: 1.5rem;
+        }
+
+        .user-email {
+            font-size: 1rem;
+            color: $medium_grey;
+        }
+    }
+}
+
+.home-navigation {
+    color: $dark_text;
+    width: 100%;
+}
+
+.logout {
+    color: $danger;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.issue-status {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 0px 0px;
+    grid-template-areas:
+        ". ."
+        ". .";
+    margin-top: 10%;
+    width: 100%;
+
+    .issue-title {
+        color: $medium_grey;
+    }
+
+    .issue-count {
+        font-size: 2rem;
+    }
+}
+
+
+.cta {
+    display: flex;
+    margin-top: 20%;
+
+    &>* {
+        width: 100%;
+        flex-grow: 1;
+        flex-shrink: 0;
+    }
+}
