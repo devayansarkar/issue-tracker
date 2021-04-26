@@ -26,12 +26,14 @@
       </router-link>
     </div>
     <div class="item" :class="page === 'addIssue' ? 'active' : ''">
-      <div>
-        <div class="icon">
-          <span class="material-icons"> add_circle </span>
+      <router-link to="/add-issue">
+        <div>
+          <div class="icon">
+            <span class="material-icons"> add_circle </span>
+          </div>
+          <div class="text">New issue</div>
         </div>
-        <div class="text">New issue</div>
-      </div>
+      </router-link>
     </div>
     <div class="item" :class="page === 'about' ? 'active' : ''">
       <router-link to="/about">
