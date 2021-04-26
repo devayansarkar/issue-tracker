@@ -69,6 +69,16 @@ export default createStore({
         });
       }
     },
+    signoutSuccess(state) {
+      state.isLoading = false;
+      delete localStorage.access_token;
+      delete localStorage.refresh_token;
+      delete localStorage.access_expires_at;
+      delete localStorage.refresh_token_expires_at;
+    },
+    signoutFailure(state) {
+      state.isLoading = true;
+    },
   },
   actions: {
     loadUserInfo({ commit }) {
@@ -83,6 +93,12 @@ export default createStore({
       securedConnection.get('/api/v1/issues')
         .then((r) => commit('loadAllTasksSuccess', r.data))
         .catch((e) => commit('loadAllTasksFailure', e));
+    },
+    logout({ commit }) {
+      commit('startLoader');
+      securedConnection.delete('/signin')
+        .then(() => commit('signoutSuccess'))
+        .catch(() => commit('signoutFailure'));
     },
   },
   modules: {
