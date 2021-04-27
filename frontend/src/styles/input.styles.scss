@@ -49,3 +49,9 @@ textarea {
 .input-container {
     margin: 1rem 0rem;
 }
+
+select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
