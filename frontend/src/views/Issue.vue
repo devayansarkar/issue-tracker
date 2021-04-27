@@ -43,14 +43,19 @@
                 />
               </div>
               <div class="input-container">
-                <label for="lane" class="form-field-label">Add to</label>
-                <input
+                <label for="lane" class="form-field-label">Add to lane</label>
+                <select
                   id="lane"
                   type="dropdown"
                   v-model="lane"
                   class="form-field"
                   placeholder="Add your lane"
-                />
+                  name="lane"
+                >
+                  <option value="TODO">Todo</option>
+                  <option value="INPROGRESS">Doing</option>
+                  <option value="DONE">Done</option>
+                </select>
               </div>
               <div class="input-container">
                 <label for="category" class="form-field-label">Category</label>
