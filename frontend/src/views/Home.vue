@@ -13,7 +13,7 @@
               Organize your tasks and never miss a deadline.
             </div>
             <div class="cta">
-              <button class="btn-primary" @click="$router.push('/#')">Add new issue</button>
+              <button class="btn-primary" @click="$router.push('/add-issue')">Add new issue</button>
               <button class="btn-primary" @click="$router.push('/board')">View all issues</button>
             </div>
           </div>

@@ -36,7 +36,11 @@
                 <div class="lane-title">
                   {{ task }}
                 </div>
-                <button v-if="task === 'TODO'" class="btn-primary-small">
+                <button
+                  v-if="task === 'TODO'"
+                  class="btn-primary-small"
+                  @click="$router.push('/add-issue')"
+                >
                   +
                 </button>
               </div>
@@ -64,10 +68,11 @@
           <div class="lane-container">
             <div class="lane">
               <div class="lane-header">
-                <div class="lane-title">
-                  TODO
-                </div>
-                <button class="btn-primary-small">
+                <div class="lane-title">TODO</div>
+                <button
+                  class="btn-primary-small"
+                  @click="$router.push('/add-issue')"
+                >
                   +
                 </button>
               </div>
@@ -91,9 +96,7 @@
             </div>
             <div class="lane">
               <div class="lane-header">
-                <div class="lane-title">
-                  DOING
-                </div>
+                <div class="lane-title">DOING</div>
               </div>
               <div class="lane-items">
                 <div v-for="issue in getLaneItems('DOING')" :key="issue.id">
@@ -115,9 +118,7 @@
             </div>
             <div class="lane">
               <div class="lane-header">
-                <div class="lane-title">
-                  DONE
-                </div>
+                <div class="lane-title">DONE</div>
               </div>
               <div class="lane-items">
                 <div v-for="issue in getLaneItems('DONE')" :key="issue.id">
