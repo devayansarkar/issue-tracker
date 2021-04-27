@@ -27,7 +27,7 @@
                 type="description"
                 placeholder="Add your description here"
                 cols="30"
-                rows="10"
+                rows="8"
               ></textarea>
             </div>
             <div class="issue-info">
