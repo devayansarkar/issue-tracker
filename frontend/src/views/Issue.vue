@@ -34,6 +34,7 @@
               <div class="input-container">
                 <label for="date" class="form-field-label">End date</label>
                 <input
+                  :min="getCurrentDate"
                   id="date"
                   type="date"
                   v-model="endDate"
@@ -77,6 +78,7 @@
 <script>
 import Navbar from '@/components/Navbar.vue';
 import Topbar from '@/components/Topbar.vue';
+import moment from 'moment';
 
 export default {
   name: 'AddNewIssue',
@@ -109,6 +111,9 @@ export default {
         return 'Add issue';
       }
       return 'Update issue';
+    },
+    getCurrentDate() {
+      return moment().format('YYYY-MM-DD').toString();
     },
   },
   methods: {
