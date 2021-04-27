@@ -1,5 +1,6 @@
 @import 'variables.scss';
 @import 'pageview.styles.scss';
+@import 'media.queries.scss';
 
 .add-issue {
     padding: 1rem 1.2rem;
@@ -7,6 +8,23 @@
     .page-type {
         font-weight: bold;
         font-size: 1.3rem;
+
+        @include lg() {
+            font-size: 1.6rem;
+        }
+    }
+
+    @include lg() {
+        width: 100%;
+        display: grid;
+        place-content: center;
+
+        &>.issue {
+            margin-top: 1%;
+            padding: 1rem 2rem;
+            width: 40rem;
+            box-shadow: $shadow;
+        }
     }
 }
 
