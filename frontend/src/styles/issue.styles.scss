@@ -15,7 +15,6 @@
     }
 
     @include lg() {
-        width: 100%;
         display: grid;
         place-content: center;
 
@@ -24,6 +23,16 @@
             padding: 1rem 2rem;
             width: 40rem;
             box-shadow: $shadow;
+        }
+    }
+
+    @include lg() {
+        .issue-info {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 10px 10px;
+            grid-template-areas:
+                ". . . ";
         }
     }
 }
