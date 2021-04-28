@@ -73,7 +73,6 @@ export default {
         .catch((e) => this.signinFailed(e));
     },
     signinSuccessful(response) {
-      this.isLoading = false;
       this.addTokensToLocalStorage(response.data);
       this.$router.replace('/home');
     },
