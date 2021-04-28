@@ -17,10 +17,12 @@ button {
 
     &:disabled {
         background-color: $light_grey;
+        color: $medium_grey
     }
 
     &:disabled:hover {
         background-color: $medium_grey;
+        color: $light_grey
     }
 }
 
