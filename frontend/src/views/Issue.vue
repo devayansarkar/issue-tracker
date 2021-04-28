@@ -117,7 +117,7 @@ export default {
       lane: 'TODO',
       category: '',
       pageType: this.$route.name,
-      isReadonly: false,
+      isReadonly: this.$route.name === 'ViewIssue',
     };
   },
   computed: {
