@@ -10,6 +10,8 @@
             <div class="input-container">
               <label for="title" class="form-field-label">Title</label>
               <input
+                @click="makeEditable"
+                :readonly="isReadonly"
                 id="title"
                 type="text"
                 v-model="title"
@@ -22,6 +24,8 @@
                 >Description</label
               >
               <textarea
+                :readonly="isReadonly"
+                @click="makeEditable"
                 id="description"
                 v-model="description"
                 type="description"
@@ -34,6 +38,8 @@
               <div class="input-container">
                 <label for="date" class="form-field-label">End date</label>
                 <input
+                  :readonly="isReadonly"
+                  @click="makeEditable"
                   :min="getCurrentDate"
                   id="date"
                   type="date"
@@ -45,11 +51,13 @@
               <div class="input-container">
                 <label for="lane" class="form-field-label">Add to lane</label>
                 <select
+                  :readonly="isReadonly"
+                  @click="makeEditable"
                   id="lane"
                   v-model="lane"
-                  class="form-field"
                   placeholder="Add your lane"
                   name="lane"
+                  :class="isReadonly ? 'read-only-select' : ''"
                 >
                   <option value="TODO">Todo</option>
                   <option value="INPROGRESS">Doing</option>
@@ -59,6 +67,8 @@
               <div class="input-container">
                 <label for="category" class="form-field-label">Category</label>
                 <input
+                  :readonly="isReadonly"
+                  @click="makeEditable"
                   id="category"
                   type="text"
                   v-model="category"
@@ -68,7 +78,11 @@
               </div>
             </div>
             <div class="issue-cta">
-              <button :disabled="isFormIncomplete" class="btn btn-primary">
+              <button
+                v-if="!isReadonly"
+                :disabled="isFormIncomplete"
+                class="btn btn-primary"
+              >
                 {{ getButtonName }}
               </button>
             </div>
@@ -103,6 +117,7 @@ export default {
       lane: 'TODO',
       category: '',
       pageType: this.$route.name,
+      isReadonly: false,
     };
   },
   computed: {
@@ -127,7 +142,9 @@ export default {
   },
   methods: {
     saveIssue() {
-      const formattedDate = moment(this.endDate, 'DD-MM-YYYY').format('DD/MM/YYYY');
+      const formattedDate = moment(this.endDate, 'DD-MM-YYYY').format(
+        'DD/MM/YYYY',
+      );
       this.$store.dispatch('addNewIssue', {
         title: this.title,
         description: this.description,
@@ -135,6 +152,9 @@ export default {
         end_date: formattedDate,
         status: this.lane,
       });
+    },
+    makeEditable() {
+      this.isReadonly = false;
     },
   },
 };
