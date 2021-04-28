@@ -5,7 +5,6 @@
     <div class="page-container">
       <Topbar />
       <div v-if="!$store.state.isLoading" class="home">
-
         <div class="home-header">
           <div class="left">
             <div class="title">Welcome to your personal issue tracker</div>
@@ -13,8 +12,12 @@
               Organize your tasks and never miss a deadline.
             </div>
             <div class="cta">
-              <button class="btn-primary" @click="$router.push('/add-issue')">Add new issue</button>
-              <button class="btn-primary" @click="$router.push('/board')">View all issues</button>
+              <button class="btn-primary" @click="$router.push('/add-issue')">
+                Add new issue
+              </button>
+              <button class="btn-primary" @click="$router.push('/board')">
+                View all issues
+              </button>
             </div>
           </div>
 
@@ -37,7 +40,7 @@
               />
               <IssueCount
                 cardType="count-card"
-                :count="$store.getters.getTaskCount.inprogress"
+                :count="$store.getters.getTaskCount.doing"
                 type="Doing"
               />
             </div>
@@ -108,7 +111,9 @@ export default {
     Loading,
   },
   mounted() {
-    this.$store.dispatch('loadUserInfo');
+    if (!this.$store.getters.isUserInfoLoaded) {
+      this.$store.dispatch('loadUserInfo');
+    }
   },
 };
 </script>

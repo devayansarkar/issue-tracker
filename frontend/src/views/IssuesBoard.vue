@@ -176,7 +176,9 @@ export default {
     },
   },
   created() {
-    this.$store.dispatch('loadAllIssues');
+    if (!this.$store.getters.areIssuesLoaded || !this.$store.getters.isUserInfoLoaded) {
+      this.$store.dispatch('loadAllIssues');
+    }
   },
 };
 </script>

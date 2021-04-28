@@ -21,7 +21,7 @@
           <div class="issue-field">
             <div class="issue-title">Doing</div>
             <div class="issue-count">
-              {{ $store.getters.getTaskCount.inprogress }}
+              {{ $store.getters.getTaskCount.doing }}
             </div>
           </div>
           <div class="issue-field">

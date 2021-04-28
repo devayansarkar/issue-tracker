@@ -46,7 +46,6 @@
                 <label for="lane" class="form-field-label">Add to lane</label>
                 <select
                   id="lane"
-                  type="dropdown"
                   v-model="lane"
                   class="form-field"
                   placeholder="Add your lane"
@@ -123,7 +122,7 @@ export default {
   },
   methods: {
     saveIssue() {
-      console.log('Saving issue');
+      console.log(this.$data);
     },
   },
 };

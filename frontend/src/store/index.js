@@ -16,9 +16,9 @@ export default createStore({
     deadlineIssues: [],
     recentIssues: [],
     taskCount: {
-      inprogress: 0,
-      done: 0,
-      todo: 0,
+      doing: -1,
+      done: -1,
+      todo: -1,
     },
     error: {
       isError: false,
@@ -33,7 +33,7 @@ export default createStore({
       state.user = { name: responseBody.name, email: responseBody.email };
       state.taskCount = {
         done: responseBody.done,
-        inprogress: responseBody.inProgress,
+        doing: responseBody.inProgress,
         todo: responseBody.todo,
       };
       state.deadlineIssues = responseBody.deadlineIssues;
@@ -79,17 +79,27 @@ export default createStore({
     signoutFailure(state) {
       state.isLoading = true;
     },
+    addNewIssueSuccess(state) {
+      state.isLoading = false;
+    },
+    addNewIssueFailure(state) {
+      state.isLoading = false;
+    },
   },
   actions: {
-    loadUserInfo({ commit }) {
-      commit('startLoader');
+    loadUserInfo({ commit }, ignoreLoader) {
+      if (!ignoreLoader) {
+        commit('startLoader');
+      }
       securedConnection
         .get('/api/v1/user')
         .then((r) => commit('loadUserInfoSuccess', r.data))
         .catch((e) => commit('loadUserInfoFailure', e));
     },
-    loadAllIssues({ commit }) {
-      commit('startLoader');
+    loadAllIssues({ commit }, ignoreLoader) {
+      if (!ignoreLoader) {
+        commit('startLoader');
+      }
       securedConnection.get('/api/v1/issues')
         .then((r) => commit('loadAllIssuesSuccess', r.data))
         .catch((e) => commit('loadAllIssuesFailure', e));
@@ -99,6 +109,16 @@ export default createStore({
       securedConnection.delete('/signin')
         .then(() => commit('signoutSuccess'))
         .catch(() => commit('signoutFailure'));
+    },
+    addNewIssue({ commit, dispatch }, payload) {
+      commit('startLoader');
+      securedConnection.post('/api/v1/issues', payload)
+        .then(() => {
+          commit('addNewIssueSuccess');
+          dispatch('loadAllIssues', true);
+          dispatch('loadUserInfo', true);
+        })
+        .catch(() => commit('addNewIssueFailure'));
     },
   },
   modules: {
@@ -119,7 +139,7 @@ export default createStore({
     getTaskCount(state) {
       return {
         ...state.taskCount,
-        total: state.taskCount.todo + state.taskCount.done + state.taskCount.inprogress,
+        total: state.taskCount.todo + state.taskCount.done + state.taskCount.doing,
       };
     },
     getIssues: (state) => (payload) => {
@@ -130,6 +150,16 @@ export default createStore({
         return state.tasks.doing;
       }
       return state.tasks.done;
+    },
+    isUserInfoLoaded(state) {
+      return state.taskCount.done >= 0
+        && state.taskCount.doing >= 0
+        && state.taskCount.todo >= 0;
+    },
+    areIssuesLoaded(state) {
+      return state.taskCount.todo <= state.tasks.todo.length
+      && state.taskCount.doing <= state.tasks.doing.length
+      && state.taskCount.done <= state.tasks.done.length;
     },
   },
 });
