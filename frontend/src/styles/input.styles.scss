@@ -4,21 +4,35 @@
     box-sizing: border-box;
 }
 
-.form-field {
+@mixin readOnly {
+    &:read-only {
+        background-color: $background;
+        padding: .5rem;
+    }
+}
+
+@mixin inputStyle {
     outline: none;
     border: none;
     background-color: $light_grey;
-    height: 3.5rem;
+
     width: 100%;
     border-radius: $border_radius;
     padding: 0rem 1.2rem;
     font-size: 1.1rem;
     font: unset;
     @include inputSizing();
+}
+
+.form-field {
+    height: 3.5rem;
+    @include inputStyle();
 
     &:focus {
         border: 1px solid $secondary;
     }
+
+    @include readOnly();
 }
 
 .form-field-label {
@@ -30,20 +44,19 @@
 }
 
 textarea {
+
+    @include inputStyle();
     resize: none;
-    outline: none;
     overflow: auto;
     padding: 1rem 1.1rem;
-    font: unset;
     width: 100%;
-    border: none;
-    background-color: $light_grey;
-    border-radius: $border_radius;
     @include inputSizing();
 
     &:focus {
         border: 1px solid $secondary;
     }
+
+    @include readOnly();
 }
 
 .input-container {
@@ -54,4 +67,11 @@ select {
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
+    height: 3.5rem;
+    @include inputStyle();
+}
+
+.read-only-select {
+    background-color: $background;
+    padding: .5rem;
 }
