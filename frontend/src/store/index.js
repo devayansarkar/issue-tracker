@@ -3,7 +3,7 @@ import { securedConnection } from '../config/axios';
 
 export default createStore({
   state: {
-    isLoading: true,
+    isLoading: false,
     user: {
       name: '',
       email: '',
