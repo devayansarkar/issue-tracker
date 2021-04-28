@@ -122,7 +122,14 @@ export default {
   },
   methods: {
     saveIssue() {
-      console.log(this.$data);
+      const formattedDate = moment(this.endDate, 'DD-MM-YYYY').format('DD/MM/YYYY');
+      this.$store.dispatch('addNewIssue', {
+        title: this.title,
+        description: this.description,
+        category: this.category,
+        end_date: formattedDate,
+        status: this.lane,
+      });
     },
   },
 };
