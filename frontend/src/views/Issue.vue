@@ -3,7 +3,7 @@
     <Navbar :page="'addIssue'" />
     <div class="page-container">
       <Topbar />
-      <div class="add-issue">
+      <div v-if="!$store.state.isLoading" class="add-issue">
         <div class="page-type">{{ getPageTitle }}</div>
         <div class="issue">
           <form @submit.prevent="saveIssue">
@@ -75,6 +75,9 @@
           </form>
         </div>
       </div>
+      <div v-if="$store.state.isLoading" class="loading-container">
+        <Loading />
+      </div>
     </div>
   </div>
 </template>
@@ -82,6 +85,7 @@
 <script>
 import Navbar from '@/components/Navbar.vue';
 import Topbar from '@/components/Topbar.vue';
+import Loading from '@/components/Loading.vue';
 import moment from 'moment';
 
 export default {
@@ -89,6 +93,7 @@ export default {
   components: {
     Navbar,
     Topbar,
+    Loading,
   },
   data() {
     return {
