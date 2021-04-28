@@ -43,7 +43,7 @@ export default createStore({
     loadUserInfoFailure(state) {
       state.isLoading = false;
     },
-    loadAllTasksSuccess(state, responseBody) {
+    loadAllIssuesSuccess(state, responseBody) {
       const todo = [];
       const doing = [];
       const done = [];
@@ -61,7 +61,7 @@ export default createStore({
       state.tasks = { todo, doing, done };
       state.isLoading = false;
     },
-    loadAllTasksFailure(state, responseBody) {
+    loadAllIssuesFailure(state, responseBody) {
       state.isLoading = false;
       if (responseBody !== undefined && responseBody.tasks !== undefined) {
         responseBody.tasks.forEach((t) => {
@@ -88,11 +88,11 @@ export default createStore({
         .then((r) => commit('loadUserInfoSuccess', r.data))
         .catch((e) => commit('loadUserInfoFailure', e));
     },
-    loadAllTasks({ commit }) {
+    loadAllIssues({ commit }) {
       commit('startLoader');
       securedConnection.get('/api/v1/issues')
-        .then((r) => commit('loadAllTasksSuccess', r.data))
-        .catch((e) => commit('loadAllTasksFailure', e));
+        .then((r) => commit('loadAllIssuesSuccess', r.data))
+        .catch((e) => commit('loadAllIssuesFailure', e));
     },
     logout({ commit }) {
       commit('startLoader');

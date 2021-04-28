@@ -176,7 +176,7 @@ export default {
     },
   },
   created() {
-    this.$store.dispatch('loadAllTasks');
+    this.$store.dispatch('loadAllIssues');
   },
 };
 </script>
