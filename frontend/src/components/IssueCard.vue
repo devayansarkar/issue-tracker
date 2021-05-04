@@ -28,7 +28,11 @@
           </div>
         </div>
         <div class="view">
-          <span class="material-icons"> visibility </span>
+          <router-link
+            :to="{ name: 'ViewIssue', params: { issue_id: issueNumber , index: index, type: type } }"
+          >
+            <span class="material-icons"> visibility </span>
+          </router-link>
         </div>
       </div>
     </div>
@@ -63,10 +67,11 @@ export default {
   props: {
     issueNumber: Number,
     title: String,
-    description: String,
     deadline: String,
     startDate: String,
     issueStatus: String,
+    index: Number,
+    type: String,
   },
   computed: {
     parsedDate() {
