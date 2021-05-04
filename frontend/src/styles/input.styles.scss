@@ -37,6 +37,7 @@
 
 .form-field-label {
     margin-left: 0.5rem;
+    color: $medium_grey
 }
 
 .mandatory {
@@ -74,4 +75,10 @@ select {
 .read-only-select {
     background-color: $background;
     padding: .5rem;
+}
+
+input[type="date"] {
+    &:read-only {
+        color: $dark_text;
+    }
 }
