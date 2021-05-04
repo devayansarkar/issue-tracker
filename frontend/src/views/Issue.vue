@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Navbar :page="'addIssue'" />
+    <Navbar :page="getCurrentPage" />
     <div class="page-container">
       <Topbar />
       <div v-if="!$store.state.isLoading" class="add-issue">
@@ -111,6 +111,7 @@ export default {
   },
   data() {
     return {
+      id: 0,
       title: '',
       description: '',
       endDate: '',
@@ -134,10 +135,24 @@ export default {
       if (this.pageType === 'AddIssue') {
         return 'Add issue';
       }
+      if (this.pageType === 'ViewIssue') {
+        const issueId = this.$route.params && this.$route.params.issue_id;
+        return `Viewing issue : ${issueId}`;
+      }
+      if (this.pageType === 'UpdateIssue') {
+        const issueId = this.$route.params && this.$route.params.issue_id;
+        return `Updating issue : ${issueId}`;
+      }
       return 'Update issue';
     },
     getCurrentDate() {
       return moment().format('YYYY-MM-DD').toString();
+    },
+    getCurrentPage() {
+      if (this.pageType === 'AddIssue' || this.pageType === 'UpdateIssue') {
+        return 'addIssue';
+      }
+      return 'viewIssue';
     },
   },
   methods: {
@@ -145,17 +160,56 @@ export default {
       const formattedDate = moment(this.endDate, 'DD-MM-YYYY').format(
         'DD/MM/YYYY',
       );
-      this.$store.dispatch('addNewIssue', {
-        title: this.title,
-        description: this.description,
-        category: this.category,
-        end_date: formattedDate,
-        status: this.lane,
-      });
+      if (this.pageType === 'UpdateIssue') {
+        this.$store.dispatch('updateIssue', {
+          id: this.id,
+          payload: {
+            title: this.title,
+            description: this.description,
+            category: this.category,
+            end_date: formattedDate,
+            status: this.lane,
+          },
+        });
+      } else {
+        this.$store.dispatch('addNewIssue', {
+          title: this.title,
+          description: this.description,
+          category: this.category,
+          end_date: formattedDate,
+          status: this.lane,
+        });
+      }
     },
     makeEditable() {
       this.isReadonly = false;
+      this.pageType = 'UpdateIssue';
     },
+  },
+  created() {
+    if (this.$route.params && this.$route.params.issue_id) {
+      const { params } = this.$route;
+
+      if (params.index === undefined || params.type === undefined) {
+        // call the backend api and fetch results
+        console.log('Calling backend api');
+      } else {
+        const issue = this.$store.getters.getIssue({
+          type: params.type,
+          index: params.index,
+        });
+        if (issue === undefined) {
+          // call the backend api and fetch results
+        } else {
+          this.id = issue.id;
+          this.title = issue.title;
+          this.description = issue.description;
+          this.endDate = issue.end_date;
+          this.lane = issue.status;
+          this.category = issue.category;
+        }
+      }
+    }
   },
 };
 </script>
