@@ -120,6 +120,16 @@ export default createStore({
         })
         .catch(() => commit('addNewIssueFailure'));
     },
+    updateIssue({ commit, dispatch }, { payload, id }) {
+      commit('startLoader');
+      securedConnection.patch(`/api/v1/issues/${id}`, payload)
+        .then(() => {
+          commit('addNewIssueSuccess');
+          dispatch('loadAllIssues', true);
+          dispatch('loadUserInfo', true);
+        })
+        .catch(() => commit('addNewIssueFailure'));
+    },
   },
   modules: {
   },
@@ -158,8 +168,26 @@ export default createStore({
     },
     areIssuesLoaded(state) {
       return state.taskCount.todo <= state.tasks.todo.length
-      && state.taskCount.doing <= state.tasks.doing.length
-      && state.taskCount.done <= state.tasks.done.length;
+        && state.taskCount.doing <= state.tasks.doing.length
+        && state.taskCount.done <= state.tasks.done.length;
+    },
+    getIssue: (state) => (payload) => {
+      const { type, index } = payload;
+
+      switch (type) {
+        case 'deadline':
+          return state.deadlineIssues[index];
+        case 'recent':
+          return state.recentIssues[index];
+        case 'todo':
+          return state.tasks.todo[index];
+        case 'doing':
+          return state.tasks.doing[index];
+        case 'done':
+          return state.tasks.done[index];
+        default:
+          return undefined;
+      }
     },
   },
 });
