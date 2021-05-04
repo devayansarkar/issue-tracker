@@ -50,13 +50,15 @@
         <div v-if="$store.getters.hasDeadlineIssues" class="next-tasks">
           <div class="section-title">Approaching deadline</div>
           <div class="section-items">
-            <div v-for="issue in $store.state.deadlineIssues" :key="issue.id">
+            <div v-for="(issue,index) in $store.state.deadlineIssues" :key="issue.id">
               <IssueCard
                 :issueNumber="issue.id"
                 :title="issue.title"
                 :deadline="issue.end_date"
                 :startDate="issue.created_at"
                 :issueStatus="issue.status"
+                :index="index"
+                type="deadline"
               />
             </div>
           </div>
@@ -65,20 +67,25 @@
         <div v-if="$store.getters.hasRecentIssues" class="next-tasks">
           <div class="section-title">Recent issue</div>
           <div class="section-items">
-            <div v-for="issue in $store.state.recentIssues" :key="issue.id">
+            <div
+              v-for="(issue, index) in $store.state.recentIssues"
+              :key="issue.id"
+            >
               <IssueCard
                 :issueNumber="issue.id"
                 :title="issue.title"
                 :deadline="issue.end_date"
                 :startDate="issue.created_at"
                 :issueStatus="issue.status"
+                :index="index"
+                type="recent"
               />
             </div>
           </div>
         </div>
 
         <div v-if="$store.getters.hasEmptyActionItems" class="next-tasks">
-          <div class="section-title">Issye status</div>
+          <div class="section-title">Issue status</div>
           <div class="section-items">
             <IssueStatusInfoCard cardType="deadline" />
             <IssueStatusInfoCard cardType="recent" />
