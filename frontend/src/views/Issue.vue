@@ -47,7 +47,6 @@
                 <input
                   :readonly="isReadonly"
                   @click="makeEditable"
-                  :min="getCurrentDate"
                   id="date"
                   type="date"
                   v-model="endDate"
