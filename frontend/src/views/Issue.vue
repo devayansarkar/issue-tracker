@@ -4,6 +4,13 @@
     <div class="page-container">
       <Topbar />
       <div v-if="!$store.state.isLoading" class="add-issue">
+        <div
+          v-if="$store.state.message.text"
+          class="info-message"
+          :class="$store.state.message.type"
+        >
+          {{ $store.state.message.text }}
+        </div>
         <div class="page-type">{{ getPageTitle }}</div>
         <div class="issue">
           <form @submit.prevent="saveIssue">
@@ -216,4 +223,5 @@ export default {
 
 <style lang="scss">
 @import '../styles/issue.styles.scss';
+@import '../styles/info.styles.scss';
 </style>
