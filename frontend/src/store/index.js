@@ -20,9 +20,9 @@ export default createStore({
       done: -1,
       todo: -1,
     },
-    error: {
-      isError: false,
-      message: '',
+    message: {
+      type: 'success',
+      text: '',
     },
   },
   mutations: {
@@ -79,11 +79,20 @@ export default createStore({
     signoutFailure(state) {
       state.isLoading = true;
     },
-    addNewIssueSuccess(state) {
+    issueOperationSuccess(state, payload) {
       state.isLoading = false;
+      state.message = { type: 'success', text: payload };
+      setTimeout(() => {
+        state.message = { type: 'success', text: '' };
+      }, 5000);
     },
-    addNewIssueFailure(state) {
+
+    issueOperationFailure(state, payload) {
       state.isLoading = false;
+      state.message = { type: 'error', text: payload };
+      setTimeout(() => {
+        state.message = { type: 'error', text: '' };
+      }, 5000);
     },
   },
   actions: {
@@ -114,21 +123,21 @@ export default createStore({
       commit('startLoader');
       securedConnection.post('/api/v1/issues', payload)
         .then(() => {
-          commit('addNewIssueSuccess');
+          commit('issueOperationSuccess', 'Issue is added successfully.');
           dispatch('loadAllIssues', true);
           dispatch('loadUserInfo', true);
         })
-        .catch(() => commit('addNewIssueFailure'));
+        .catch(() => commit('issueOperationFailure', 'Unable to add the issue, please try again later.'));
     },
     updateIssue({ commit, dispatch }, { payload, id }) {
       commit('startLoader');
       securedConnection.patch(`/api/v1/issues/${id}`, payload)
         .then(() => {
-          commit('addNewIssueSuccess');
+          commit('issueOperationSuccess', 'Issue is updated successfully.');
           dispatch('loadAllIssues', true);
           dispatch('loadUserInfo', true);
         })
-        .catch(() => commit('addNewIssueFailure'));
+        .catch(() => commit('issueOperationFailure', 'Unable to update the issue, please try again later'));
     },
   },
   modules: {
