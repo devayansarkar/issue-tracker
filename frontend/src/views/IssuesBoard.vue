@@ -45,13 +45,18 @@
                 </button>
               </div>
               <div class="lane-items">
-                <div v-for="issue in getLaneItems(task)" :key="issue.id">
+                <div
+                  v-for="(issue, index) in getLaneItems(task)"
+                  :key="issue.id"
+                >
                   <IssueCard
                     :issueNumber="issue.id"
                     :title="issue.title"
                     :deadline="issue.end_date"
                     :startDate="issue.created_at"
                     :issueStatus="issue.status"
+                    :type="task"
+                    :index="index"
                   />
                 </div>
                 <div
@@ -77,13 +82,18 @@
                 </button>
               </div>
               <div class="lane-items">
-                <div v-for="issue in getLaneItems('TODO')" :key="issue.id">
+                <div
+                  v-for="(issue, index) in getLaneItems('TODO')"
+                  :key="issue.id"
+                >
                   <IssueCard
                     :issueNumber="issue.id"
                     :title="issue.title"
                     :deadline="issue.end_date"
                     :startDate="issue.created_at"
                     :issueStatus="issue.status"
+                    :index="index"
+                    type="TODO"
                   />
                 </div>
                 <div
@@ -99,13 +109,18 @@
                 <div class="lane-title">DOING</div>
               </div>
               <div class="lane-items">
-                <div v-for="issue in getLaneItems('DOING')" :key="issue.id">
+                <div
+                  v-for="(issue, index) in getLaneItems('DOING')"
+                  :key="issue.id"
+                >
                   <IssueCard
                     :issueNumber="issue.id"
                     :title="issue.title"
                     :deadline="issue.end_date"
                     :startDate="issue.created_at"
                     :issueStatus="issue.status"
+                    :index="index"
+                    type="DOING"
                   />
                 </div>
                 <div
@@ -121,13 +136,15 @@
                 <div class="lane-title">DONE</div>
               </div>
               <div class="lane-items">
-                <div v-for="issue in getLaneItems('DONE')" :key="issue.id">
+                <div v-for="(issue, index) in getLaneItems('DONE')" :key="issue.id">
                   <IssueCard
                     :issueNumber="issue.id"
                     :title="issue.title"
                     :deadline="issue.end_date"
                     :startDate="issue.created_at"
                     :issueStatus="issue.status"
+                    :index="index"
+                    type="DONE"
                   />
                 </div>
                 <div
