@@ -206,15 +206,15 @@ export default createStore({
       const { type, index } = payload;
 
       switch (type) {
-        case 'deadline':
+        case 'DEADLINE':
           return state.deadlineIssues[index];
-        case 'recent':
+        case 'RECENT':
           return state.recentIssues[index];
-        case 'todo':
+        case 'TODO':
           return state.tasks.todo[index];
-        case 'doing':
+        case 'DOING':
           return state.tasks.doing[index];
-        case 'done':
+        case 'DONE':
           return state.tasks.done[index];
         default:
           return undefined;
