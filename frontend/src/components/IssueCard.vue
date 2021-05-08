@@ -29,7 +29,10 @@
         </div>
         <div class="view">
           <router-link
-            :to="{ name: 'ViewIssue', params: { issue_id: issueNumber , index: index, type: type } }"
+            :to="{
+              name: 'ViewIssue',
+              params: { issue_id: issueNumber, index: index, type: type },
+            }"
           >
             <span class="material-icons"> visibility </span>
           </router-link>
@@ -116,11 +119,14 @@ export default {
       this.deadlineStatus = 'hundred';
       return;
     }
+
     const postedDate = moment(this.startDate);
     const formattedDeadline = moment(this.deadline, 'YYYY-MM-DD');
     const pendingTime = formattedDeadline.diff(moment(), 'days');
     const originalTimeAlloted = formattedDeadline.diff(postedDate, 'days');
-    const daysPending = (pendingTime / originalTimeAlloted) * 100;
+    const daysPending = pendingTime !== 0 || originalTimeAlloted !== 0
+      ? (pendingTime / originalTimeAlloted) * 100
+      : 0;
     const daysConsumed = 100 - daysPending;
 
     if (Number.isNaN(daysConsumed) || !formattedDeadline.isValid()) {
