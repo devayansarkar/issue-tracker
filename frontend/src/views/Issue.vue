@@ -197,25 +197,37 @@ export default {
       const { params } = this.$route;
 
       if (params.index === undefined || params.type === undefined) {
-        // call the backend api and fetch results
-        console.log('Calling backend api');
+        this.$store.dispatch('getIssue', {
+          id: params.issue_id,
+        });
       } else {
         const issue = this.$store.getters.getIssue({
           type: params.type,
           index: params.index,
         });
-        if (issue === undefined) {
-          // call the backend api and fetch results
-        } else {
-          this.id = issue.id;
-          this.title = issue.title;
-          this.description = issue.description;
-          this.endDate = issue.end_date;
-          this.lane = issue.status;
-          this.category = issue.category;
-        }
+        this.$store.commit('getIssueSuccess', issue);
+        this.title = issue.title;
+        this.description = issue.description;
+        this.endDate = issue.end_date;
+        this.lane = issue.status;
+        this.category = issue.category;
+        this.id = issue.id;
       }
     }
+
+    this.$store.watch(
+      (state) => state.issue,
+      (item) => {
+        if (item.title !== '') {
+          this.title = item.title;
+          this.description = item.description;
+          this.endDate = item.end_date;
+          this.lane = item.status;
+          this.category = item.category;
+          this.id = item.id;
+        }
+      },
+    );
   },
 };
 </script>
