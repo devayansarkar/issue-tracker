@@ -24,6 +24,14 @@ export default createStore({
       type: 'success',
       text: '',
     },
+    issue: {
+      id: '',
+      title: '',
+      description: '',
+      endDate: '',
+      lane: '',
+      category: '',
+    },
   },
   mutations: {
     startLoader(state) {
@@ -86,13 +94,16 @@ export default createStore({
         state.message = { type: 'success', text: '' };
       }, 5000);
     },
-
     issueOperationFailure(state, payload) {
       state.isLoading = false;
       state.message = { type: 'error', text: payload };
       setTimeout(() => {
         state.message = { type: 'error', text: '' };
       }, 5000);
+    },
+    getIssueSuccess(state, payload) {
+      state.isLoading = false;
+      state.issue = payload;
     },
   },
   actions: {
@@ -137,7 +148,18 @@ export default createStore({
           dispatch('loadAllIssues', true);
           dispatch('loadUserInfo', true);
         })
-        .catch(() => commit('issueOperationFailure', 'Unable to update the issue, please try again later'));
+        .catch((e) => {
+          console.log(e);
+          commit('issueOperationFailure', 'Unable to update the issue, please try again later');
+        });
+    },
+    getIssue({ commit }, { id }) {
+      commit('startLoader');
+      securedConnection.get(`/api/v1/issues/${id}`)
+        .then((r) => {
+          commit('getIssueSuccess', r.data);
+        })
+        .catch(() => commit('issueOperationFailure', 'Unable to fetch issue, please check the number or add a new one'));
     },
   },
   modules: {
