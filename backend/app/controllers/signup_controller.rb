@@ -66,7 +66,7 @@ Creates :
     issue_in_progress = user.issues.create(
       title: 'Issue in progress',
       description: 'You can mark issues in progress, signifying that the you are working on it. The right bar as always will keep you informed about the time remaining to finish the issue. You can change the status of the task either by dragging and dropping the issue in the particular lane or by selecting the status under the menu from top right.',
-      end_date:  Date.today + 10,
+      end_date:  Date.today + 1,
       category: 'issue-in-progress',
       status: 'INPROGRESS'
     )
@@ -74,7 +74,7 @@ Creates :
     issue_in_progress.save()
 
     issue_done = user.issues.create(
-      title: 'Issue in progress',
+      title: 'Issue done',
       description: 'This is an issue that is done. Finished issue will have a green bar signifying the issue is complete. You can edit or view the issue by clicking on the eye icon. Once the issue is open, you can change all the options present in the issue.',
       end_date:  Date.today + 30,
       category: 'issue-done',
