@@ -58,7 +58,7 @@
                 :startDate="issue.created_at"
                 :issueStatus="issue.status"
                 :index="index"
-                type="deadline"
+                type="DEADLINE"
               />
             </div>
           </div>
@@ -78,7 +78,7 @@
                 :startDate="issue.created_at"
                 :issueStatus="issue.status"
                 :index="index"
-                type="recent"
+                type="RECENT"
               />
             </div>
           </div>
