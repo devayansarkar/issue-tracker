@@ -45,6 +45,7 @@
               <div class="input-container">
                 <label for="date" class="form-field-label">End date</label>
                 <input
+                  :min="getCurrentDate"
                   :readonly="isReadonly"
                   @click="makeEditable"
                   id="date"
