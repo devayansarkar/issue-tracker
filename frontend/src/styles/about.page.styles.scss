@@ -1,2 +1,9 @@
 @import 'variables.scss';
 @import 'pageview.styles.scss';
+
+.about-page {
+    h1 {
+        padding-left: 2rem;
+        color: $dark_grey;
+    }
+}

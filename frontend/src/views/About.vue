@@ -1,8 +1,11 @@
 <template>
   <div>
-    <Navbar :page="'home'" />
+    <Navbar :page="'about'" />
     <div class="page-container">
       <Topbar />
+      <div class="about-page">
+        <h1 class="about-title">About Issue tracker</h1>
+      </div>
     </div>
   </div>
 </template>
