@@ -164,7 +164,7 @@ export default {
   },
   methods: {
     saveIssue() {
-      const formattedDate = moment(this.endDate, 'DD-MM-YYYY').format(
+      const formattedDate = moment(this.endDate, 'YYYY-MM-DD').format(
         'DD/MM/YYYY',
       );
       if (this.pageType === 'UpdateIssue') {
