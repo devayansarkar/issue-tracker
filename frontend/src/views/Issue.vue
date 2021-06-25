@@ -190,7 +190,9 @@ export default {
     },
     makeEditable() {
       this.isReadonly = false;
-      this.pageType = 'UpdateIssue';
+      if (this.pageType !== 'AddIssue') {
+        this.pageType = 'UpdateIssue';
+      }
     },
   },
   created() {
