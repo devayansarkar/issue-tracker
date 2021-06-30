@@ -8,9 +8,7 @@
         <div class="menu">
           <a class="material-icons btn"> more_vert </a>
           <div class="menu-options dropdown">
-            <a href="#">Open</a>
-            <a href="#">Close</a>
-            <a href="#">Do this</a>
+             <a href="#" v-for="(item, index) in getMenuOptions" :key="index">{{item}}</a>
           </div>
         </div>
       </div>
@@ -112,6 +110,18 @@ export default {
     },
     getIssueStatusClass() {
       return this.issueStatus.toLowerCase();
+    },
+    getMenuOptions() {
+      console.log(this.issueStatus);
+      const options = ['Edit'];
+      if (this.issueStatus !== '' && this.issueStatus === 'TODO') {
+        options.push('Doing', 'Done');
+      } else if (this.issueStatus !== '' && this.issueStatus === 'INPROGRESS') {
+        options.push('Todo', 'Done');
+      } else {
+        options.push('Todo', 'Doing');
+      }
+      return options;
     },
   },
   created() {
