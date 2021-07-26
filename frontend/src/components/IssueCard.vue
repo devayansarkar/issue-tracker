@@ -6,9 +6,11 @@
         <div class="id">Issue no: {{ issueNumber }}</div>
         <div :class="getIssueStatusClass">{{ getIssueStatus }}</div>
         <div class="menu">
-          <a class="material-icons btn"> more_vert </a>
-          <div class="menu-options dropdown">
-             <a href="#" v-for="(item, index) in getMenuOptions" :key="index">{{item}}</a>
+          <div class="material-icons btn" @click="toggleMenu" ref="menu"> more_vert </div>
+          <div class="menu-options dropdown" v-if="isMenuOpen">
+            <a href="#" v-for="(item, index) in getMenuOptions" :key="index">{{
+              item
+            }}</a>
           </div>
         </div>
       </div>
@@ -60,6 +62,7 @@ export default {
     return {
       deadlineStatus: '',
       deadlineType: 'success',
+      isMenuOpen: false,
     };
   },
   components: {
@@ -73,6 +76,29 @@ export default {
     issueStatus: String,
     index: Number,
     type: String,
+  },
+  methods: {
+    toggleMenu() {
+      const closeListener = (e) => {
+        if (this.catchOutsideClick(e, this.$refs.menu)) {
+          window.removeEventListener('click', closeListener);
+          this.isMenuOpen = false;
+        }
+      };
+
+      window.addEventListener('click', closeListener);
+      this.isMenuOpen = !this.isMenuOpen;
+    },
+    catchOutsideClick(event, dropdown) {
+      if (dropdown === event.target) {
+        return false;
+      }
+
+      if (this.isMenuOpen && dropdown !== event.target) {
+        return true;
+      }
+      return true;
+    },
   },
   computed: {
     parsedDate() {
@@ -112,7 +138,6 @@ export default {
       return this.issueStatus.toLowerCase();
     },
     getMenuOptions() {
-      console.log(this.issueStatus);
       const options = ['Edit'];
       if (this.issueStatus !== '' && this.issueStatus === 'TODO') {
         options.push('Doing', 'Done');

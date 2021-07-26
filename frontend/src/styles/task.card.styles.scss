@@ -38,13 +38,9 @@
                 display: inline-block;
                 cursor: pointer;
                 -webkit-tap-highlight-color: transparent;
-
-                &:hover>.dropdown {
-                    display: block;
-                }
-
-                &:active>.dropdown {
-                    display: block;
+               
+                .dropdown {
+                    display: block; 
                 }
             }
 
