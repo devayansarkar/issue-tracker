@@ -6,7 +6,7 @@ Web application to track, update and create personal tasks and issues.
 
 - Backend in Ruby on Rails
 - Frontend in Vue
-- Database is PostGreSQL
+- Database is PostgreSQL
 - Deployed on Heroku
 
 ## Deployed app
