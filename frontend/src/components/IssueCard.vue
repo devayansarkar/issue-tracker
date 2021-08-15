@@ -6,11 +6,17 @@
         <div class="id">Issue : {{ issueNumber }}</div>
         <div :class="getIssueStatusClass">{{ getIssueStatus }}</div>
         <div class="menu">
-          <div class="material-icons btn" @click="toggleMenu" ref="menu"> more_vert </div>
+          <div class="material-icons btn" @click="toggleMenu" ref="menu">
+            more_vert
+          </div>
           <div class="menu-options dropdown" v-if="isMenuOpen">
-            <a href="#" v-for="(item, index) in getMenuOptions" :key="index" @click="updateStatus(item)">{{
-              item
-            }}</a>
+            <a
+              href="#"
+              v-for="(item, index) in getMenuOptions"
+              :key="index"
+              @click="updateStatus(item)"
+              >{{ item }}</a
+            >
           </div>
         </div>
       </div>
@@ -90,7 +96,21 @@ export default {
       this.isMenuOpen = !this.isMenuOpen;
     },
     updateStatus(event) {
-      this.$store.dispatch('updateIssueStatus', { status: event, id: this.issueNumber });
+      if (event === 'Edit') {
+        this.$router.push({
+          name: 'ViewIssue',
+          params: {
+            issue_id: this.issueNumber,
+            index: this.index,
+            type: this.type,
+          },
+        });
+      } else {
+        this.$store.dispatch('updateIssueStatus', {
+          status: event,
+          id: this.issueNumber,
+        });
+      }
     },
     catchOutsideClick(event, dropdown) {
       if (dropdown === event.target) {
