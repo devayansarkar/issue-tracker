@@ -153,6 +153,23 @@ export default createStore({
           commit('issueOperationFailure', 'Unable to update the issue, please try again later');
         });
     },
+    updateIssueStatus({ commit, dispatch }, { status, id }) {
+      let itemStatus = status.toUpperCase();
+      if (status === 'Doing') {
+        itemStatus = 'INPROGRESS';
+      }
+      commit('startLoader');
+      securedConnection.patch(`/api/v1/issues/${id}`, { status: itemStatus })
+        .then(() => {
+          commit('issueOperationSuccess', 'Issue is updated successfully.');
+          dispatch('loadAllIssues', true);
+          dispatch('loadUserInfo', true);
+        })
+        .catch((e) => {
+          console.log(e);
+          commit('issueOperationFailure', 'Unable to update the issue, please try again later');
+        });
+    },
     getIssue({ commit }, { id }) {
       commit('startLoader');
       securedConnection.get(`/api/v1/issues/${id}`)

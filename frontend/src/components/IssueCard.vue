@@ -8,7 +8,7 @@
         <div class="menu">
           <div class="material-icons btn" @click="toggleMenu" ref="menu"> more_vert </div>
           <div class="menu-options dropdown" v-if="isMenuOpen">
-            <a href="#" v-for="(item, index) in getMenuOptions" :key="index">{{
+            <a href="#" v-for="(item, index) in getMenuOptions" :key="index" @click="updateStatus(item)">{{
               item
             }}</a>
           </div>
@@ -88,6 +88,9 @@ export default {
 
       window.addEventListener('click', closeListener);
       this.isMenuOpen = !this.isMenuOpen;
+    },
+    updateStatus(event) {
+      this.$store.dispatch('updateIssueStatus', { status: event, id: this.issueNumber });
     },
     catchOutsideClick(event, dropdown) {
       if (dropdown === event.target) {
