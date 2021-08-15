@@ -10,7 +10,7 @@
             <h2>Tech stack</h2>
             <ul>
               <h4>Frontend</h4>
-              <li><code>VueJS</code> for visualization</li>
+              <li><code>Vue.js</code> for visualization</li>
               <li><code>Vuex</code> for state management</li>
               <li>Styling with <code>SCSS</code> from scratch.</li>
             </ul>
@@ -48,14 +48,14 @@
               I will add features as and when I need them but
               the goal is to keep it to the bare minimum.
               The choice of the tech stack is merely to learn about
-              <code>VueJS</code> and <code>Ruby on Rails</code>.
+              <code>Vue.js</code> and <code>Ruby on Rails</code>.
               </p>
           </div>
           <div>
             <h4>DISCLAIMER</h4>
             <p>
               Issue tracker is a free tool, built to experiment with
-              <code>VueJS</code> as a frontend library and <code>Rails</code> as
+              <code>Vue.js</code> as a frontend library and <code>Rails</code> as
               backend. It is NOT intended for commercial use and hence does not
               have any support for it.
             </p>
