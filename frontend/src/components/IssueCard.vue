@@ -3,7 +3,7 @@
   <div class="task">
     <div class="main">
       <div class="header">
-        <div class="id">Issue no: {{ issueNumber }}</div>
+        <div class="id">Issue : {{ issueNumber }}</div>
         <div :class="getIssueStatusClass">{{ getIssueStatus }}</div>
         <div class="menu">
           <div class="material-icons btn" @click="toggleMenu" ref="menu"> more_vert </div>
