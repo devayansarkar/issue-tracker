@@ -9057,6 +9057,11 @@ vue-axios@^3.2.4:
   resolved "https://registry.yarnpkg.com/vue-axios/-/vue-axios-3.2.4.tgz#2334158db8ac2a0f603aa431c2626fbf6d766724"
   integrity sha512-8Dgws6dwt+1LoKEU4HDzIPfaRgWHl0xLDLW6kxrAk/z3GAJ2thkajcXC4qZgmqj0cZRx/Z/dzooKi5HWtUQwxA==
 
+vue-draggable-next@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/vue-draggable-next/-/vue-draggable-next-2.0.1.tgz#bb64efb302c7b8e759fd3f21427871789b624c67"
+  integrity sha512-8+7gqNL0Vb4GpXBTtGQx8yAWhvn8y61aoDgKmZwDu8b5dFB2wlj1r5SWtbqV26rwg6R8FRHVdlo55lwaOA51wA==
+
 vue-eslint-parser@^7.6.0:
   version "7.6.0"
   resolved "https://registry.npmjs.org/vue-eslint-parser/-/vue-eslint-parser-7.6.0.tgz"
