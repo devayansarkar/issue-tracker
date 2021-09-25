@@ -57,9 +57,9 @@ Creates :
       description: 'This issue does not have deadline. You can skip the deadline when creating issues. Later on if needed, you can add the deadline while editing the issue. Issues without deadline with always have green bars.',
       end_date: nil,
       category: 'no-deadline',
-      status: 'TODO'
+      status: 'TODO',
     )
-
+    issue_todo_with_far_deadline.update({next_issue: issue_todo_with_no_deadline.id}) 
     issue_todo_with_no_deadline.save()
 
     issue_in_progress = user.issues.create(
