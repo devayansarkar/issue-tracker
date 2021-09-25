@@ -3,6 +3,7 @@ Rails.application.routes.draw do
     namespace :api do
         namespace :v1 do
           resources :issues
+          resources :order
           resources :comments
           get 'user', controller: :users, action: :index
         end
