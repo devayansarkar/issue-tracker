@@ -286,7 +286,11 @@ export default {
         return this.$store.getters.getIssues('TODO');
       },
       set(issues) {
-        this.$store.commit('reOrderIssues', { lane: 'TODO', issues });
+        const result = [];
+        issues.forEach((element) => {
+          result.push({ ...element, status: 'TODO' });
+        });
+        this.$store.commit('reOrderIssues', { lane: 'TODO', issues: result });
       },
     },
     doing: {
@@ -294,7 +298,11 @@ export default {
         return this.$store.getters.getIssues('DOING');
       },
       set(issues) {
-        this.$store.commit('reOrderIssues', { lane: 'DOING', issues });
+        const result = [];
+        issues.forEach((element) => {
+          result.push({ ...element, status: 'INPROGRESS' });
+        });
+        this.$store.commit('reOrderIssues', { lane: 'DOING', issues: result });
       },
     },
     done: {
@@ -302,7 +310,11 @@ export default {
         return this.$store.getters.getIssues('DONE');
       },
       set(issues) {
-        this.$store.commit('reOrderIssues', { lane: 'DONE', issues });
+        const result = [];
+        issues.forEach((element) => {
+          result.push({ ...element, status: 'DONE' });
+        });
+        this.$store.commit('reOrderIssues', { lane: 'DONE', issues: result });
       },
     },
   },
