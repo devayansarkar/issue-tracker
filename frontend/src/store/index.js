@@ -183,6 +183,35 @@ export default createStore({
           commit('issueOperationFailure', 'Unable to update the issue, please try again later');
         });
     },
+    updateIssueStatusOnDrag({ state }, payload) {
+      let request = {};
+      if (payload.lane === 'TODO') {
+        if (payload.newIndex !== state.tasks.todo.length - 1) {
+          request = { issue: { next_issue: state.tasks.todo[payload.newIndex + 1].id, status: 'DONE' } };
+        } else {
+          request = { issue: { next_issue: undefined, status: 'TODO' } };
+        }
+      } else if (payload.lane === 'DONE') {
+        if (payload.newIndex !== state.tasks.done.length - 1) {
+          request = { issue: { next_issue: state.tasks.done[payload.newIndex + 1].id, status: 'DONE' } };
+        } else {
+          request = { issue: { next_issue: undefined, status: 'DONE' } };
+        }
+      } else if (payload.lane === 'DOING') {
+        if (payload.newIndex !== state.tasks.done.length - 1) {
+          request = { issue: { next_issue: state.tasks.doing[payload.newIndex + 1].id, status: 'INPROGRESS' } };
+        } else {
+          request = { issue: { next_issue: undefined, status: 'INPROGRESS' } };
+        }
+      }
+      securedConnection.patch(`/api/v1/order/${payload.id}`, request)
+        .then(() => {
+          console.log('Issue is updated.');
+        })
+        .catch((e) => {
+          console.log(e);
+        });
+    },
     getIssue({ commit }, { id }) {
       commit('startLoader');
       securedConnection.get(`/api/v1/issues/${id}`)
