@@ -186,6 +186,13 @@ export default {
           end_date: formattedDate,
           status: this.lane,
         });
+
+        this.title = '';
+        this.description = '';
+        this.endDate = '';
+        this.lane = '';
+        this.category = '';
+        this.id = '';
       }
     },
     makeEditable() {
