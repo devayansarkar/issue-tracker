@@ -66,7 +66,29 @@ export default createStore({
           }
         });
       }
-      state.tasks = { todo, doing, done };
+
+      const orderIssues = (rawList) => {
+        const issueMap = new Map();
+        const nextIssuesMap = new Map();
+
+        let itemIndex;
+        const orderedList = [];
+        rawList.forEach((it, index) => {
+          issueMap.set(it.id, index);
+          nextIssuesMap.set(it.next_issue, index);
+        });
+        issueMap.forEach((value, key) => {
+          if (nextIssuesMap.get(key) === undefined) {
+            itemIndex = key;
+          }
+        });
+        while (itemIndex !== null) {
+          orderedList.push(rawList[issueMap.get(itemIndex)]);
+          itemIndex = rawList[issueMap.get(itemIndex)].next_issue;
+        }
+        return orderedList;
+      };
+      state.tasks = { todo: orderIssues(todo), doing: orderIssues(doing), done: orderIssues(done) };
       state.isLoading = false;
     },
     loadAllIssuesFailure(state, responseBody) {
