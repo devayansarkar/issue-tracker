@@ -106,6 +106,16 @@
                   v-if="getLaneItems('TODO').length === 0"
                 >
                   No tasks
+                  <draggable
+                    v-model="todo"
+                    :group="{ name: 'tasks' }"
+                    @change="log"
+                  >
+                    <transition-group
+                      type="transition"
+                      name="flip-list"
+                    ></transition-group>
+                  </draggable>
                 </div>
               </div>
             </div>
@@ -138,6 +148,16 @@
                   v-if="getLaneItems('DOING').length === 0"
                 >
                   No tasks
+                  <draggable
+                    v-model="doing"
+                    :group="{ name: 'tasks' }"
+                    @change="log"
+                  >
+                    <transition-group
+                      type="transition"
+                      name="flip-list"
+                    ></transition-group>
+                  </draggable>
                 </div>
               </div>
             </div>
@@ -170,6 +190,16 @@
                   v-if="getLaneItems('DONE').length === 0"
                 >
                   No tasks
+                  <draggable
+                    v-model="doing"
+                    :group="{ name: 'tasks' }"
+                    @change="log"
+                  >
+                    <transition-group
+                      type="transition"
+                      name="flip-list"
+                    ></transition-group>
+                  </draggable>
                 </div>
               </div>
             </div>
