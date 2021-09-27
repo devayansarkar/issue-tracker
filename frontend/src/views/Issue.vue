@@ -167,7 +167,7 @@ export default {
       this.title = '';
       this.description = '';
       this.endDate = '';
-      this.lane = '';
+      this.lane = 'TODO';
       this.category = '';
       this.id = '';
     },
