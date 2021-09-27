@@ -82,23 +82,28 @@
                 </button>
               </div>
               <div class="lane-items">
-                <div
-                  v-for="(issue, index) in getLaneItems('TODO')"
-                  :key="issue.id"
+                <draggable
+                  v-model="todo"
+                  :group="{ name: 'tasks' }"
+                  @change="log"
                 >
-                  <IssueCard
-                    :issueNumber="issue.id"
-                    :title="issue.title"
-                    :deadline="issue.end_date"
-                    :startDate="issue.created_at"
-                    :issueStatus="issue.status"
-                    :index="index"
-                    type="TODO"
-                  />
-                </div>
+                  <transition-group type="transition" name="flip-list">
+                    <div v-for="(issue, index) in todo" :key="issue.id">
+                      <IssueCard
+                        :issueNumber="issue.id"
+                        :title="issue.title"
+                        :deadline="issue.end_date"
+                        :startDate="issue.created_at"
+                        :issueStatus="issue.status"
+                        :index="index"
+                        type="TODO"
+                      />
+                    </div>
+                  </transition-group>
+                </draggable>
                 <div
                   class="lane-no-item"
-                  v-if="getLaneItems(task).length === 0"
+                  v-if="getLaneItems('TODO').length === 0"
                 >
                   No tasks
                 </div>
@@ -109,23 +114,28 @@
                 <div class="lane-title">DOING</div>
               </div>
               <div class="lane-items">
-                <div
-                  v-for="(issue, index) in getLaneItems('DOING')"
-                  :key="issue.id"
+                <draggable
+                  v-model="doing"
+                  :group="{ name: 'tasks' }"
+                  @change="log"
                 >
-                  <IssueCard
-                    :issueNumber="issue.id"
-                    :title="issue.title"
-                    :deadline="issue.end_date"
-                    :startDate="issue.created_at"
-                    :issueStatus="issue.status"
-                    :index="index"
-                    type="DOING"
-                  />
-                </div>
+                  <transition-group type="transition" name="flip-list">
+                    <div v-for="(issue, index) in doing" :key="issue.id">
+                      <IssueCard
+                        :issueNumber="issue.id"
+                        :title="issue.title"
+                        :deadline="issue.end_date"
+                        :startDate="issue.created_at"
+                        :issueStatus="issue.status"
+                        :index="index"
+                        type="DOING"
+                      />
+                    </div>
+                  </transition-group>
+                </draggable>
                 <div
                   class="lane-no-item"
-                  v-if="getLaneItems(task).length === 0"
+                  v-if="getLaneItems('DOING').length === 0"
                 >
                   No tasks
                 </div>
@@ -136,20 +146,28 @@
                 <div class="lane-title">DONE</div>
               </div>
               <div class="lane-items">
-                <div v-for="(issue, index) in getLaneItems('DONE')" :key="issue.id">
-                  <IssueCard
-                    :issueNumber="issue.id"
-                    :title="issue.title"
-                    :deadline="issue.end_date"
-                    :startDate="issue.created_at"
-                    :issueStatus="issue.status"
-                    :index="index"
-                    type="DONE"
-                  />
-                </div>
+                <draggable
+                  v-model="done"
+                  :group="{ name: 'tasks' }"
+                  @change="log"
+                >
+                  <transition-group type="transition" name="flip-list">
+                    <div v-for="(issue, index) in done" :key="issue.id">
+                      <IssueCard
+                        :issueNumber="issue.id"
+                        :title="issue.title"
+                        :deadline="issue.end_date"
+                        :startDate="issue.created_at"
+                        :issueStatus="issue.status"
+                        :index="index"
+                        type="DONE"
+                      />
+                    </div>
+                  </transition-group>
+                </draggable>
                 <div
                   class="lane-no-item"
-                  v-if="getLaneItems(task).length === 0"
+                  v-if="getLaneItems('DONE').length === 0"
                 >
                   No tasks
                 </div>
@@ -170,6 +188,7 @@ import Navbar from '@/components/Navbar.vue';
 import Topbar from '@/components/Topbar.vue';
 import Loading from '@/components/Loading.vue';
 import IssueCard from '@/components/IssueCard.vue';
+import { VueDraggableNext } from 'vue-draggable-next';
 
 export default {
   name: 'IssuesBoard',
@@ -178,6 +197,7 @@ export default {
     Topbar,
     Loading,
     IssueCard,
+    draggable: VueDraggableNext,
   },
   data() {
     return {
@@ -189,13 +209,42 @@ export default {
       this.task = issue;
     },
     getLaneItems(lane) {
-      return this.$store.getters.getIssues(lane);
+      return JSON.parse(JSON.stringify(this.$store.getters.getIssues(lane)));
+    },
+    log(item) {
+      console.log(item);
     },
   },
   created() {
     if (!this.$store.getters.areIssuesLoaded || !this.$store.getters.isUserInfoLoaded) {
       this.$store.dispatch('loadAllIssues');
     }
+  },
+  computed: {
+    todo: {
+      get() {
+        return this.$store.getters.getIssues('TODO');
+      },
+      set(items) {
+        this.$store.commit('reOrderItems', { lane: 'TODO', items });
+      },
+    },
+    doing: {
+      get() {
+        return this.$store.getters.getIssues('DOING');
+      },
+      set(items) {
+        this.$store.commit('reOrderItems', { lane: 'DOING', items });
+      },
+    },
+    done: {
+      get() {
+        return this.$store.getters.getIssues('DONE');
+      },
+      set(items) {
+        this.$store.commit('reOrderItems', { lane: 'DONE', items });
+      },
+    },
   },
 };
 </script>
