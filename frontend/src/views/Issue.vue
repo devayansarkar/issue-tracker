@@ -163,6 +163,14 @@ export default {
     },
   },
   methods: {
+    cleanState() {
+      this.title = '';
+      this.description = '';
+      this.endDate = '';
+      this.lane = '';
+      this.category = '';
+      this.id = '';
+    },
     saveIssue() {
       const formattedDate = moment(this.endDate, 'YYYY-MM-DD').format(
         'DD/MM/YYYY',
@@ -186,13 +194,6 @@ export default {
           end_date: formattedDate,
           status: this.lane,
         });
-
-        this.title = '';
-        this.description = '';
-        this.endDate = '';
-        this.lane = '';
-        this.category = '';
-        this.id = '';
       }
     },
     makeEditable() {
@@ -235,6 +236,14 @@ export default {
           this.lane = item.status;
           this.category = item.category;
           this.id = item.id;
+        }
+      },
+    );
+    this.$store.watch(
+      (state) => state.message,
+      (item) => {
+        if (item.type === 'success') {
+          this.cleanState();
         }
       },
     );
