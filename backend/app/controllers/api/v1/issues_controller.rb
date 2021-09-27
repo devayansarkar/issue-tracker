@@ -33,11 +33,19 @@ module Api
             # Add issue for a user
             def create
                 @issue = current_user.issues.build(issue_params)
-        
+                preceding_issue = Issue.where(next_issue: nil, status: @issue.status, user_id: current_user.id)
+                if preceding_issue[0].nil? then 
+                    puts "First issue added to the lane."
+                else 
+                    puts "Issue is not first. Will be added to the list."
+                end 
                 if @issue.save
-                  render json: @issue, status: :created
+                    if !preceding_issue[0].nil? then
+                        preceding_issue[0].update(next_issue: @issue.id)
+                    end
+                    render json: @issue, status: :created
                 else
-                  render json: @issue.errors, status: :unprocessable_entity
+                    render json: @issue.errors, status: :unprocessable_entity
                 end
             end
 
