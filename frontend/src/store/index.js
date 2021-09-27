@@ -187,21 +187,21 @@ export default createStore({
       let request = {};
       if (payload.lane === 'TODO') {
         if (payload.newIndex !== state.tasks.todo.length - 1) {
-          request = { issue: { next_issue: state.tasks.todo[payload.newIndex + 1].id, status: 'DONE' } };
+          request = { issue: { next_issue: state.tasks.todo[payload.newIndex + 1].id, status: 'TODO' } };
         } else {
-          request = { issue: { next_issue: undefined, status: 'TODO' } };
+          request = { issue: { next_issue: -1, status: 'TODO' } };
         }
       } else if (payload.lane === 'DONE') {
         if (payload.newIndex !== state.tasks.done.length - 1) {
           request = { issue: { next_issue: state.tasks.done[payload.newIndex + 1].id, status: 'DONE' } };
         } else {
-          request = { issue: { next_issue: undefined, status: 'DONE' } };
+          request = { issue: { next_issue: -1, status: 'DONE' } };
         }
       } else if (payload.lane === 'DOING') {
-        if (payload.newIndex !== state.tasks.done.length - 1) {
+        if (payload.newIndex !== state.tasks.doing.length - 1) {
           request = { issue: { next_issue: state.tasks.doing[payload.newIndex + 1].id, status: 'INPROGRESS' } };
         } else {
-          request = { issue: { next_issue: undefined, status: 'INPROGRESS' } };
+          request = { issue: { next_issue: -1, status: 'INPROGRESS' } };
         }
       }
       securedConnection.patch(`/api/v1/order/${payload.id}`, request)
