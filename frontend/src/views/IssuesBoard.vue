@@ -85,7 +85,7 @@
                 <draggable
                   v-model="todo"
                   :group="{ name: 'tasks' }"
-                  @change="updateIssueStatus"
+                  @change="updateIssueOnMoveToTodo"
                 >
                   <transition-group type="transition" name="flip-list">
                     <div v-for="(issue, index) in todo" :key="issue.id">
@@ -109,7 +109,7 @@
                   <draggable
                     v-model="todo"
                     :group="{ name: 'tasks' }"
-                    @change="updateIssueStatus"
+                    @change="updateIssueOnMoveToTodo"
                   >
                     <transition-group
                       type="transition"
@@ -127,7 +127,7 @@
                 <draggable
                   v-model="doing"
                   :group="{ name: 'tasks' }"
-                  @change="updateIssueStatus"
+                  @change="updateIssueOnMoveToDoing"
                 >
                   <transition-group type="transition" name="flip-list">
                     <div v-for="(issue, index) in doing" :key="issue.id">
@@ -151,7 +151,7 @@
                   <draggable
                     v-model="doing"
                     :group="{ name: 'tasks' }"
-                    @change="updateIssueStatus"
+                    @change="updateIssueOnMoveToDoing"
                   >
                     <transition-group
                       type="transition"
@@ -169,7 +169,7 @@
                 <draggable
                   v-model="done"
                   :group="{ name: 'tasks' }"
-                  @change="updateIssueStatus"
+                  @change="updateIssueOnMoveToDone"
                 >
                   <transition-group type="transition" name="flip-list">
                     <div v-for="(issue, index) in done" :key="issue.id">
@@ -193,7 +193,7 @@
                   <draggable
                     v-model="doing"
                     :group="{ name: 'tasks' }"
-                    @change="updateIssueStatus"
+                    @change="updateIssueOnMoveToDone"
                   >
                     <transition-group
                       type="transition"
@@ -241,8 +241,38 @@ export default {
     getLaneItems(lane) {
       return JSON.parse(JSON.stringify(this.$store.getters.getIssues(lane)));
     },
-    updateIssueStatus(item) {
-      this.$store.dispatch('updateIssueStatusOnDrag', item);
+    updateIssueOnMoveToTodo(proxy) {
+      const issue = JSON.parse(JSON.stringify(proxy));
+      if (issue.added) {
+        this.$store.dispatch('updateIssueStatusOnDrag', {
+          id: issue.added.element.id,
+          newIndex: issue.added.newIndex,
+          lane: 'TODO',
+          type: 'added',
+        });
+      }
+    },
+    updateIssueOnMoveToDoing(proxy) {
+      const issue = JSON.parse(JSON.stringify(proxy));
+      if (issue.added) {
+        this.$store.dispatch('updateIssueStatusOnDrag', {
+          id: issue.added.element.id,
+          newIndex: issue.added.newIndex,
+          lane: 'DOING',
+          type: 'added',
+        });
+      }
+    },
+    updateIssueOnMoveToDone(proxy) {
+      const issue = JSON.parse(JSON.stringify(proxy));
+      if (issue.added) {
+        this.$store.dispatch('updateIssueStatusOnDrag', {
+          id: issue.added.element.id,
+          newIndex: issue.added.newIndex,
+          lane: 'DONE',
+          type: 'added',
+        });
+      }
     },
   },
   created() {
