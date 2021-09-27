@@ -105,6 +105,19 @@ export default createStore({
       state.isLoading = false;
       state.issue = payload;
     },
+    reOrderItems(state, payload) {
+      switch (payload.lane) {
+        case 'TODO':
+          state.tasks.todo = payload.items;
+          break;
+        case 'DOING':
+          state.tasks.doing = payload.items;
+          break;
+        default:
+          state.tasks.done = payload.items;
+          break;
+      }
+    },
   },
   actions: {
     loadUserInfo({ commit }, ignoreLoader) {
