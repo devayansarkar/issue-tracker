@@ -105,16 +105,16 @@ export default createStore({
       state.isLoading = false;
       state.issue = payload;
     },
-    reOrderItems(state, payload) {
+    reOrderIssues(state, payload) {
       switch (payload.lane) {
         case 'TODO':
-          state.tasks.todo = payload.items;
+          state.tasks.todo = payload.issues;
           break;
         case 'DOING':
-          state.tasks.doing = payload.items;
+          state.tasks.doing = payload.issues;
           break;
         default:
-          state.tasks.done = payload.items;
+          state.tasks.done = payload.issues;
           break;
       }
     },
@@ -167,12 +167,12 @@ export default createStore({
         });
     },
     updateIssueStatus({ commit, dispatch }, { status, id }) {
-      let itemStatus = status.toUpperCase();
+      let issueStatus = status.toUpperCase();
       if (status === 'Doing') {
-        itemStatus = 'INPROGRESS';
+        issueStatus = 'INPROGRESS';
       }
       commit('startLoader');
-      securedConnection.patch(`/api/v1/issues/${id}`, { status: itemStatus })
+      securedConnection.patch(`/api/v1/issues/${id}`, { status: issueStatus })
         .then(() => {
           commit('issueOperationSuccess', 'Issue is updated successfully.');
           dispatch('loadAllIssues', true);
