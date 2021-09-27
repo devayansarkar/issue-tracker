@@ -6,6 +6,7 @@
     border-radius: $border_radius;
     border: 1px solid darken($light_grey, 15);
     display: flex;
+    cursor: pointer;
 }
 
 @mixin task-status {
