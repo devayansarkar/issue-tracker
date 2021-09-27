@@ -85,7 +85,7 @@
                 <draggable
                   v-model="todo"
                   :group="{ name: 'tasks' }"
-                  @change="log"
+                  @change="updateIssueStatus"
                 >
                   <transition-group type="transition" name="flip-list">
                     <div v-for="(issue, index) in todo" :key="issue.id">
@@ -109,7 +109,7 @@
                   <draggable
                     v-model="todo"
                     :group="{ name: 'tasks' }"
-                    @change="log"
+                    @change="updateIssueStatus"
                   >
                     <transition-group
                       type="transition"
@@ -127,7 +127,7 @@
                 <draggable
                   v-model="doing"
                   :group="{ name: 'tasks' }"
-                  @change="log"
+                  @change="updateIssueStatus"
                 >
                   <transition-group type="transition" name="flip-list">
                     <div v-for="(issue, index) in doing" :key="issue.id">
@@ -151,7 +151,7 @@
                   <draggable
                     v-model="doing"
                     :group="{ name: 'tasks' }"
-                    @change="log"
+                    @change="updateIssueStatus"
                   >
                     <transition-group
                       type="transition"
@@ -169,7 +169,7 @@
                 <draggable
                   v-model="done"
                   :group="{ name: 'tasks' }"
-                  @change="log"
+                  @change="updateIssueStatus"
                 >
                   <transition-group type="transition" name="flip-list">
                     <div v-for="(issue, index) in done" :key="issue.id">
@@ -193,7 +193,7 @@
                   <draggable
                     v-model="doing"
                     :group="{ name: 'tasks' }"
-                    @change="log"
+                    @change="updateIssueStatus"
                   >
                     <transition-group
                       type="transition"
@@ -241,8 +241,8 @@ export default {
     getLaneItems(lane) {
       return JSON.parse(JSON.stringify(this.$store.getters.getIssues(lane)));
     },
-    log(item) {
-      console.log(item);
+    updateIssueStatus(item) {
+      this.$store.dispatch('updateIssueStatusOnDrag', item);
     },
   },
   created() {
@@ -255,24 +255,24 @@ export default {
       get() {
         return this.$store.getters.getIssues('TODO');
       },
-      set(items) {
-        this.$store.commit('reOrderItems', { lane: 'TODO', items });
+      set(issues) {
+        this.$store.commit('reOrderIssues', { lane: 'TODO', issues });
       },
     },
     doing: {
       get() {
         return this.$store.getters.getIssues('DOING');
       },
-      set(items) {
-        this.$store.commit('reOrderItems', { lane: 'DOING', items });
+      set(issues) {
+        this.$store.commit('reOrderIssues', { lane: 'DOING', issues });
       },
     },
     done: {
       get() {
         return this.$store.getters.getIssues('DONE');
       },
-      set(items) {
-        this.$store.commit('reOrderItems', { lane: 'DONE', items });
+      set(issues) {
+        this.$store.commit('reOrderIssues', { lane: 'DONE', issues });
       },
     },
   },
