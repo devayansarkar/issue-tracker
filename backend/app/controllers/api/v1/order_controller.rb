@@ -38,7 +38,7 @@ module Api
 
             # Fetch the issue to do operations on it
             def set_issue
-                @issue = current_user.issues.find(params[:id])
+                @issue = current_user.issues.find_by(issue_number: params[:id])
             end
 
             # Only allow a trusted parameter "white list" through.
