@@ -11,6 +11,7 @@ class SignupController < ApplicationController
 
       response.set_cookie(JWTSessions.access_cookie, value: tokens[:access], httponly: true, secure: Rails.env.production?)
       
+      IssueCounter.create(user_id: user.id, next_issue_number: 1)
       create_dummy_issues(user)
 
       render json: tokens
@@ -47,7 +48,8 @@ Creates :
       description: 'This issue has a deadline in the future. The right had side bar provides as estimate of the time left. Green bar signifies that there is enough time for handling the issue. Yellow bar signifies that time is short. Red bar signifies that time is about to run out.',
       end_date: Date.today + 180,
       category: 'deadline',
-      status: 'TODO'
+      status: 'TODO',
+      issue_number: 1
     )
 
     issue_todo_with_far_deadline.save()
@@ -58,6 +60,7 @@ Creates :
       end_date: nil,
       category: 'no-deadline',
       status: 'TODO',
+      issue_number: 2
     )
     issue_todo_with_far_deadline.update({next_issue: issue_todo_with_no_deadline.id}) 
     issue_todo_with_no_deadline.save()
@@ -67,7 +70,8 @@ Creates :
       description: 'You can mark issues in progress, signifying that the you are working on it. The right bar as always will keep you informed about the time remaining to finish the issue. You can change the status of the task either by dragging and dropping the issue in the particular lane or by selecting the status under the menu from top right.',
       end_date:  Date.today + 1,
       category: 'issue-in-progress',
-      status: 'INPROGRESS'
+      status: 'INPROGRESS',
+      issue_number: 3
     )
 
     issue_in_progress.save()
@@ -77,10 +81,13 @@ Creates :
       description: 'This is an issue that is done. Finished issue will have a green bar signifying the issue is complete. You can edit or view the issue by clicking on the eye icon. Once the issue is open, you can change all the options present in the issue.',
       end_date:  Date.today + 30,
       category: 'issue-done',
-      status: 'DONE'
+      status: 'DONE',
+      issue_number: 4
     )
 
     issue_done.save()
+
+    IssueCounter.update(user_id: user.id, next_issue_number: 5)
 
   end
 end
