@@ -24,13 +24,15 @@ module Api
                     preceding_issue[0].update(next_issue: next_issue)
                 end
                 
-                destination_preceding_issue = current_user.issues.where(next_issue: target_next_issue, status: target_status)
+                target = IssueCounter.find_by(user_id: current_user.id, issue_number: target_next_issue, status: target_status)
+
+                destination_preceding_issue = current_user.issues.where(next_issue: target.id, status: target_status)
                 
                 if destination_preceding_issue.length > 0 then 
                     destination_preceding_issue[0].update(next_issue: @issue.id)
                 end
 
-                @issue.update(next_issue: target_next_issue, status: target_status)
+                @issue.update(next_issue: target.id, status: target_status)
                 render json: @issue
             end
 
