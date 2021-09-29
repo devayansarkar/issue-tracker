@@ -10,6 +10,10 @@ module Api
             def index
                 result = current_user.issues.order(next_issue: :asc)
                 output = Array.new
+                issue_id_map = {}
+                result.each { |item|
+                    issue_id_map[item.id] = item.issue_number 
+                }
                 result.each { |item|
                     output.push({
                         "id": item[:issue_number],
@@ -21,6 +25,7 @@ module Api
                         "user_id":  item[:user_id],
                         "created_at":  item[:created_at],
                         "updated_at":  item[:updated_at],
+                        "next_issue": issue_id_map[item[:next_issue]]
                     })
                 }
                 render json: {'issues': output}
