@@ -7,7 +7,7 @@
     border: 1px solid darken($light_grey, 15);
     display: flex;
     cursor: pointer;
-    box-shadow: 1px 0px 10px 0px rgba(0,0,0,0.20);
+    box-shadow: $shadow;
 }
 
 @mixin task-status {

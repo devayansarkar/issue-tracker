@@ -9,6 +9,7 @@ button {
     box-shadow: $shadow;
     font-size: 1.1rem;
     cursor: pointer;
+    box-shadow: $shadow;
 
     &:active {
         transform: scale(0.98);
