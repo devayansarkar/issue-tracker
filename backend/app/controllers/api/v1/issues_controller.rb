@@ -16,7 +16,7 @@ module Api
             # Issue also loads associated comments
             def show
                 render json: {
-                    "id": @issue[:id],
+                    "id": @issue[:issue_number],
                     "title": @issue[:title],
                     "description": @issue[:description],
                     "end_date":  @issue[:end_date],
@@ -70,7 +70,7 @@ module Api
 
             # Fetch the issue to do operations on it
             def set_issue
-                @issue = current_user.issues.find(params[:id])
+                @issue = current_user.issues.find_by(issue_number: params[:id])
             end
 
             # Only allow a trusted parameter "white list" through.
