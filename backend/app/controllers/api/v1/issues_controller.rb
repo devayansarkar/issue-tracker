@@ -8,7 +8,22 @@ module Api
             # GET /issues
             # Get all issues for a user
             def index
-                render json: {'issues': current_user.issues.order(next_issue: :asc)}
+                result = current_user.issues.order(next_issue: :asc)
+                output = Array.new
+                result.each { |item|
+                    output.push({
+                        "id": item[:issue_number],
+                        "title": item[:title],
+                        "description": item[:description],
+                        "end_date":  item[:end_date],
+                        "category": item[:category],
+                        "status":  item[:status],
+                        "user_id":  item[:user_id],
+                        "created_at":  item[:created_at],
+                        "updated_at":  item[:updated_at],
+                    })
+                }
+                render json: {'issues': output}
             end
 
             # GET /issues/1
