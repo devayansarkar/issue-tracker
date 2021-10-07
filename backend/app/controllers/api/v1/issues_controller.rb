@@ -56,7 +56,7 @@ module Api
                 
                 issue_counter = IssueCounter.find_by(user_id: current_user.id)
                 @issue.issue_number = issue_counter.next_issue_number
-                issue_counter.increment!(next_issue_number)
+                issue_counter.increment!(:next_issue_number)
 
                 preceding_issue = Issue.where(next_issue: nil, status: @issue.status, user_id: current_user.id)
                 if preceding_issue[0].nil? then 
