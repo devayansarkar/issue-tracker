@@ -6,7 +6,7 @@ describe('Validate adding an issue freature works', () => {
         cy.visit(Cypress.env('HOST'))
     })
 
-    it('Able to add idea by navigating from sidenav', () => {
+    it('Able to add issue by navigating from sidenav', () => {
         const today = new Date();
         const todayDateString = today.toUTCString();
         const dateInFuture = new Date();
@@ -32,7 +32,7 @@ describe('Validate adding an issue freature works', () => {
         cy.contains(`This is the title - ${todayDateString}`)
     })
 
-    it('Able to add idea by navigating from sidenav by filling only mandatory fields', () => {
+    it('Able to add issue by navigating from sidenav by filling only mandatory fields', () => {
         const today = new Date();
         const todayDateString = today.toUTCString();
         cy.get('[data-cy=email-input]').type(Cypress.env('EMAIL'))
