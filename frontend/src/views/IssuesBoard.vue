@@ -191,7 +191,7 @@
                 >
                   No tasks
                   <draggable
-                    v-model="doing"
+                    v-model="done"
                     :group="{ name: 'tasks' }"
                     @change="updateIssueOnMoveToDone"
                   >
