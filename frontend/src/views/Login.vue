@@ -3,7 +3,12 @@
     <div v-if="!isLoading" class="auth-form-container">
       <div class="left-section">
         <div class="login-form-container">
-          <div v-if="message.text" class="info-message" :class="message.type">
+          <div
+            v-if="message.text"
+            class="info-message"
+            :class="message.type"
+            data-cy="login-message"
+          >
             {{ message.text }}
           </div>
           <div class="app-title">Issue Tracker</div>
@@ -35,7 +40,9 @@
           </form>
           <div class="sign-up-info">Do not have an account yet ?</div>
           <router-link to="/signup">
-            <button type="submit" class="btn btn-secondary" data-cy="signup">Sign up</button>
+            <button type="submit" class="btn btn-secondary" data-cy="signup">
+              Sign up
+            </button>
           </router-link>
         </div>
       </div>
