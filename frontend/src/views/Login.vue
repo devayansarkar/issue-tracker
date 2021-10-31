@@ -22,7 +22,7 @@
                 v-model="email"
                 class="form-field"
                 placeholder="Enter your email"
-                data-cy="email"
+                data-cy="email-input"
               />
             </div>
             <div class="input-container">
@@ -33,14 +33,14 @@
                 v-model="password"
                 class="form-field"
                 placeholder="Enter your password"
-                data-cy="password"
+                data-cy="password-input"
               />
             </div>
-            <button class="btn btn-primary" data-cy="login">Login</button>
+            <button class="btn btn-primary" data-cy="login-button">Login</button>
           </form>
           <div class="sign-up-info">Do not have an account yet ?</div>
           <router-link to="/signup">
-            <button type="submit" class="btn btn-secondary" data-cy="signup">
+            <button type="submit" class="btn btn-secondary" data-cy="signup-button">
               Sign up
             </button>
           </router-link>
