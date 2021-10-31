@@ -82,7 +82,7 @@ export default createStore({
             itemIndex = key;
           }
         });
-        while (itemIndex !== null) {
+        while (itemIndex !== null && itemIndex !== undefined) {
           orderedList.push(rawList[issueMap.get(itemIndex)]);
           itemIndex = rawList[issueMap.get(itemIndex)].next_issue;
         }
