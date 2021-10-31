@@ -87,7 +87,7 @@ Creates :
 
     issue_done.save()
 
-    IssueCounter.update(user_id: user.id, next_issue_number: 5)
+    IssueCounter.where(user_id: user.id).update(user_id: user.id, next_issue_number: 5)
 
   end
 end
