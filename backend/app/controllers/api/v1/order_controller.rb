@@ -12,7 +12,6 @@ module Api
                 target_next_issue  = issue_params().fetch(:next_issue)
                 target_status = issue_params().fetch(:status)
                 target_next_issue = nil if target_next_issue == -1
-
                 preceding_issue = current_user.issues.where(next_issue: @issue.id, status: @issue.status)
 
                 # For the old lane
@@ -24,15 +23,15 @@ module Api
                     preceding_issue[0].update(next_issue: next_issue)
                 end
                 
-                target = IssueCounter.find_by(user_id: current_user.id, issue_number: target_next_issue, status: target_status)
-
-                destination_preceding_issue = current_user.issues.where(next_issue: target.id, status: target_status)
-                
+                target = Issue.find_by(user_id: current_user.id, issue_number: target_next_issue, status: target_status)
+                target_id = nil
+                target_id = target.id if !target.nil?
+                destination_preceding_issue = current_user.issues.where(next_issue: target_id, status: target_status)
                 if destination_preceding_issue.length > 0 then 
                     destination_preceding_issue[0].update(next_issue: @issue.id)
                 end
-
-                @issue.update(next_issue: target.id, status: target_status)
+                @issue.update(next_issue: target_id, status: target_status)
+                
                 render json: @issue
             end
 
