@@ -18,7 +18,7 @@
     <div class="item" :class="page === 'board' ? 'active' : ''">
       <router-link to="/board">
         <div>
-          <div class="icon">
+          <div class="icon" data-cy="all-issues-navigation-button">
             <span class="material-icons"> assignment </span>
           </div>
           <div class="text">All issues</div>
@@ -28,7 +28,7 @@
     <div class="item" :class="page === 'addIssue' ? 'active' : ''">
       <router-link to="/add-issue">
         <div>
-          <div class="icon">
+          <div class="icon" data-cy="add-issue-navigation-button">
             <span class="material-icons"> add_circle </span>
           </div>
           <div class="text">New issue</div>

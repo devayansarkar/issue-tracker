@@ -8,6 +8,7 @@
           v-if="$store.state.message.text"
           class="info-message"
           :class="$store.state.message.type"
+          data-cy="issue-info-message"
         >
           {{ $store.state.message.text }}
         </div>
@@ -24,6 +25,7 @@
                 v-model="title"
                 class="form-field"
                 placeholder="Enter issue title"
+                data-cy="title-input"
               />
             </div>
             <div class="input-container">
@@ -39,6 +41,7 @@
                 placeholder="Add your description here"
                 cols="30"
                 rows="8"
+                data-cy="description-input"
               ></textarea>
             </div>
             <div class="issue-info">
@@ -53,6 +56,7 @@
                   v-model="endDate"
                   class="form-field"
                   placeholder="Enter issue date"
+                  data-cy="date-input"
                 />
               </div>
               <div class="input-container">
@@ -65,6 +69,7 @@
                   placeholder="Add your lane"
                   name="lane"
                   :class="isReadonly ? 'read-only-select' : ''"
+                  data-cy="lane-input"
                 >
                   <option value="TODO">Todo</option>
                   <option value="INPROGRESS">Doing</option>
@@ -81,6 +86,7 @@
                   v-model="category"
                   class="form-field"
                   placeholder="Enter issue category"
+                  data-cy="category-input"
                 />
               </div>
             </div>
@@ -89,6 +95,7 @@
                 v-if="!isReadonly"
                 :disabled="isFormIncomplete"
                 class="btn btn-primary"
+                data-cy="add-issue-button"
               >
                 {{ getButtonName }}
               </button>
