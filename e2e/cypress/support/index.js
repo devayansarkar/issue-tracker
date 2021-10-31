@@ -15,10 +15,6 @@
 
 // Import commands.js using ES2015 syntax:
 import './commands'
-const dotenvPlugin = require('cypress-dotenv');
-module.exports = (on, config) => {
-  config = dotenvPlugin(config)
-  return config
-}
+
 // Alternatively you can use CommonJS syntax:
 // require('./commands')
