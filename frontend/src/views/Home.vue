@@ -7,7 +7,9 @@
       <div v-if="!$store.state.isLoading" class="home">
         <div class="home-header">
           <div class="left">
-            <div class="title">Welcome to your personal issue tracker</div>
+            <div class="title" data-cy="home-title">
+              Welcome to your personal issue tracker
+            </div>
             <div class="subtitle">
               Organize your tasks and never miss a deadline.
             </div>
@@ -50,7 +52,10 @@
         <div v-if="$store.getters.hasDeadlineIssues" class="next-tasks">
           <div class="section-title">Approaching deadline</div>
           <div class="section-items">
-            <div v-for="(issue,index) in $store.state.deadlineIssues" :key="issue.id">
+            <div
+              v-for="(issue, index) in $store.state.deadlineIssues"
+              :key="issue.id"
+            >
               <IssueCard
                 :issueNumber="issue.id"
                 :title="issue.title"
