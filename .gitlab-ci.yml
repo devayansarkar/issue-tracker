@@ -7,6 +7,7 @@ before_script:
 
 stages:
     - production
+    - test
 
 production:
     stage: production
@@ -15,3 +16,11 @@ production:
         - dpl --provider=heroku --app=$HEROKU_APP --api-key=$HEROKU_API_KEY
     only:
         - master
+test:
+  image: node:latest
+  stage: test
+  script:
+    - cd e2e
+    - npm ci
+    - npm install -g yarn 
+    - yarn run cypress:run:record $CYPRESS_RECORD_KEY
