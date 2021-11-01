@@ -21,6 +21,6 @@ test:
   stage: test
   script:
     - cd e2e
-    - npm ci
     - npm install -g yarn 
+    - yarn install --frozen-lockfile
     - yarn run cypress:run:record $CYPRESS_RECORD_KEY
