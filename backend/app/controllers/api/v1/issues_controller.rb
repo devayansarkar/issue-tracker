@@ -77,7 +77,26 @@ module Api
             # PATCH /issues/1
             # Updates the exisiting issue
             def update
-                if @issue.update(issue_params)
+                issue_id = @issue.id
+                current_status = @issue.status
+                current_next_issue = @issue.next_issue
+                
+                preceeding_issue = Issue.where(next_issue: issue_id, status: current_status, user_id: current_user.id) 
+                if preceeding_issue.length > 0 then
+                    preceeding_issue[0].update(next_issue: current_next_issue)
+                end
+                
+                
+                if @issue.update(
+                    title: issue_params().fetch(:title) || @issue.title,
+                    description:  issue_params().fetch(:description) || @issue.description, 
+                    end_date:  issue_params().fetch(:end_date) || @issue.end_date,
+                    category: issue_params().fetch(:category) || @issue.category,
+                    status: issue_params().fetch(:status) || @issue.status,
+                    next_issue: nil
+                )
+                    updated_status = @issue.status
+                    Issue.where(status: updated_status, user_id: current_user.id, next_issue: nil).where.not(id: @issue.id).update(next_issue: issue_id)
                     render json: @issue
                 else
                     render json: @issue.errors, status: :unprocessable_entity
