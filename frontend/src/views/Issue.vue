@@ -249,7 +249,7 @@ export default {
     this.$store.watch(
       (state) => state.message,
       (item) => {
-        if (item.type === 'success') {
+        if (item.type === 'success' && this.pageType === 'AddIssue') {
           this.cleanState();
         }
       },
