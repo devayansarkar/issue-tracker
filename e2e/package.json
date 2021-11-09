@@ -18,6 +18,7 @@
   "author": "Devayan Kumar Sarkar",
   "license": "ISC",
   "devDependencies": {
+    "@4tw/cypress-drag-drop": "^2.0.0",
     "cypress": "^8.7.0",
     "cypress-dotenv": "^2.0.0",
     "dotenv": "^10.0.0"
