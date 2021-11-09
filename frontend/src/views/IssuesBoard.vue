@@ -97,6 +97,8 @@
                         :issueStatus="issue.status"
                         :index="index"
                         type="TODO"
+                        data-cy="issue-card-todo"
+                        draggable="true"
                       />
                     </div>
                   </transition-group>
@@ -139,6 +141,8 @@
                         :issueStatus="issue.status"
                         :index="index"
                         type="DOING"
+                        data-cy="issue-card-doing"
+                        draggable="true"
                       />
                     </div>
                   </transition-group>
@@ -181,6 +185,8 @@
                         :issueStatus="issue.status"
                         :index="index"
                         type="DONE"
+                        data-cy="issue-card-done"
+                        draggable="true"
                       />
                     </div>
                   </transition-group>
