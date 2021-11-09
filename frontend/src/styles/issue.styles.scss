@@ -1,6 +1,7 @@
 @import 'variables.scss';
 @import 'pageview.styles.scss';
 @import 'media.queries.scss';
+@import 'input.styles.scss';
 
 .add-issue {
     padding: 1rem 1.2rem;
@@ -39,4 +40,67 @@
 
 .issue-cta {
     text-align: right;
+}
+
+.comments-section {
+    padding: 1rem;
+
+    @include lg() {
+        display: grid;
+        place-content: center;
+    }
+
+    .add-comment-button {
+        text-align: center;
+        padding: 1.5rem;
+        border: 1px dashed black;
+        cursor: pointer;
+
+        @include lg() {
+            width: 40rem;
+        }
+    }
+
+    .comments-button-section {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        margin-top: 1rem;
+
+        @include lg () {
+            justify-content: flex-end;
+        }
+    }
+
+    .all-comments-section {
+        margin-top: 2rem;
+
+        .comment-info {
+            color: $dark_grey;
+            font-size: .8rem;
+            font-weight: bolder;
+            margin-bottom: .5rem;
+            display: flex;
+
+            .comment-cta {
+                margin-left: auto;
+                cursor: pointer;
+            }
+        }
+
+        .comments {
+            background-color: lighten($background, 20);
+            padding: 2rem 4rem;
+            margin-top: .5rem;
+            margin-bottom: .5rem;
+
+            @include lg() {
+                max-width: 35rem;
+            }
+
+            .comment {
+                text-align: justify;
+            }
+        }
+    }
 }
