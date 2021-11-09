@@ -46,6 +46,16 @@ button {
     }
 }
 
+.btn-danger {
+    background-color: $light_text;
+    color: $danger;
+
+    &:hover {
+        background-color: $danger;
+        color: $light_text;
+    }
+}
+
 .btn-primary-small {
     background-color: $primary;
     color: $light_text;
