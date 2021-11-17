@@ -10,10 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_29_130620) do
+ActiveRecord::Schema.define(version: 2021_11_17_153358) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "comment_counters", force: :cascade do |t|
+    t.integer "next_comment_number"
+    t.bigint "issues_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["issues_id"], name: "index_comment_counters_on_issues_id"
+  end
 
   create_table "comments", force: :cascade do |t|
     t.string "description"
@@ -21,6 +29,8 @@ ActiveRecord::Schema.define(version: 2021_09_29_130620) do
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "comment_number"
+    t.index ["comment_number", "issue_id", "user_id"], name: "unique_identifier_with_user_issue_and_comment_number", unique: true
     t.index ["issue_id"], name: "index_comments_on_issue_id"
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
@@ -57,6 +67,7 @@ ActiveRecord::Schema.define(version: 2021_09_29_130620) do
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
+  add_foreign_key "comment_counters", "issues", column: "issues_id"
   add_foreign_key "comments", "issues"
   add_foreign_key "comments", "users"
   add_foreign_key "issue_counters", "users"
