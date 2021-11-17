@@ -17,10 +17,10 @@ ActiveRecord::Schema.define(version: 2021_11_17_153358) do
 
   create_table "comment_counters", force: :cascade do |t|
     t.integer "next_comment_number"
-    t.bigint "issues_id", null: false
+    t.bigint "issue_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["issues_id"], name: "index_comment_counters_on_issues_id"
+    t.index ["issue_id"], name: "index_comment_counters_on_issue_id"
   end
 
   create_table "comments", force: :cascade do |t|
@@ -67,7 +67,7 @@ ActiveRecord::Schema.define(version: 2021_11_17_153358) do
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
-  add_foreign_key "comment_counters", "issues", column: "issues_id"
+  add_foreign_key "comment_counters", "issues"
   add_foreign_key "comments", "issues"
   add_foreign_key "comments", "users"
   add_foreign_key "issue_counters", "users"
