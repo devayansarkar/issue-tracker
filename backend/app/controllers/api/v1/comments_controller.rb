@@ -8,12 +8,32 @@ module Api
             # POST /comments 
             # Add comment for a user
             def create
-                @comment = current_user.comments.build(comment_params)
-        
-                if @comment.save
-                  render json: @comment, status: :created
+                issue = current_user.issues.where(issue_number: comment_params().fetch(:issue_id))
+                last_known_comment_count = CommentCounter.find_by(issue_id: issue[0].id)
+                comment_number = 1
+                if last_known_comment_count.nil? then
+                    comment_counter = CommentCounter.create(
+                        issue_id:issue[0].id,
+                        next_comment_number: 2 
+                    )
+                    comment_counter.save()
                 else
-                  render json: @comment.errors, status: :unprocessable_entity
+                    comment_number = last_known_comment_count.next_comment_number
+                    last_known_comment_count.increment!(:next_comment_number)
+                end
+                comment = current_user.comments.create(
+                    issue_id:issue[0].id,
+                    comment_number:  comment_number,
+                    description: comment_params().fetch(:description)
+                )
+                if comment.save
+                    render json: {
+                        "description": comment[:description],
+                        "issue_id": comment_params().fetch(:issue_id),
+                        "id":  comment[:comment_number],
+                    }, status: :created
+                else
+                    render json: comment.errors, status: :unprocessable_entity
                 end
             end
 
