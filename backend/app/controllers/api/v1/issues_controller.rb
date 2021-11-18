@@ -8,7 +8,7 @@ module Api
             # GET /issues
             # Get all issues for a user
             def index
-                result = current_user.issues.order(next_issue: :asc).includes(:comments)
+                result = current_user.issues.order(next_issue: :asc)
                 output = Array.new
                 issue_id_map = {}
                 result.each { |item|
