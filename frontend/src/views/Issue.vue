@@ -125,7 +125,13 @@
             <button class="btn-danger" @click="toggleAddCommentSection">
               Cancel
             </button>
-            <button class="btn-primary" @click="addNewComment">Save</button>
+            <button
+              class="btn-primary"
+              @click="addNewComment"
+              :disabled="isCommentNotAdded"
+            >
+              Save
+            </button>
           </div>
           <div class="all-comments-section">
             <div
@@ -135,7 +141,12 @@
               <div class="comments">
                 <div class="comment-info">
                   {{ parsedDate(comment.created_at) }}
-                  <div class="comment-cta" @click="deleteComment">❌</div>
+                  <div
+                    class="comment-cta"
+                    @click="deleteComment(comment.comment_number)"
+                  >
+                    ❌
+                  </div>
                 </div>
                 <div class="comment">{{ comment.description }}</div>
               </div>
@@ -181,6 +192,9 @@ export default {
   computed: {
     isFormIncomplete() {
       return this.title === '' || this.description === '';
+    },
+    isCommentNotAdded() {
+      return this.comment === '';
     },
     getButtonName() {
       if (this.pageType === 'AddIssue') {
@@ -261,13 +275,19 @@ export default {
       return formattedDate.toLocaleString().substring(0, 16);
     },
     addNewComment() {
-      console.log('Adding a new comment');
+      this.$store.dispatch('addComment', {
+        description: this.comment,
+        issueId: this.$route.params.issue_id,
+      });
     },
-    deleteComment() {
+    deleteComment(id) {
       if (window.confirm('Are you sure you want to delete the comment ?')) {
-        console.log('Deleting comment');
+        this.$store.dispatch('deleteComment', {
+          commentId: id,
+          issueId: this.$route.params.issue_id,
+        });
       } else {
-        console.log('Not deleting commint');
+        console.log('Comment is not deleted.');
       }
     },
   },
