@@ -103,25 +103,43 @@
           </form>
         </div>
         <div class="comments-section">
-          <div v-if="!isAddCommentVisible"
+          <div
+            v-if="!isAddCommentVisible"
             class="add-comment-button"
-            @click="toggleAddCommentSection">
+            @click="toggleAddCommentSection"
+          >
             + Add new comment
           </div>
           <div class="input-container add-comment" v-if="isAddCommentVisible">
-              <textarea
-                id="comment"
-                v-model="comment"
-                type="comment"
-                placeholder="Add your comment here"
-                cols="30"
-                rows="5"
-                data-cy="comment-input"
-              ></textarea>
+            <textarea
+              id="comment"
+              v-model="comment"
+              type="comment"
+              placeholder="Add your comment here"
+              cols="30"
+              rows="5"
+              data-cy="comment-input"
+            ></textarea>
           </div>
           <div class="comments-button-section" v-if="isAddCommentVisible">
-              <button class="btn-danger" @click="toggleAddCommentSection"> Cancel </button>
-              <button class="btn-primary"> Save </button>
+            <button class="btn-danger" @click="toggleAddCommentSection">
+              Cancel
+            </button>
+            <button class="btn-primary">Save</button>
+          </div>
+          <div class="all-comments-section">
+            <div
+              v-for="comment in comments.slice().reverse()"
+              :key="comment.id"
+            >
+              <div class="comments">
+                <div class="comment-info">
+                  {{ parsedDate(comment.created_at) }}
+                  <div class="comment-cta">❌</div>
+                </div>
+                <div class="comment">{{ comment.description }}</div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -153,6 +171,7 @@ export default {
       endDate: '',
       lane: 'TODO',
       category: '',
+      comments: [],
       pageType: this.$route.name,
       isReadonly: this.$route.name === 'ViewIssue',
       isAddCommentVisible: false,
@@ -236,42 +255,32 @@ export default {
         this.pageType = 'UpdateIssue';
       }
     },
+    parsedDate(rawDate) {
+      const value = rawDate;
+      const formattedDate = moment(value, 'YYYY-MM-DD');
+      return formattedDate.toLocaleString().substring(0, 16);
+    },
   },
   created() {
     if (this.$route.params && this.$route.params.issue_id) {
       const { params } = this.$route;
 
-      if (params.index === undefined || params.type === undefined) {
-        console.log('Fetching the issue from the backend');
-        this.$store.dispatch('getIssue', {
-          id: params.issue_id,
-        });
-      } else {
-        console.log('Not fetching the issue from the backend');
-        const issue = this.$store.getters.getIssue({
-          type: params.type,
-          index: params.index,
-        });
-        this.$store.commit('getIssueSuccess', issue);
-        this.title = issue.title;
-        this.description = issue.description;
-        this.endDate = issue.end_date;
-        this.lane = issue.status;
-        this.category = issue.category;
-        this.id = issue.id;
-      }
+      this.$store.dispatch('getIssue', {
+        id: params.issue_id,
+      });
     }
 
     this.$store.watch(
       (state) => state.issue,
-      (item) => {
-        if (item.title !== '') {
-          this.title = item.title;
-          this.description = item.description;
-          this.endDate = item.end_date;
-          this.lane = item.status;
-          this.category = item.category;
-          this.id = item.id;
+      (issue) => {
+        if (issue.title !== '') {
+          this.title = issue.title;
+          this.description = issue.description;
+          this.endDate = issue.end_date;
+          this.lane = issue.status;
+          this.category = issue.category;
+          this.id = issue.id;
+          this.comments = issue.comments || [];
         }
       },
     );
