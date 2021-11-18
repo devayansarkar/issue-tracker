@@ -57,6 +57,12 @@
         cursor: pointer;
 
         @include lg() {
+            width: 38rem;
+        }
+    }
+
+    .add-comment {
+        @include lg() {
             width: 40rem;
         }
     }
