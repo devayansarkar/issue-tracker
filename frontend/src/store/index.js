@@ -31,6 +31,7 @@ export default createStore({
       endDate: '',
       lane: '',
       category: '',
+      comments: [],
     },
   },
   mutations: {
@@ -140,6 +141,47 @@ export default createStore({
           break;
       }
     },
+    /* eslint-disable no-param-reassign */
+    addCommentSuccess(state, payload) {
+      const comments = [];
+      const existingComments = JSON.parse(JSON.stringify(state.issue.comments));
+      if (existingComments) {
+        existingComments.forEach((item) => comments.push(item));
+      }
+      comments.push(payload.comment);
+      state.issue = { ...state.issue, comments };
+      state.isLoading = false;
+    },
+    addCommentFailure(state, payload) {
+      state.isLoading = false;
+      state.message = { type: 'error', text: payload };
+      setTimeout(() => {
+        state.message = { type: 'error', text: '' };
+      }, 5000);
+    },
+    deleteCommentSuccess(state, payload) {
+      const { commentId } = payload;
+      const comments = [];
+      const existingComments = JSON.parse(JSON.stringify(state.issue.comments));
+      if (existingComments) {
+        existingComments.forEach((item) => {
+          if (item.id !== commentId) {
+            comments.push(item);
+          }
+        });
+      }
+      comments.push(payload.comment);
+      state.issue = { ...state.issue, comments };
+      state.isLoading = false;
+      state.isLoading = false;
+    },
+    deleteCommentFailure(state, payload) {
+      state.isLoading = false;
+      state.message = { type: 'error', text: payload };
+      setTimeout(() => {
+        state.message = { type: 'error', text: '' };
+      }, 5000);
+    },
   },
   actions: {
     loadUserInfo({ commit }, ignoreLoader) {
@@ -241,6 +283,28 @@ export default createStore({
           commit('getIssueSuccess', r.data);
         })
         .catch(() => commit('issueOperationFailure', 'Unable to fetch issue, please check the number or add a new one'));
+    },
+    addComment({ commit }, { issueId, description }) {
+      commit('startLoader');
+      securedConnection.post('/api/v1/comments', { description, issue_id: issueId })
+        .then((response) => {
+          commit('addCommentSuccess', { issueId, comment: response.data });
+        })
+        .catch((e) => {
+          console.log(e);
+          commit('addCommentFailure', 'Unable to add new comment!');
+        });
+    },
+    deleteComment({ commit }, { issueId, commentId }) {
+      commit('startLoader');
+      securedConnection.post(`/api/v1/comments/${commentId}`, { issue_id: issueId })
+        .then(() => {
+          commit('addCommentSuccess', { issueId, commentId });
+        })
+        .catch((e) => {
+          console.log(e);
+          commit('addCommentFailure', 'Unable to delete comment!');
+        });
     },
   },
   modules: {
