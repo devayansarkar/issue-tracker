@@ -125,7 +125,7 @@
             <button class="btn-danger" @click="toggleAddCommentSection">
               Cancel
             </button>
-            <button class="btn-primary">Save</button>
+            <button class="btn-primary" @click="addNewComment">Save</button>
           </div>
           <div class="all-comments-section">
             <div
@@ -135,7 +135,7 @@
               <div class="comments">
                 <div class="comment-info">
                   {{ parsedDate(comment.created_at) }}
-                  <div class="comment-cta">❌</div>
+                  <div class="comment-cta" @click="deleteComment">❌</div>
                 </div>
                 <div class="comment">{{ comment.description }}</div>
               </div>
@@ -259,6 +259,16 @@ export default {
       const value = rawDate;
       const formattedDate = moment(value, 'YYYY-MM-DD');
       return formattedDate.toLocaleString().substring(0, 16);
+    },
+    addNewComment() {
+      console.log('Adding a new comment');
+    },
+    deleteComment() {
+      if (window.confirm('Are you sure you want to delete the comment ?')) {
+        console.log('Deleting comment');
+      } else {
+        console.log('Not deleting commint');
+      }
     },
   },
   created() {
