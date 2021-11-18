@@ -102,7 +102,7 @@
             </div>
           </form>
         </div>
-        <div class="comments-section">
+        <div class="comments-section" v-if="isReadonly">
           <div
             v-if="!isAddCommentVisible"
             class="add-comment-button"
