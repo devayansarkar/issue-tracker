@@ -36,6 +36,7 @@ module Api
             # Get specific issue
             # Issue also loads associated comments
             def show
+                if !@issue.nil? then 
                 render json: {
                     "id": @issue[:issue_number],
                     "title": @issue[:title],
@@ -48,6 +49,9 @@ module Api
                     "updated_at":  @issue[:updated_at],
                     "comments": @issue.comments.all
                 }
+                else
+                    render json:{error: 'The resource you are requesting is not available.'}, status: :not_found
+                end
             end
 
             # POST /issues 
