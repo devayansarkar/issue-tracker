@@ -165,14 +165,12 @@ export default createStore({
       const existingComments = JSON.parse(JSON.stringify(state.issue.comments));
       if (existingComments) {
         existingComments.forEach((item) => {
-          if (item.id !== commentId) {
+          if (item.comment_number !== commentId) {
             comments.push(item);
           }
         });
       }
-      comments.push(payload.comment);
       state.issue = { ...state.issue, comments };
-      state.isLoading = false;
       state.isLoading = false;
     },
     deleteCommentFailure(state, payload) {
@@ -297,13 +295,13 @@ export default createStore({
     },
     deleteComment({ commit }, { issueId, commentId }) {
       commit('startLoader');
-      securedConnection.post(`/api/v1/comments/${commentId}`, { issue_id: issueId })
+      securedConnection.delete(`/api/v1/comments/${commentId}`, { data: { issue_id: issueId } })
         .then(() => {
-          commit('addCommentSuccess', { issueId, commentId });
+          commit('deleteCommentSuccess', { issueId, commentId });
         })
         .catch((e) => {
           console.log(e);
-          commit('addCommentFailure', 'Unable to delete comment!');
+          commit('deleteCommentFailure', 'Unable to delete comment!');
         });
     },
   },
