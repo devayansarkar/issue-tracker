@@ -123,7 +123,7 @@
           </div>
           <div class="comments-button-section" v-if="isAddCommentVisible">
             <button class="btn-danger" @click="toggleAddCommentSection">
-              Cancel
+              Close
             </button>
             <button
               class="btn-primary"
@@ -262,6 +262,7 @@ export default {
     },
     toggleAddCommentSection() {
       this.isAddCommentVisible = !this.isAddCommentVisible;
+      this.comment = '';
     },
     makeEditable() {
       this.isReadonly = false;
