@@ -40,15 +40,20 @@ module Api
             # DELETE /comments/1
             # Deletes the comment
             def destroy
-                @comment.destroy
-                render json: {'message':'Comment is deleted.'}
+                if @comment.nil? then 
+                    render json: { error: 'The comment is not available'}, status: :not_found
+                else
+                    @comment.destroy
+                    render json: {'message':'Comment is deleted.'}
+                end
             end
 
             private
 
             # Fetch the comment to do operations on it
             def set_comment
-                @comment = current_user.comments.find(params[:id])
+                issue = current_user.issues.where(issue_number: comment_params().fetch(:issue_id))[0]
+                @comment = Comment.find_by(issue_id: issue.id, user_id: current_user.id, comment_number: params[:id])
             end
 
             # Only allow a trusted parameter "white list" through.
