@@ -31,6 +31,8 @@ module Api
                         "description": comment[:description],
                         "issue_id": comment_params().fetch(:issue_id),
                         "id":  comment[:comment_number],
+                        "created_at":  comment[:created_at],
+                        "comment_number": comment[:comment_number]
                     }, status: :created
                 else
                     render json: comment.errors, status: :unprocessable_entity
