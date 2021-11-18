@@ -102,6 +102,28 @@
             </div>
           </form>
         </div>
+        <div class="comments-section">
+          <div v-if="!isAddCommentVisible"
+            class="add-comment-button"
+            @click="toggleAddCommentSection">
+            + Add new comment
+          </div>
+          <div class="input-container add-comment" v-if="isAddCommentVisible">
+              <textarea
+                id="comment"
+                v-model="comment"
+                type="comment"
+                placeholder="Add your comment here"
+                cols="30"
+                rows="5"
+                data-cy="comment-input"
+              ></textarea>
+          </div>
+          <div class="comments-button-section" v-if="isAddCommentVisible">
+              <button class="btn-danger" @click="toggleAddCommentSection"> Cancel </button>
+              <button class="btn-primary"> Save </button>
+          </div>
+        </div>
       </div>
       <div v-if="$store.state.isLoading" class="loading-container">
         <Loading />
@@ -133,6 +155,8 @@ export default {
       category: '',
       pageType: this.$route.name,
       isReadonly: this.$route.name === 'ViewIssue',
+      isAddCommentVisible: false,
+      comment: '',
     };
   },
   computed: {
@@ -203,6 +227,9 @@ export default {
         });
       }
     },
+    toggleAddCommentSection() {
+      this.isAddCommentVisible = !this.isAddCommentVisible;
+    },
     makeEditable() {
       this.isReadonly = false;
       if (this.pageType !== 'AddIssue') {
@@ -215,10 +242,12 @@ export default {
       const { params } = this.$route;
 
       if (params.index === undefined || params.type === undefined) {
+        console.log('Fetching the issue from the backend');
         this.$store.dispatch('getIssue', {
           id: params.issue_id,
         });
       } else {
+        console.log('Not fetching the issue from the backend');
         const issue = this.$store.getters.getIssue({
           type: params.type,
           index: params.index,
