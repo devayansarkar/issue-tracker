@@ -107,6 +107,7 @@
             v-if="!isAddCommentVisible"
             class="add-comment-button"
             @click="toggleAddCommentSection"
+            data-cy="view-add-comment-input"
           >
             + Add new comment
           </div>
@@ -122,13 +123,14 @@
             ></textarea>
           </div>
           <div class="comments-button-section" v-if="isAddCommentVisible">
-            <button class="btn-danger" @click="toggleAddCommentSection">
+            <button class="btn-danger" @click="toggleAddCommentSection" data-cy="comment-close">
               Close
             </button>
             <button
               class="btn-primary"
               @click="addNewComment"
               :disabled="isCommentNotAdded"
+              data-cy="comment-save"
             >
               Save
             </button>
@@ -138,12 +140,13 @@
               v-for="comment in comments.slice().reverse()"
               :key="comment.id"
             >
-              <div class="comments">
+              <div class="comments" data-cy="comment-container">
                 <div class="comment-info">
                   {{ parsedDate(comment.created_at) }}
                   <div
                     class="comment-cta"
                     @click="deleteComment(comment.comment_number)"
+                    data-cy="comment-delete"
                   >
                     ❌
                   </div>
