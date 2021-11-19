@@ -8,6 +8,7 @@ Web application to track, update and create personal tasks and issues.
 - Frontend in Vue
 - Database is PostgreSQL
 - Deployed on Heroku
+- Automated e2e using Cypress.io
 
 ## Deployed app
 

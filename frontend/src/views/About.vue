@@ -29,6 +29,12 @@
                 <code>GitLab CI</code> builds.
               </li>
             </ul>
+            <ul>
+              <h4>Testing</h4>
+              <li>
+                Application testing is automated using <code>Cypress.io</code>.
+              </li>
+            </ul>
           </div>
           <div>
             <h3>Why build `Issue Tracker` ?</h3>
