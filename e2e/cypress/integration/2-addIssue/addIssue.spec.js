@@ -7,11 +7,20 @@ describe('Validate adding an issue freature works', () => {
     })
 
     it('Able to add issue by navigating from sidenav', () => {
-        const today = new Date();
-        const todayDateString = today.toUTCString();
-        const dateInFuture = new Date();
-        dateInFuture.setDate(today.getDate() + 15);
-        const dateInput = `${dateInFuture.getUTCFullYear()}-${dateInFuture.getMonth()+1}-${dateInFuture.getDate()}`
+        const today = new Date()
+        const todayDateString = today.toUTCString()
+        const dateInFuture = new Date()
+        dateInFuture.setDate(today.getDate() + 15)
+        let day = dateInFuture.getDate()
+        let month = dateInFuture.getMonth() + 1
+        if (day < 10) {
+            day = `0${day}`
+        }
+
+        if (month < 10) {
+            month = `0${month}`
+        }
+        const dateInput = `${dateInFuture.getUTCFullYear()}-${month}-${day}`
         cy.get('[data-cy=email-input]').type(Cypress.env('EMAIL'))
         cy.get('[data-cy=password-input]').type(Cypress.env('PASSWORD'))
         cy.get('[data-cy=login-button]').first().click()
@@ -33,8 +42,8 @@ describe('Validate adding an issue freature works', () => {
     })
 
     it('Able to add issue by navigating from sidenav by filling only mandatory fields', () => {
-        const today = new Date();
-        const todayDateString = today.toUTCString();
+        const today = new Date()
+        const todayDateString = today.toUTCString()
         cy.get('[data-cy=email-input]').type(Cypress.env('EMAIL'))
         cy.get('[data-cy=password-input]').type(Cypress.env('PASSWORD'))
         cy.get('[data-cy=login-button]').first().click()
